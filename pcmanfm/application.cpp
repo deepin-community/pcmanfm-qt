@@ -22,12 +22,12 @@
 #include "mainwindow.h"
 #include "desktopwindow.h"
 #include <QDBusConnection>
+#include <QDBusConnectionInterface>
 #include <QDBusInterface>
 #include <QDir>
 #include <QVector>
 #include <QLocale>
 #include <QLibraryInfo>
-#include <QPixmapCache>
 #include <QFile>
 #include <QMessageBox>
 #include <QCommandLineParser>
@@ -40,12 +40,15 @@
 #include <sys/socket.h>
 
 #include <libfm-qt/mountoperation.h>
+#include <libfm-qt/filepropsdialog.h>
 #include <libfm-qt/filesearchdialog.h>
 #include <libfm-qt/core/terminal.h>
 #include <libfm-qt/core/bookmarks.h>
 #include <libfm-qt/core/folderconfig.h>
+#include <libfm-qt/core/fileinfojob.h>
 
 #include "applicationadaptor.h"
+#include "applicationadaptorfreedesktopfilemanager.h"
 #include "preferencesdialog.h"
 #include "desktoppreferencesdialog.h"
 #include "autorundialog.h"
@@ -85,12 +88,15 @@ Application::Application(int& argc, char** argv):
     editBookmarksialog_(),
     volumeMonitor_(nullptr),
     userDirsWatcher_(nullptr),
-    lxqtRunning_(false) {
+    lxqtRunning_(false),
+    openingLastTabs_(false) {
 
     argc_ = argc;
     argv_ = argv;
 
     setApplicationVersion(QStringLiteral(PCMANFM_QT_VERSION));
+
+    underWayland_ = QGuiApplication::platformName() == QStringLiteral("wayland");
 
     // QDBusConnection::sessionBus().registerObject("/org/pcmanfm/Application", this);
     QDBusConnection dbus = QDBusConnection::sessionBus();
@@ -119,8 +125,24 @@ Application::Application(int& argc, char** argv):
                 initWatch();
             }
             delete lxqtSessionIface;
-            lxqtSessionIface = 0;
+            lxqtSessionIface = nullptr;
         }
+
+
+        // We also try to register the service "org.freedesktop.FileManager1".
+        // We allow queuing of our request in case another file manager has already registered it.
+        static const QString fileManagerService = QStringLiteral("org.freedesktop.FileManager1");
+        connect(dbus.interface(), &QDBusConnectionInterface::serviceRegistered, this, [this](const QString& service) {
+                if(fileManagerService == service) {
+                    QDBusConnection dbus = QDBusConnection::sessionBus();
+                    disconnect(dbus.interface(), &QDBusConnectionInterface::serviceRegistered, this, nullptr);
+                    new ApplicationAdaptorFreeDesktopFileManager(this);
+                    if(!dbus.registerObject(QStringLiteral("/org/freedesktop/FileManager1"), this)) {
+                        qDebug() << "Can't register /org/freedesktop/FileManager1:" << dbus.lastError().message();
+                    }
+                }
+        });
+        dbus.interface()->registerService(fileManagerService, QDBusConnectionInterface::QueueService);
     }
     else {
         // an service of the same name is already registered.
@@ -165,10 +187,10 @@ bool Application::parseCommandLineArgs() {
     QCommandLineOption profileOption(QStringList() << QStringLiteral("p") << QStringLiteral("profile"), tr("Name of configuration profile"), tr("PROFILE"));
     parser.addOption(profileOption);
 
-    QCommandLineOption daemonOption(QStringList() << QStringLiteral("d") << QStringLiteral("daemon-mode"), tr("Run PCManFM as a daemon"));
+    QCommandLineOption daemonOption(QStringList() << QStringLiteral("d") << QStringLiteral("daemon-mode"), tr("Run PCManFM-Qt as a daemon"));
     parser.addOption(daemonOption);
 
-    QCommandLineOption quitOption(QStringList() << QStringLiteral("q") << QStringLiteral("quit"), tr("Quit PCManFM"));
+    QCommandLineOption quitOption(QStringList() << QStringLiteral("q") << QStringLiteral("quit"), tr("Quit PCManFM-Qt"));
     parser.addOption(quitOption);
 
     QCommandLineOption desktopOption(QStringLiteral("desktop"), tr("Launch desktop manager"));
@@ -177,7 +199,7 @@ bool Application::parseCommandLineArgs() {
     QCommandLineOption desktopOffOption(QStringLiteral("desktop-off"), tr("Turn off desktop manager if it's running"));
     parser.addOption(desktopOffOption);
 
-    QCommandLineOption desktopPrefOption(QStringLiteral("desktop-pref"), tr("Open desktop preference dialog on the page with the specified name"), tr("NAME"));
+    QCommandLineOption desktopPrefOption(QStringLiteral("desktop-pref"), tr("Open desktop preference dialog on the page with the specified name") + QStringLiteral("\n") + tr("NAME") + QStringLiteral("=(general|bg|slide|advanced)"), tr("NAME"));
     parser.addOption(desktopPrefOption);
 
     QCommandLineOption newWindowOption(QStringList() << QStringLiteral("n") << QStringLiteral("new-window"), tr("Open new window"));
@@ -192,7 +214,7 @@ bool Application::parseCommandLineArgs() {
     QCommandLineOption wallpaperModeOption(QStringLiteral("wallpaper-mode"), tr("Set mode of desktop wallpaper. MODE=(%1)").arg(QStringLiteral("color|stretch|fit|center|tile|zoom")), tr("MODE"));
     parser.addOption(wallpaperModeOption);
 
-    QCommandLineOption showPrefOption(QStringLiteral("show-pref"), tr("Open Preferences dialog on the page with the specified name"), tr("NAME"));
+    QCommandLineOption showPrefOption(QStringLiteral("show-pref"), tr("Open Preferences dialog on the page with the specified name") + QStringLiteral("\n") + tr("NAME") + QStringLiteral("=(behavior|display|ui|thumbnail|volume|advanced)"), tr("NAME"));
     parser.addOption(showPrefOption);
 
     parser.addPositionalArgument(QStringLiteral("files"), tr("Files or directories to open"), tr("[FILE1, FILE2,...]"));
@@ -216,8 +238,6 @@ bool Application::parseCommandLineArgs() {
         QString perFolderConfigFile = settings_.profileDir(profileName_) + QStringLiteral("/dir-settings.conf");
         Fm::FolderConfig::init(perFolderConfigFile.toLocal8Bit().constData());
 
-        // decrease the cache size to reduce memory usage
-        QPixmapCache::setCacheLimit(2048);
 
         if(settings_.useFallbackIconTheme()) {
             QIcon::setThemeName(settings_.fallbackIconThemeName());
@@ -317,7 +337,7 @@ void Application::init() {
     // install libfm-qt translator
     installTranslator(libFm_.translator());
 
-    // install our own tranlations
+    // install our own translations
     translator.load(QStringLiteral("pcmanfm-qt_") + QLocale::system().name(), QStringLiteral(PCMANFM_DATA_DIR) + QStringLiteral("/translations"));
     installTranslator(&translator);
 }
@@ -334,12 +354,12 @@ int Application::exec() {
 
     volumeMonitor_ = g_volume_monitor_get();
     // delay the volume manager a little because in newer versions of glib/gio there's a problem.
-    // when the first volume monitor object is created, it discovers volumes asynchonously.
+    // when the first volume monitor object is created, it discovers volumes asynchronously.
     // g_volume_monitor_get() immediately returns while the monitor is still discovering devices.
     // So initially g_volume_monitor_get_volumes() returns nothing, but shortly after that
     // we get volume-added signals for all of the volumes. This is not what we want.
     // So, we wait for 3 seconds here to let it finish device discovery.
-    QTimer::singleShot(3000, this, SLOT(initVolumeManager()));
+    QTimer::singleShot(3000, this, &Application::initVolumeManager);
 
     return QCoreApplication::exec();
 }
@@ -372,7 +392,37 @@ void Application::onUserDirsChanged() {
 
 void Application::onAboutToQuit() {
     qDebug("aboutToQuit");
+    // save custom positions of desktop items
+    if(!desktopWindows_.isEmpty()) {
+        desktopWindows_.first()->saveItemPositions();
+    }
+
     settings_.save();
+}
+
+void Application::cleanPerFolderConfig() {
+    // first save the perfolder config cache to have the list of all custom folders
+    Fm::FolderConfig::saveCache();
+    // then remove non-existent native folders from the list of custom folders
+    QByteArray perFolderConfig = (settings_.profileDir(profileName_) + QStringLiteral("/dir-settings.conf"))
+                                 .toLocal8Bit();
+    GKeyFile* kf = g_key_file_new();
+    if(g_key_file_load_from_file(kf, perFolderConfig.constData(), G_KEY_FILE_NONE, nullptr)) {
+        bool removed(false);
+        gchar **groups = g_key_file_get_groups(kf, nullptr);
+        for(int i = 0; groups[i] != nullptr; i++) {
+            const gchar *g = groups[i];
+            if(Fm::FilePath::fromPathStr(g).isNative() && !QDir(QString::fromUtf8(g)).exists()) {
+                g_key_file_remove_group(kf, g, nullptr);
+                removed = true;
+            }
+        }
+        g_strfreev(groups);
+        if(removed) {
+            g_key_file_save_to_file(kf, perFolderConfig.constData(), nullptr);
+        }
+    }
+    g_key_file_free(kf);
 }
 
 /*bool Application::eventFilter(QObject* watched, QEvent* event) {
@@ -447,7 +497,7 @@ void Application::desktopManager(bool enabled) {
     enableDesktopManager_ = enabled;
 }
 
-void Application::desktopPrefrences(QString page) {
+void Application::desktopPrefrences(const QString& page) {
     // show desktop preference window
     if(!desktopPreferencesDialog_) {
         desktopPreferencesDialog_ = new DesktopPreferencesDialog();
@@ -470,6 +520,8 @@ void Application::onFindFileAccepted() {
     settings_.setSearchContentRegexp(dlg->contentRegexp());
     settings_.setSearchRecursive(dlg->recursive());
     settings_.setSearchhHidden(dlg->searchhHidden());
+    settings_.addNamePattern(dlg->namePattern());
+    settings_.addContentPattern(dlg->contentPattern());
 
     Fm::FilePathList paths;
     paths.emplace_back(dlg->searchUri());
@@ -498,6 +550,8 @@ void Application::findFiles(QStringList paths) {
     dlg->setContentRegexp(settings_.searchContentRegexp());
     dlg->setRecursive(settings_.searchRecursive());
     dlg->setSearchhHidden(settings_.searchhHidden());
+    dlg->addNamePatterns(settings_.namePatterns());
+    dlg->addContentPatterns(settings_.contentPatterns());
 
     dlg->show();
 }
@@ -509,19 +563,19 @@ void Application::connectToServer() {
     dlg->show();
 }
 
-void Application::launchFiles(QString cwd, QStringList paths, bool inNewWindow, bool reopenLastTabs) {
+void Application::launchFiles(const QString& cwd, const QStringList& paths, bool inNewWindow, bool reopenLastTabs) {
     Fm::FilePathList pathList;
     Fm::FilePath cwd_path;
+    auto _paths = paths;
 
-    reopenLastTabs = reopenLastTabs && settings_.reopenLastTabs() && !settings_.tabPaths().isEmpty();
-    if(reopenLastTabs) {
-        paths = settings_.tabPaths();
-        paths.removeDuplicates();
+    openingLastTabs_ = reopenLastTabs && settings_.reopenLastTabs() && !settings_.tabPaths().isEmpty();
+    if(openingLastTabs_) {
+        _paths = settings_.tabPaths();
         // forget tab paths with next windows until the last one is closed
         settings_.setTabPaths(QStringList());
     }
 
-    for(const QString& it : qAsConst(paths)) {
+    for(const QString& it : qAsConst(_paths)) {
         QByteArray pathName = it.toLocal8Bit();
         Fm::FilePath path;
         if(pathName == "~") { // special case for home dir
@@ -539,7 +593,7 @@ void Application::launchFiles(QString cwd, QStringList paths, bool inNewWindow, 
             }
             path = cwd_path.relativePath(pathName.constData());
         }
-       pathList.push_back(std::move(path));
+        pathList.push_back(std::move(path));
     }
 
     if(!inNewWindow && settings_.singleWindowMode()) {
@@ -555,6 +609,11 @@ void Application::launchFiles(QString cwd, QStringList paths, bool inNewWindow, 
                 }
             }
         }
+        if(window != nullptr && openingLastTabs_) {
+            // other folders have been opened explicitly in this window;
+            // restoring of tab split number does not make sense
+            settings_.setSplitViewTabsNum(0);
+        }
         auto launcher = Launcher(window);
         launcher.openInNewTab();
         launcher.launchPaths(nullptr, pathList);
@@ -563,9 +622,11 @@ void Application::launchFiles(QString cwd, QStringList paths, bool inNewWindow, 
         Launcher(nullptr).launchPaths(nullptr, pathList);
     }
 
-    // if none of the last tabs can be opened and there is no main window yet,
-    // open the current directory
-    if(reopenLastTabs) {
+    if(openingLastTabs_) {
+        openingLastTabs_ = false;
+
+        // if none of the last tabs can be opened and there is no main window yet,
+        // open the current directory
         bool hasWindow = false;
         const QWidgetList windows = topLevelWidgets();
         for(const auto& win : windows) {
@@ -575,9 +636,9 @@ void Application::launchFiles(QString cwd, QStringList paths, bool inNewWindow, 
             }
         }
         if(!hasWindow) {
-            paths.clear();
-            paths.push_back(QDir::currentPath());
-            launchFiles(QDir::currentPath(), paths, inNewWindow, false);
+            _paths.clear();
+            _paths.push_back(QDir::currentPath());
+            launchFiles(QDir::currentPath(), _paths, inNewWindow, false);
         }
     }
 }
@@ -601,7 +662,7 @@ void Application::openFolderInTerminal(Fm::FilePath path) {
     }
 }
 
-void Application::preferences(QString page) {
+void Application::preferences(const QString& page) {
     // open preference dialog
     if(!preferencesDialog_) {
         preferencesDialog_ = new PreferencesDialog(page);
@@ -614,9 +675,7 @@ void Application::preferences(QString page) {
     preferencesDialog_.data()->activateWindow();
 }
 
-void Application::setWallpaper(QString path, QString modeString) {
-    static const char* valid_wallpaper_modes[] = {"color", "stretch", "fit", "center", "tile"};
-    DesktopWindow::WallpaperMode mode = settings_.wallpaperMode();
+void Application::setWallpaper(const QString& path, const QString& modeString) {
     bool changed = false;
 
     if(!path.isEmpty() && path != settings_.wallpaper()) {
@@ -625,19 +684,12 @@ void Application::setWallpaper(QString path, QString modeString) {
             changed = true;
         }
     }
-    // convert mode string to value
-    for(std::size_t i = 0; i < G_N_ELEMENTS(valid_wallpaper_modes); ++i) {
-        if(modeString == QLatin1String(valid_wallpaper_modes[i])) {
-            // We don't take safety checks because valid_wallpaper_modes[] is
-            // defined in this function and we can clearly see that it does not
-            // overflow.
-            mode = static_cast<DesktopWindow::WallpaperMode>(i);
-            if(mode != settings_.wallpaperMode()) {
-                changed = true;
-            }
-            break;
-        }
+
+    DesktopWindow::WallpaperMode mode = DesktopWindow::WallpaperMode(Settings::wallpaperModeFromString(modeString));
+    if(mode != settings_.wallpaperMode()) {
+        changed = true;
     }
+
     // FIXME: support different wallpapers on different screen.
     // update wallpaper
     if(changed) {
@@ -647,6 +699,7 @@ void Application::setWallpaper(QString path, QString modeString) {
                     desktopWin->setWallpaperFile(path);
                 }
                 if(mode != settings_.wallpaperMode()) {
+                    settings_.setWallpaperMode(mode);
                     desktopWin->setWallpaperMode(mode);
                 }
                 desktopWin->updateWallpaper();
@@ -654,6 +707,97 @@ void Application::setWallpaper(QString path, QString modeString) {
             }
             settings_.save(); // save the settings to the config file
         }
+    }
+}
+
+/* This method receives a list of file:// URIs from DBus and for each URI opens
+ * a tab showing its content.
+ */
+void Application::ShowFolders(const QStringList& uriList, const QString& startupId __attribute__((unused))) {
+    if(!uriList.isEmpty()) {
+        launchFiles(QDir::currentPath(), uriList, false, false);
+    }
+}
+
+/* This method receives a list of file:// URIs from DBus and opens windows
+ * or tabs for each folder, highlighting all listed items within each.
+ */
+void Application::ShowItems(const QStringList& uriList, const QString& startupId __attribute__((unused))) {
+    std::unordered_map<Fm::FilePath, Fm::FilePathList, Fm::FilePathHash> groups;
+    Fm::FilePathList folders; // used only for keeping the original order
+    for(const auto& u : uriList) {
+        if(auto path = Fm::FilePath::fromPathStr(u.toStdString().c_str())) {
+            if(auto parent = path.parent()) {
+                auto paths = groups[parent];
+                if(std::find(paths.cbegin(), paths.cend(), path) == paths.cend()) {
+                    groups[parent].push_back(std::move(path));
+                }
+                // also remember the order of parent folders
+                if(std::find(folders.cbegin(), folders.cend(), parent) == folders.cend()) {
+                    folders.push_back(std::move(parent));
+                }
+            }
+        }
+    }
+
+    if(groups.empty()) {
+        return;
+    }
+
+    PCManFM::MainWindow* window = nullptr;
+    if(settings_.singleWindowMode()) {
+        window = MainWindow::lastActive();
+        if(window == nullptr) {
+            QWidgetList windows = topLevelWidgets();
+            for(int i = 0; i < windows.size(); ++i) {
+                auto win = windows.at(windows.size() - 1 - i);
+                if(win->inherits("PCManFM::MainWindow")) {
+                    window = static_cast<MainWindow*>(win);
+                    break;
+                }
+            }
+        }
+    }
+    if(window == nullptr) {
+        window = new MainWindow();
+    }
+
+    for(const auto& folder : folders) {
+        window->openFolderAndSelectFles(groups[folder]);
+    }
+
+    window->show();
+    window->raise();
+    window->activateWindow();
+}
+
+/* This method receives a list of file:// URIs from DBus and
+ * for each valid URI opens a property dialog showing its information
+ */
+void Application::ShowItemProperties(const QStringList& uriList, const QString& startupId __attribute__((unused))) {
+    // FIXME: Should we add "Fm::FilePropsDialog::showForPath()" to libfm-qt, instead of doing this?
+    Fm::FilePathList paths;
+    for(const auto& u : uriList) {
+        Fm::FilePath path = Fm::FilePath::fromPathStr(u.toStdString().c_str());
+        if(path) {
+            paths.push_back(std::move(path));
+        }
+    }
+    if(paths.empty()) {
+        return;
+    }
+    auto job = new Fm::FileInfoJob{std::move(paths)};
+    job->setAutoDelete(true);
+    connect(job, &Fm::FileInfoJob::finished, this, &Application::onPropJobFinished, Qt::BlockingQueuedConnection);
+    job->runAsync();
+}
+
+void Application::onPropJobFinished() {
+    auto job = static_cast<Fm::FileInfoJob*>(sender());
+    for(auto file: job->files()) {
+        auto dialog = Fm::FilePropsDialog::showForFile(std::move(file));
+        dialog->raise();
+        dialog->activateWindow();
     }
 }
 
@@ -713,40 +857,7 @@ void Application::editBookmarks() {
 }
 
 void Application::initVolumeManager() {
-    // WARNING: If the user tries to mount a volume before auto-mounting is started —
-    // and that is especially possible with an encrypted volume — a complete freeze might
-    // happen because MountOperation::wait() uses a local QEventLoop. Therefore, we need
-    // to start auto-mounting only after all probable GUI mount operations are finished.
-    QList<Fm::MountOperation*> ops;
-    const auto windows = topLevelWidgets();
-    for(const auto& win : windows) {
-        if(win->inherits("PCManFM::MainWindow")) {
-            MainWindow* mainWindow = static_cast<MainWindow*>(win);
-            ops << mainWindow->pendingMountOperations();
-        }
-    }
-    if(ops.isEmpty()) { // no pending mount operation
-        reallyInitVolumeManager();
-        return;
-    }
-    for(const Fm::MountOperation* op : ops) {
-        connect(op, &QObject::destroyed, this, [this] {
-            const auto windows = topLevelWidgets();
-            for(const auto& win : windows) {
-                if(win->inherits("PCManFM::MainWindow")) {
-                    MainWindow* mainWindow = static_cast<MainWindow*>(win);
-                    if(!mainWindow->pendingMountOperations().isEmpty()) {
-                        return;
-                    }
-                }
-            }
-            // now, there is no pending mount operation
-            reallyInitVolumeManager();
-        });
-    }
-}
 
-void Application::reallyInitVolumeManager() {
     g_signal_connect(volumeMonitor_, "volume-added", G_CALLBACK(onVolumeAdded), this);
 
     if(settings_.mountOnStartup()) {
@@ -877,7 +988,7 @@ void Application::onScreenDestroyed(QObject* screenObj) {
     // #40681: Regression bug: QWidget::winId() returns old value and QEvent::WinIdChange event is not emitted sometimes. (multihead setup)
     // #40791: Regression: QPlatformWindow, QWindow, and QWidget::winId() are out of sync.
     // Explanations for the workaround:
-    // Internally, Qt mantains a list of QScreens and update it when XRandR configuration changes.
+    // Internally, Qt maintains a list of QScreens and update it when XRandR configuration changes.
     // When the user turn off an monitor with xrandr --output <xxx> --off, this will destroy the QScreen
     // object which represent the output. If the QScreen being destroyed contains our panel widget,
     // Qt will call QWindow::setScreen(0) on the internal windowHandle() of our panel widget to move it
@@ -905,7 +1016,7 @@ void Application::onScreenDestroyed(QObject* screenObj) {
             }
         }
         if(reloadNeeded) {
-            QTimer::singleShot(0, this, SLOT(reloadDesktopsAsNeeded()));
+            QTimer::singleShot(0, this, &Application::reloadDesktopsAsNeeded);
         }
     }
 }
@@ -961,7 +1072,7 @@ void Application::installSigtermHandler() {
         action.sa_handler = sigtermHandler;
         ::sigemptyset(&action.sa_mask);
         action.sa_flags = SA_RESTART;
-        if(::sigaction(SIGTERM, &action, 0) != 0) {
+        if(::sigaction(SIGTERM, &action, nullptr) != 0) {
             qWarning("Couldn't install SIGTERM handler");
         }
     }
@@ -975,6 +1086,15 @@ void Application::onSigtermNotified() {
         notifier->setEnabled(false);
         char c;
         ::read(sigterm_fd[1], &c, sizeof(c));
+        // close all windows cleanly; otherwise, we might get this warning:
+        // "QBasicTimer::start: QBasicTimer can only be used with threads started with QThread"
+        const auto windows = topLevelWidgets();
+        for(const auto& win : windows) {
+            if(win->inherits("PCManFM::MainWindow")) {
+                MainWindow* mainWindow = static_cast<MainWindow*>(win);
+                mainWindow->close();
+            }
+        }
         quit();
         notifier->setEnabled(true);
     }

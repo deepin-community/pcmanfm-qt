@@ -19,7 +19,7 @@
         <translation>Легкий менеджер файлів</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="91"/>
+        <location filename="../about.ui" line="122"/>
         <source>Programming:
 * Hong Jen Yee (PCMan) &lt;pcman.tw@gmail.com&gt;
 </source>
@@ -28,7 +28,7 @@
 </translation>
     </message>
     <message>
-        <location filename="../about.ui" line="113"/>
+        <location filename="../about.ui" line="144"/>
         <source>PCManFM-Qt File Manager
 
 Copyright (C) 2009 - 2014 洪任諭 (Hong Jen Yee)
@@ -50,33 +50,37 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.<
 
 Всі права застережено (C) 2009 - 2014 洪任諭 (Hong Jen Yee)
 
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
+ Ця програма є вільним ПЗ; Ви можете перевидати її та/чи 
+змінити її в межах GNU General Public License
+яку було опубліковано Free Software Foundation; версія 2
+або будь-яка пізніша.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+Ця програма постачається з надією, що вона буде корисною,
+але БЕЗ БУДЬ-ЯКИХ ГАРАНТІЙ; без навіть найменших гарантій
+ТОВАРНИХ чи будь яких інших, направлених для заробітку.
+Дивіться GNU General Public License для деталей.
 
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
+Ви мусите отримати копію GNU General Public License
+розом з цією програмою. Якщо ні, напишіть Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="82"/>
+        <location filename="../about.ui" line="113"/>
         <source>Authors</source>
         <translation>Автори</translation>
     </message>
     <message>
         <location filename="../about.ui" line="58"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/lxqt/pcmanfm-qt&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/lxqt/pcmanfm-qt&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
-</source>
-        <translation type="unfinished"></translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/lxqt/pcmanfm-qt&quot;&gt;https://github.com/lxqt/pcmanfm-qt&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/lxqt/pcmanfm-qt&quot;&gt;https://github.com/lxqt/pcmanfm-qt&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="104"/>
+        <location filename="../about.ui" line="74"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Wiki: &lt;a href=&quot;https://github.com/lxqt/pcmanfm-qt/wiki&quot;&gt;https://github.com/lxqt/pcmanfm-qt/wiki&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Wiki: &lt;a href=&quot;https://github.com/lxqt/pcmanfm-qt/wiki&quot;&gt;https://github.com/lxqt/pcmanfm-qt/wiki&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../about.ui" line="135"/>
         <source>License</source>
         <translation>Ліцензія</translation>
     </message>
@@ -114,22 +118,32 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.<
     <message>
         <location filename="../bulk-rename.ui" line="6"/>
         <source>Bulk Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>Групове перейменування</translation>
     </message>
     <message>
-        <location filename="../bulk-rename.ui" line="48"/>
+        <location filename="../bulk-rename.ui" line="47"/>
         <source># will be replaced by numbers starting with:</source>
-        <translation type="unfinished"></translation>
+        <translation># буде замінено цифрами, починаючи з:</translation>
     </message>
     <message>
-        <location filename="../bulk-rename.ui" line="71"/>
+        <location filename="../bulk-rename.ui" line="80"/>
+        <source>Pad numbers with zero if possible</source>
+        <translation>Номери блоків з нулем, якщо це можливо</translation>
+    </message>
+    <message>
+        <location filename="../bulk-rename.ui" line="87"/>
+        <source>Use localized numbers</source>
+        <translation>Використовувати локалізовані номери</translation>
+    </message>
+    <message>
+        <location filename="../bulk-rename.ui" line="27"/>
         <source>Rename selected files to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Перейменувати вибрані файли на:</translation>
     </message>
     <message>
-        <location filename="../bulk-rename.ui" line="84"/>
+        <location filename="../bulk-rename.ui" line="40"/>
         <source>Name#</source>
-        <translation type="unfinished"></translation>
+        <translation>Назва#</translation>
     </message>
 </context>
 <context>
@@ -140,37 +154,37 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.<
         <translation>Зв&apos;язок з віддаленим сервером</translation>
     </message>
     <message>
-        <location filename="../connect.ui" line="23"/>
+        <location filename="../connect.ui" line="80"/>
         <source>Anonymous &amp;login</source>
-        <translation>Анонімне &amp;логування</translation>
+        <translation>Анонімний &amp;вхід</translation>
     </message>
     <message>
-        <location filename="../connect.ui" line="36"/>
+        <location filename="../connect.ui" line="90"/>
         <source>Login as &amp;user:</source>
         <translation>Ввійти як &amp;користувач:</translation>
     </message>
     <message>
-        <location filename="../connect.ui" line="65"/>
+        <location filename="../connect.ui" line="29"/>
         <source>Specify remote folder to connect</source>
         <translation>Вкажіть віддалену теку для зв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../connect.ui" line="72"/>
+        <location filename="../connect.ui" line="36"/>
         <source>Type:</source>
         <translation>Тип:</translation>
     </message>
     <message>
-        <location filename="../connect.ui" line="79"/>
+        <location filename="../connect.ui" line="56"/>
         <source>Port:</source>
         <translation>Порт:</translation>
     </message>
     <message>
-        <location filename="../connect.ui" line="86"/>
+        <location filename="../connect.ui" line="70"/>
         <source>Path:</source>
         <translation>Шлях:</translation>
     </message>
     <message>
-        <location filename="../connect.ui" line="96"/>
+        <location filename="../connect.ui" line="46"/>
         <source>Host:</source>
         <translation>Сервер:</translation>
     </message>
@@ -180,74 +194,130 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.<
     <message>
         <location filename="../desktopentrydialog.ui" line="14"/>
         <source>Create Launcher</source>
-        <translation type="unfinished"></translation>
+        <translation>Створити засіб запуску</translation>
     </message>
     <message>
         <location filename="../desktopentrydialog.ui" line="38"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Назва:</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="55"/>
+        <location filename="../desktopentrydialog.ui" line="45"/>
+        <source>Specific name of this launcher.</source>
+        <translation>Спеціальна назва цього засобу запуску.</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="58"/>
         <source>Description:</source>
-        <translation type="unfinished"></translation>
+        <translation>Опис:</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="69"/>
+        <location filename="../desktopentrydialog.ui" line="65"/>
+        <source>A short description or generic name, like &quot;Web Browser&quot; or &quot;Home Directory&quot;.
+
+It can be left empty.</source>
+        <translation>Короткий опис або загальна назва, наприклад «Переглядач» або «Домашній каталог».
+
+Можна залишити порожнім.</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="77"/>
         <source>Comment:</source>
-        <translation type="unfinished"></translation>
+        <translation>Коментар:</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="83"/>
+        <location filename="../desktopentrydialog.ui" line="84"/>
+        <source>A short comment.
+
+It can be left empty.</source>
+        <translation>Короткий коментар.
+
+Можна залишити порожнім.</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="117"/>
         <source>Command:</source>
-        <translation type="unfinished"></translation>
+        <translation>Команда:</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="99"/>
-        <location filename="../desktopentrydialog.ui" line="127"/>
+        <location filename="../desktopentrydialog.ui" line="133"/>
+        <location filename="../desktopentrydialog.ui" line="164"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="108"/>
+        <location filename="../desktopentrydialog.ui" line="142"/>
         <source>Icon:</source>
-        <translation type="unfinished"></translation>
+        <translation>Піктограма:</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="136"/>
-        <location filename="../desktopentrydialog.ui" line="146"/>
+        <location filename="../desktopentrydialog.ui" line="151"/>
+        <source>Icon to display in file manager, menus, etc.</source>
+        <translation>Піктограма для показу в менеджері файлів, меню тощо.</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="173"/>
+        <location filename="../desktopentrydialog.ui" line="183"/>
         <source>Run in terminal?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../desktopentrydialog.ui" line="139"/>
-        <source>Terminal:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../desktopentrydialog.ui" line="150"/>
-        <source>No</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../desktopentrydialog.ui" line="155"/>
-        <source>Yes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../desktopentrydialog.ui" line="163"/>
-        <source>Type:</source>
-        <translation type="unfinished">Тип:</translation>
-    </message>
-    <message>
-        <location filename="../desktopentrydialog.ui" line="171"/>
-        <source>Application</source>
-        <translation type="unfinished"></translation>
+        <translation>Запустити в терміналі?</translation>
     </message>
     <message>
         <location filename="../desktopentrydialog.ui" line="176"/>
+        <source>Terminal:</source>
+        <translation>Термінал:</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="186"/>
+        <source>Whether the launched program should run in a terminal window.</source>
+        <translation>Чи має запускатися запущена програма у вікні термінала.</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="190"/>
+        <source>No</source>
+        <translation>Ні</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="195"/>
+        <source>Yes</source>
+        <translation>Так</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="203"/>
+        <source>Type:</source>
+        <translation>Тип:</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="210"/>
+        <source>Whether this is a link or executes a command.</source>
+        <translation>Це посилання, чи запуск виконання команди.</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="214"/>
+        <source>Application</source>
+        <translation>Застосунок</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="219"/>
         <source>Link</source>
-        <translation type="unfinished"></translation>
+        <translation>Посилання</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="96"/>
+        <source>Categories:</source>
+        <translation>Категорії:</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="103"/>
+        <source>Semicolon separated categories in which the entry should be shown if it is used by the DE&apos;s main menu (e.g., when put inside ~/.local/share/applications).
+
+It is needed only when you want to use the created file in the main menu. Otherwise, you could leave it empty.
+
+Examples: AudioVideo, Audio, Video, Development, Education, Game, Graphics, Network, Office, Settings, System, Utility, Qt.</source>
+        <translation>Розділені крапкою з комою категорії, у яких має бути показано запис, якщо він використовується в головному меню стільничного середовища (наприклад, якщо помістити всередину ~/.local/share/applications).
+
+Це потрібно лише тоді, коли ви хочете використовувати створений файл у головному меню. В іншому випадку ви можете залишити його порожнім.
+
+Приклади: АудіоВідео, Аудіо, Відео, Розробка, Освіта, Ігри, Графіка, Мережа, Офіс, Налаштування, Система, Утиліти, Qt.</translation>
     </message>
 </context>
 <context>
@@ -270,7 +340,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.<
     <message>
         <location filename="../desktop-folder.ui" line="36"/>
         <source>Image file</source>
-        <translation>Файл малюнку</translation>
+        <translation>Файл зображення</translation>
     </message>
     <message>
         <location filename="../desktop-folder.ui" line="42"/>
@@ -291,50 +361,50 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.<
         <translation>Налаштування стільниці</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="240"/>
-        <location filename="../desktop-preferences.ui" line="246"/>
+        <location filename="../desktop-preferences.ui" line="338"/>
+        <location filename="../desktop-preferences.ui" line="344"/>
         <source>Background</source>
         <translation>Тло</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="287"/>
+        <location filename="../desktop-preferences.ui" line="385"/>
         <source>Wallpaper mode:</source>
         <translation>Режим тла:</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="310"/>
+        <location filename="../desktop-preferences.ui" line="408"/>
         <source>Wallpaper image file:</source>
-        <translation>Файл малюнка тла:</translation>
+        <translation>Файл зображення тла:</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="252"/>
+        <location filename="../desktop-preferences.ui" line="350"/>
         <source>Select background color:</source>
         <translation>Вибрати колір фону:</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="319"/>
+        <location filename="../desktop-preferences.ui" line="417"/>
         <source>Image file</source>
-        <translation>Файл малюнка</translation>
+        <translation>Файл зображення</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="325"/>
+        <location filename="../desktop-preferences.ui" line="423"/>
         <source>Image file path</source>
-        <translation>Шлях до файлу малюнка</translation>
+        <translation>Шлях до файлу зображення</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="332"/>
+        <location filename="../desktop-preferences.ui" line="430"/>
         <source>&amp;Browse</source>
         <translation>&amp;Переглянути</translation>
     </message>
     <message>
         <location filename="../desktop-preferences.ui" line="30"/>
         <source>Icons</source>
-        <translation>Значки</translation>
+        <translation>Піктограми</translation>
     </message>
     <message>
         <location filename="../desktop-preferences.ui" line="36"/>
         <source>Icon size:</source>
-        <translation>Розмір значка:</translation>
+        <translation>Розмір піктограм:</translation>
     </message>
     <message>
         <location filename="../desktop-preferences.ui" line="49"/>
@@ -359,7 +429,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.<
     <message>
         <location filename="../desktop-preferences.ui" line="87"/>
         <source>Select text color:</source>
-        <translation type="unfinished"></translation>
+        <translation>Вибрати колір тексту:</translation>
     </message>
     <message>
         <location filename="../desktop-preferences.ui" line="136"/>
@@ -367,146 +437,161 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.<
         <translation>Пропуски</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="142"/>
+        <location filename="../desktop-preferences.ui" line="145"/>
         <source>Minimum item margins:</source>
         <translation>Мінімальні поля:</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="149"/>
-        <source>3 px by default.</source>
-        <translation>3 пт типово.</translation>
-    </message>
-    <message>
         <location filename="../desktop-preferences.ui" line="152"/>
-        <location filename="../desktop-preferences.ui" line="176"/>
-        <source> px</source>
-        <translation>пт</translation>
+        <source>3 px by default.</source>
+        <translation>Типово 3 пікселі.</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="165"/>
+        <location filename="../desktop-preferences.ui" line="155"/>
+        <location filename="../desktop-preferences.ui" line="179"/>
+        <location filename="../desktop-preferences.ui" line="237"/>
+        <location filename="../desktop-preferences.ui" line="249"/>
+        <location filename="../desktop-preferences.ui" line="275"/>
+        <location filename="../desktop-preferences.ui" line="287"/>
+        <source> px</source>
+        <translation> px</translation>
+    </message>
+    <message>
+        <location filename="../desktop-preferences.ui" line="168"/>
         <source>x</source>
         <translation>х</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="172"/>
+        <location filename="../desktop-preferences.ui" line="175"/>
         <source>1 px by default.
 A space is also reserved for 3 lines of text.</source>
-        <translation>1 пт типово.
-Також зареєстровано простір для 3 лінійок тексту.</translation>
+        <translation>Типово 1 піксель.
+Також залишено простір для 3 рядків тексту.</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="189"/>
+        <location filename="../desktop-preferences.ui" line="192"/>
         <source>Lock</source>
-        <translation>Замок</translation>
+        <translation>Заблокувати</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="212"/>
+        <location filename="../desktop-preferences.ui" line="230"/>
+        <source>Margins of work area:</source>
+        <translation>Поля робочої області:</translation>
+    </message>
+    <message>
+        <location filename="../desktop-preferences.ui" line="303"/>
         <source>By default, desktop folders will be opened in PCManFM-Qt if they
 are left clicked, even when it is not the default file manager.</source>
-        <translation type="unfinished"></translation>
+        <translation>Усталено, теки стільниці відкриватимуться в PCManFM-Qt, якщо їх
+клацнуто лівою кнопкою миші, навіть якщо це не типовий файловий менеджер.</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="216"/>
+        <location filename="../desktop-preferences.ui" line="307"/>
         <source>Open desktop folders in default file manager by left clicking</source>
-        <translation type="unfinished"></translation>
+        <translation>Відкривати теки стільниці в типовому менеджері файлів, клацнувши лівою кнопкою миші</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="275"/>
+        <location filename="../desktop-preferences.ui" line="314"/>
+        <source>Make all items stick to their positions</source>
+        <translation>Закріпити всі елементи на своїх позиціях</translation>
+    </message>
+    <message>
+        <location filename="../desktop-preferences.ui" line="373"/>
         <source>Wallpaper</source>
-        <translation type="unfinished"></translation>
+        <translation>Тло</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="341"/>
+        <location filename="../desktop-preferences.ui" line="439"/>
         <source>Transform image based on EXIF data</source>
-        <translation type="unfinished"></translation>
+        <translation>Перетворити зображення на основі даних EXIF</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="348"/>
+        <location filename="../desktop-preferences.ui" line="446"/>
         <source>Individual wallpaper for each monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>Власне тло для кожного монітора</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="375"/>
+        <location filename="../desktop-preferences.ui" line="473"/>
         <source>Slide Show</source>
-        <translation type="unfinished"></translation>
+        <translation>Слайд-шоу</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="381"/>
+        <location filename="../desktop-preferences.ui" line="479"/>
         <source>Enable Slide Show</source>
-        <translation type="unfinished"></translation>
+        <translation>Увімкнути слайд-шоу</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="393"/>
+        <location filename="../desktop-preferences.ui" line="491"/>
         <source>Wallpaper image folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Тека зображень тла:</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="400"/>
+        <location filename="../desktop-preferences.ui" line="505"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>Переглянути</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="407"/>
+        <location filename="../desktop-preferences.ui" line="512"/>
         <source> hour(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../desktop-preferences.ui" line="417"/>
-        <source>and</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../desktop-preferences.ui" line="430"/>
-        <source>Intervals less than 5min will be ignored</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../desktop-preferences.ui" line="433"/>
-        <source>Interval:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../desktop-preferences.ui" line="440"/>
-        <source> minute(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../desktop-preferences.ui" line="466"/>
-        <source>Wallpaper folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../desktop-preferences.ui" line="489"/>
-        <source>Randomize the slide show</source>
-        <translation type="unfinished"></translation>
+        <translation> годин(и)</translation>
     </message>
     <message>
         <location filename="../desktop-preferences.ui" line="522"/>
+        <source>and</source>
+        <translation>і</translation>
+    </message>
+    <message>
+        <location filename="../desktop-preferences.ui" line="535"/>
+        <source>Intervals less than 5min will be ignored</source>
+        <translation>Інтервали менше 5 хвилин не враховуватимуться</translation>
+    </message>
+    <message>
+        <location filename="../desktop-preferences.ui" line="538"/>
+        <source>Interval:</source>
+        <translation>Інтервал:</translation>
+    </message>
+    <message>
+        <location filename="../desktop-preferences.ui" line="545"/>
+        <source> minute(s)</source>
+        <translation> хвилин(и)</translation>
+    </message>
+    <message>
+        <location filename="../desktop-preferences.ui" line="498"/>
+        <source>Wallpaper folder</source>
+        <translation>Тека зоражень тла</translation>
+    </message>
+    <message>
+        <location filename="../desktop-preferences.ui" line="587"/>
+        <source>Randomize the slide show</source>
+        <translation>Випадковий порядок показу слайдів</translation>
+    </message>
+    <message>
+        <location filename="../desktop-preferences.ui" line="620"/>
         <source>Visible Shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>Видимі ярлики</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="528"/>
+        <location filename="../desktop-preferences.ui" line="626"/>
         <source>Home</source>
-        <translation type="unfinished">Домашня тека</translation>
+        <translation>Домашня тека</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="539"/>
+        <location filename="../desktop-preferences.ui" line="637"/>
         <source>Trash</source>
-        <translation type="unfinished"></translation>
+        <translation>Смітник</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="550"/>
+        <location filename="../desktop-preferences.ui" line="648"/>
         <source>Computer</source>
-        <translation type="unfinished">Комп&apos;ютер</translation>
+        <translation>Комп&apos;ютер</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="561"/>
+        <location filename="../desktop-preferences.ui" line="659"/>
         <source>Network</source>
-        <translation type="unfinished">Мережа</translation>
+        <translation>Мережа</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="516"/>
+        <location filename="../desktop-preferences.ui" line="614"/>
         <source>Advanced</source>
         <translation>Більше</translation>
     </message>
@@ -516,161 +601,161 @@ are left clicked, even when it is not the default file manager.</source>
     <message>
         <location filename="../shortcuts.ui" line="14"/>
         <source>Hidden Shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>Сховані комбінації клавіш</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="21"/>
         <source>Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Комбінація клавіш</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="26"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Дія</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="31"/>
         <source>Esc</source>
-        <translation type="unfinished"></translation>
+        <translation>Esc</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="34"/>
         <source>Focus view, clear filter bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Сфокусуватися на перегляді, очистити панель фільтра</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="39"/>
         <source>Ctrl+Esc</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Esc</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="42"/>
         <source>Focus side-pane</source>
-        <translation type="unfinished"></translation>
+        <translation>Сфокусуватися на бічній панелі</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="47"/>
         <source>Ctrl+L</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+L</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="50"/>
         <location filename="../shortcuts.ui" line="58"/>
         <source>Focus path entry</source>
-        <translation type="unfinished"></translation>
+        <translation>Сфокусуватися на полі шляху</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="55"/>
         <source>Alt+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+D</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="63"/>
         <source>Ctrl+Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Tab</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="66"/>
         <location filename="../shortcuts.ui" line="82"/>
         <source>Next tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Наступна вкладка</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="71"/>
         <source>Ctrl+Shift+Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Tab</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="74"/>
         <location filename="../shortcuts.ui" line="90"/>
         <source>Previous tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Попередня вкладка</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="79"/>
         <source>Ctrl+PageDown</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+PageDown</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="87"/>
         <source>Ctrl+PageUp</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+PageUp</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="95"/>
         <source>Ctrl+Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+число</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="98"/>
         <location filename="../shortcuts.ui" line="106"/>
         <source>Jump to tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Перейти до вкладки</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="103"/>
         <source>Alt+Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+число</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="111"/>
         <source>Backspace</source>
-        <translation type="unfinished"></translation>
+        <translation>Backspace</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="114"/>
         <source>Go up</source>
-        <translation type="unfinished"></translation>
+        <translation>Вгору</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="119"/>
         <source>Ctrl+F</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+F</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="122"/>
         <source>Search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Вікно пошуку</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="127"/>
         <source>Shift+Insert</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+Insert</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="130"/>
         <source>Paste into transient filter bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Вставити до тимчасового фільтра</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="135"/>
-        <source>Drag+Shift</source>
-        <translation type="unfinished"></translation>
+        <source>Drop+Shift</source>
+        <translation>Перетягнути+Shift</translation>
+    </message>
+    <message>
+        <location filename="../shortcuts.ui" line="143"/>
+        <source>Drop+Ctrl</source>
+        <translation>Перетягнути+Ctrl</translation>
+    </message>
+    <message>
+        <location filename="../shortcuts.ui" line="151"/>
+        <source>Drop+Shift+Ctrl</source>
+        <translation>Перетягнути+Shift+Ctrl</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="138"/>
         <source>Move file on dropping</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../shortcuts.ui" line="143"/>
-        <source>Drag+Ctrl</source>
-        <translation type="unfinished"></translation>
+        <translation>Перемістити файл перетягуванням</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="146"/>
         <source>Copy file on dropping</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../shortcuts.ui" line="151"/>
-        <source>Drag+Shift+Ctrl</source>
-        <translation type="unfinished"></translation>
+        <translation>Копіювати файл перетягуванням</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="154"/>
         <source>Make a symlink on dropping</source>
-        <translation type="unfinished"></translation>
+        <translation>Створювати символічне посилання перетягуванням</translation>
     </message>
 </context>
 <context>
@@ -681,573 +766,634 @@ are left clicked, even when it is not the default file manager.</source>
         <translation>Менеджер файлів</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="132"/>
+        <location filename="../main-win.ui" line="81"/>
+        <source>Recent F&amp;iles</source>
+        <translation>Недавні ф&amp;айли</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="139"/>
         <source>&amp;Toolbars</source>
         <translation>&amp;Панелі інструментів</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="139"/>
+        <location filename="../main-win.ui" line="146"/>
         <source>Path &amp;Bar</source>
         <translation>Шлях &amp;до панелі</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="146"/>
+        <location filename="../main-win.ui" line="153"/>
         <source>&amp;Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Фільтрування</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="265"/>
+        <location filename="../main-win.ui" line="228"/>
+        <source>&amp;Tools</source>
+        <translation>Засо&amp;би</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="287"/>
         <source>Go &amp;Up</source>
         <translation>Піднятися &amp;вгору</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="268"/>
+        <location filename="../main-win.ui" line="290"/>
         <source>Go Up</source>
         <translation>Піднятися вгору</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="271"/>
+        <location filename="../main-win.ui" line="293"/>
         <source>Alt+Up</source>
         <translation>Alt+Up</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="280"/>
+        <location filename="../main-win.ui" line="302"/>
         <source>&amp;Home</source>
         <translation>&amp;Додому</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="283"/>
+        <location filename="../main-win.ui" line="305"/>
         <source>Alt+Home</source>
         <translation>Alt+Home</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="292"/>
+        <location filename="../main-win.ui" line="314"/>
         <source>&amp;Reload</source>
-        <translation>&amp;Перезавантажити</translation>
+        <translation>&amp;Оновити</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="295"/>
+        <location filename="../main-win.ui" line="317"/>
         <source>F5</source>
         <translation>F5</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="304"/>
+        <location filename="../main-win.ui" line="326"/>
         <source>Go</source>
         <translation>Йти</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="313"/>
+        <location filename="../main-win.ui" line="335"/>
         <source>Quit</source>
         <translation>Закінчити</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="322"/>
+        <location filename="../main-win.ui" line="344"/>
         <source>&amp;About</source>
         <translation>&amp;Про</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="331"/>
+        <location filename="../main-win.ui" line="353"/>
         <source>&amp;New Window</source>
         <translation>&amp;Нове вікно</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="334"/>
+        <location filename="../main-win.ui" line="356"/>
         <source>New Window</source>
         <translation>Нове вікно</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="337"/>
+        <location filename="../main-win.ui" line="359"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="345"/>
+        <location filename="../main-win.ui" line="367"/>
         <source>Show &amp;Hidden</source>
-        <translation>Показати &amp;сховані</translation>
+        <translation>Показати при&amp;ховані</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="348"/>
+        <location filename="../main-win.ui" line="370"/>
         <source>Ctrl+H</source>
         <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="357"/>
+        <location filename="../main-win.ui" line="379"/>
         <source>&amp;Computer</source>
         <translation>&amp;Комп&apos;ютер</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="366"/>
+        <location filename="../main-win.ui" line="388"/>
         <source>&amp;Trash</source>
-        <translation>&amp;Смітник</translation>
+        <translation>Смі&amp;тник</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="371"/>
+        <location filename="../main-win.ui" line="393"/>
         <source>&amp;Network</source>
         <translation>&amp;Мережа</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="380"/>
+        <location filename="../main-win.ui" line="402"/>
         <source>&amp;Desktop</source>
         <translation>&amp;Стільниця</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="389"/>
+        <location filename="../main-win.ui" line="411"/>
         <source>&amp;Add to Bookmarks</source>
         <translation>&amp;Додати до закладок</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="394"/>
+        <location filename="../main-win.ui" line="416"/>
         <source>&amp;Applications</source>
-        <translation>&amp;Програми</translation>
+        <translation>П&amp;рограми</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="399"/>
+        <location filename="../main-win.ui" line="421"/>
         <source>Reload</source>
-        <translation>Перезавантажити</translation>
+        <translation>Оновити</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="407"/>
+        <location filename="../main-win.ui" line="429"/>
         <source>&amp;Icon View</source>
-        <translation>&amp;Вигляд значками</translation>
+        <translation>&amp;Перегляд піктограм</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="415"/>
+        <location filename="../main-win.ui" line="437"/>
         <source>&amp;Compact View</source>
-        <translation>&amp;Компактний вигляд</translation>
+        <translation>&amp;Компактний перегляд</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="423"/>
+        <location filename="../main-win.ui" line="445"/>
         <source>&amp;Detailed List</source>
         <translation>&amp;Детальний список</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="431"/>
+        <location filename="../main-win.ui" line="453"/>
         <source>&amp;Thumbnail View</source>
-        <translation>&amp;Вигляд мініатюрами</translation>
+        <translation>Перегляд &amp;мініатюр</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="440"/>
+        <location filename="../main-win.ui" line="462"/>
         <source>Cu&amp;t</source>
-        <translation>Ви&amp;різати</translation>
+        <translation>Виріза&amp;ти</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="443"/>
+        <location filename="../main-win.ui" line="465"/>
         <source>Ctrl+X</source>
         <translation>Ctrl+X</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="452"/>
+        <location filename="../main-win.ui" line="474"/>
         <source>&amp;Copy</source>
-        <translation>&amp;Копія</translation>
+        <translation>&amp;Копіювати</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="455"/>
+        <location filename="../main-win.ui" line="477"/>
         <source>Ctrl+C</source>
         <translation>Ctrl+C</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="464"/>
+        <location filename="../main-win.ui" line="486"/>
         <source>&amp;Paste</source>
-        <translation>&amp;Вставити</translation>
+        <translation>Вс&amp;тавити</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="467"/>
+        <location filename="../main-win.ui" line="489"/>
         <source>Ctrl+V</source>
         <translation>Ctrl+V</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="472"/>
+        <location filename="../main-win.ui" line="494"/>
         <source>Select &amp;All</source>
-        <translation>Вибрати &amp;все</translation>
+        <translation>&amp;Вибрати все</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="475"/>
+        <location filename="../main-win.ui" line="497"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="480"/>
+        <location filename="../main-win.ui" line="502"/>
+        <source>De&amp;select All</source>
+        <translation>С&amp;касувати вибір усіх</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="505"/>
+        <source>Ctrl+D</source>
+        <translation>Ctrl+D</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="510"/>
         <source>Pr&amp;eferences</source>
-        <translation>Пара&amp;метри</translation>
+        <translation>&amp;Налаштування</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="488"/>
+        <location filename="../main-win.ui" line="518"/>
         <source>&amp;Ascending</source>
-        <translation>В порядку &amp;зростання</translation>
+        <translation>В порядку з&amp;ростання</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="496"/>
+        <location filename="../main-win.ui" line="526"/>
         <source>&amp;Descending</source>
-        <translation>В порядку &amp;спадання</translation>
+        <translation>В порядку спа&amp;дання</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="504"/>
+        <location filename="../main-win.ui" line="534"/>
         <source>&amp;By File Name</source>
-        <translation>&amp;По назві файлу</translation>
+        <translation>&amp;За назвою файлу</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="512"/>
+        <location filename="../main-win.ui" line="542"/>
         <source>By &amp;Modification Time</source>
-        <translation>По часу з&amp;міни</translation>
+        <translation>За часом &amp;модифікації</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="520"/>
+        <location filename="../main-win.ui" line="550"/>
+        <source>By C&amp;reation Time</source>
+        <translation>За часом &amp;створення</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="558"/>
         <source>By Deletio&amp;n Time</source>
-        <translation type="unfinished"></translation>
+        <translation>За часом видале&amp;ння</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="528"/>
+        <location filename="../main-win.ui" line="566"/>
         <source>By File &amp;Type</source>
-        <translation>По типу &amp;файлу</translation>
+        <translation>За &amp;типом файлу</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="536"/>
+        <location filename="../main-win.ui" line="574"/>
         <source>By &amp;Owner</source>
-        <translation>По вла&amp;снику</translation>
+        <translation>За вла&amp;сником</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="544"/>
+        <location filename="../main-win.ui" line="582"/>
         <source>By &amp;Group</source>
-        <translation type="unfinished"></translation>
+        <translation>За &amp;групою</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="552"/>
+        <location filename="../main-win.ui" line="590"/>
         <source>&amp;Folder First</source>
-        <translation>Те&amp;ки спершу</translation>
+        <translation>Спочатку те&amp;ки</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="560"/>
+        <location filename="../main-win.ui" line="598"/>
         <source>&amp;Hidden Last</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Приховані в кінці</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="568"/>
-        <source>&amp;Preserve sorting for this folder</source>
-        <translation>&amp;Зберегти сортування для цієї теки</translation>
+        <location filename="../main-win.ui" line="879"/>
+        <source>Shift+F2</source>
+        <translation>Shift+F2</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="667"/>
+        <location filename="../main-win.ui" line="963"/>
+        <source>Preserve Settings Recursively from &amp;Here</source>
+        <translation>Зберегти налашт&amp;ування рекурсивно звідси</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="968"/>
+        <source>&amp;Go to Source of Inherited Settings</source>
+        <translation>&amp;Перейти до джерела успадкованих налаштувань</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="973"/>
+        <source>&amp;Remove Settings of Nonexistent Folders</source>
+        <translation>&amp;Вилучити налаштування відсутніх тек</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="981"/>
+        <source>&amp;Clear</source>
+        <translation>&amp;Очистити</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="651"/>
+        <source>Ctrl+Shift+A</source>
+        <translation>Ctrl+Shift+A</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="700"/>
         <source>&amp;Case Sensitive</source>
         <translation>&amp;Чутливість до регістру</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="675"/>
+        <location filename="../main-win.ui" line="708"/>
         <source>By File &amp;Size</source>
-        <translation>По р&amp;озміру файлу</translation>
+        <translation>За &amp;розміром файлу</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="680"/>
+        <location filename="../main-win.ui" line="713"/>
         <source>&amp;Close Window</source>
         <translation>&amp;Закрити вікно</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="683"/>
+        <location filename="../main-win.ui" line="716"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="715"/>
-        <source>&amp;Folder</source>
-        <translation>&amp;Тека</translation>
+        <location filename="../main-win.ui" line="734"/>
+        <source>Open Tab in &amp;Root Instance</source>
+        <translation>Відкрити вкладку в режимі &amp;root</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="727"/>
+        <location filename="../main-win.ui" line="748"/>
+        <source>&amp;Folder</source>
+        <translation>&amp;Теку</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="760"/>
         <source>&amp;Blank File</source>
         <translation>&amp;Порожній файл</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="851"/>
+        <location filename="../main-win.ui" line="847"/>
+        <source>Preserve Settings for &amp;This Folder</source>
+        <translation>З&amp;берегти налаштування поточної теки</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="884"/>
         <source>&amp;Show/Focus Filter Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Показати/сфокусуватися на панелі фільтру</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="854"/>
+        <location filename="../main-win.ui" line="887"/>
         <source>Show Filter Bar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="857"/>
-        <source>Ctrl+I</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="865"/>
-        <source>S&amp;plit View</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="868"/>
-        <source>Split View</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="871"/>
-        <source>F6</source>
-        <translation type="unfinished">F6</translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="876"/>
-        <source>&amp;Copy Full Path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="879"/>
-        <source>Ctrl+Shift+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Показати панель фільтра</translation>
     </message>
     <message>
         <location filename="../main-win.ui" line="890"/>
-        <source>Show Thumb&amp;nails</source>
-        <translation type="unfinished"></translation>
+        <source>Ctrl+I</source>
+        <translation>Ctrl+I</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="893"/>
-        <source>Show Thumbnails</source>
-        <translation type="unfinished"></translation>
+        <location filename="../main-win.ui" line="898"/>
+        <source>S&amp;plit View</source>
+        <translation>Розділити &amp;вікно</translation>
     </message>
     <message>
         <location filename="../main-win.ui" line="901"/>
-        <source>S&amp;ide Pane</source>
-        <translation type="unfinished"></translation>
+        <source>Split View</source>
+        <translation>Розділити вікно</translation>
     </message>
     <message>
         <location filename="../main-win.ui" line="904"/>
-        <source>F9</source>
-        <translation type="unfinished">F9</translation>
+        <source>F6</source>
+        <translation>F6</translation>
     </message>
     <message>
         <location filename="../main-win.ui" line="909"/>
-        <source>Hidden &amp;Shortcuts</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Copy Full Path</source>
+        <translation>&amp;Копіювати повний шлях</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="749"/>
+        <location filename="../main-win.ui" line="912"/>
+        <source>Ctrl+Shift+C</source>
+        <translation>Ctrl+Shift+C</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="923"/>
+        <source>Show Thumb&amp;nails</source>
+        <translation>Показати е&amp;скізи</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="926"/>
+        <source>Show Thumbnails</source>
+        <translation>Показувати мініатюри</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="934"/>
+        <source>S&amp;ide Pane</source>
+        <translation>Бі&amp;чна панель</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="937"/>
+        <source>F9</source>
+        <translation>F9</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="942"/>
+        <source>Hidden &amp;Shortcuts</source>
+        <translation>Сховані &amp;комбінації клавіш</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="947"/>
+        <source>Open Tab in &amp;Admin Mode</source>
+        <translation>Відкрити вкладку в режимі &amp;адміністратора</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="952"/>
+        <location filename="../main-win.ui" line="955"/>
+        <source>Create Launcher</source>
+        <translation>Створити запускач</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="782"/>
         <source>Ctrl+B</source>
         <translation>Ctrl+B</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="754"/>
+        <location filename="../main-win.ui" line="787"/>
         <source>&amp;Clear All Filters</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Очистити всі фільтри</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="757"/>
+        <location filename="../main-win.ui" line="790"/>
         <source>Ctrl+Shift+K</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+K</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="766"/>
+        <location filename="../main-win.ui" line="799"/>
         <source>Close &amp;previous tabs</source>
-        <translation>Замкнути &amp;попередні вкладки</translation>
+        <translation>Закрити &amp;попередні вкладки</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="775"/>
+        <location filename="../main-win.ui" line="808"/>
         <source>Close &amp;next tabs</source>
-        <translation>Замкнути наступні &amp;вкладки</translation>
+        <translation>Закрити &amp;наступні вкладки</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="814"/>
-        <source>&amp;Preserve Settings for This Folder</source>
-        <translation>&amp;Зберігати налаштування для цієї теки</translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="819"/>
+        <location filename="../main-win.ui" line="852"/>
         <source>Connect to &amp;Server</source>
-        <translation>Зв&apos;язок з &amp;сервером</translation>
+        <translation>&amp;Зв&apos;язок із сервером</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="827"/>
+        <location filename="../main-win.ui" line="860"/>
         <source>&amp;Location</source>
-        <translation>&amp;Знаходження</translation>
+        <translation>&amp;Розташування</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="835"/>
+        <location filename="../main-win.ui" line="868"/>
         <source>&amp;Path Buttons</source>
-        <translation></translation>
+        <translation>&amp;Кнопки шляху</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="840"/>
+        <location filename="../main-win.ui" line="873"/>
         <source>&amp;Bulk Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Масове перейменування</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="843"/>
+        <location filename="../main-win.ui" line="876"/>
         <source>Bulk Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>Масове перейменування</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="846"/>
-        <source>Ctrl+F2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="780"/>
+        <location filename="../main-win.ui" line="813"/>
         <source>Close &amp;other tabs</source>
         <translation>Закрити &amp;інші вкладки</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="746"/>
+        <location filename="../main-win.ui" line="779"/>
         <source>Permanent &amp;filter bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Закріпити панель &amp;фільтрів</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="788"/>
+        <location filename="../main-win.ui" line="821"/>
         <source>&amp;Menu bar</source>
         <translation>&amp;Панель меню</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="791"/>
+        <location filename="../main-win.ui" line="824"/>
         <source>Menu bar</source>
         <translation>Панель меню</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="794"/>
+        <location filename="../main-win.ui" line="827"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="803"/>
-        <location filename="../main-win.ui" line="806"/>
+        <location filename="../main-win.ui" line="836"/>
+        <location filename="../main-win.ui" line="839"/>
         <source>Menu</source>
         <translation>Меню</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="577"/>
+        <location filename="../main-win.ui" line="607"/>
         <source>New &amp;Tab</source>
         <translation>Нова вк&amp;ладка</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="580"/>
+        <location filename="../main-win.ui" line="160"/>
+        <source>&amp;Customized View Settings</source>
+        <translation>В&amp;ласні налаштування вигляду</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="610"/>
         <source>New Tab</source>
         <translation>Нова вкладка</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="583"/>
+        <location filename="../main-win.ui" line="613"/>
         <source>Ctrl+T</source>
         <translation>Ctrl+T</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="592"/>
+        <location filename="../main-win.ui" line="622"/>
         <source>Go &amp;Back</source>
         <translation>Перейти &amp;назад</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="595"/>
+        <location filename="../main-win.ui" line="625"/>
         <source>Go Back</source>
         <translation>Перейти назад</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="598"/>
+        <location filename="../main-win.ui" line="628"/>
         <source>Alt+Left</source>
         <translation>Alt+Left</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="607"/>
+        <location filename="../main-win.ui" line="637"/>
         <source>Go &amp;Forward</source>
-        <translation>Перейти в&amp;перед</translation>
+        <translation>П&amp;ерейти вперед</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="610"/>
+        <location filename="../main-win.ui" line="640"/>
         <source>Go Forward</source>
         <translation>Перейти вперед</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="613"/>
+        <location filename="../main-win.ui" line="643"/>
         <source>Alt+Right</source>
         <translation>Alt+Right</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="618"/>
+        <location filename="../main-win.ui" line="648"/>
         <source>&amp;Invert Selection</source>
-        <translation>&amp;Інвертувати обране</translation>
+        <translation>&amp;Інвертувати вибране</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="627"/>
+        <location filename="../main-win.ui" line="660"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Вилучити</translation>
+        <translation>Ви&amp;далити</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="630"/>
+        <location filename="../main-win.ui" line="663"/>
         <source>Del</source>
         <translation>Del</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="635"/>
+        <location filename="../main-win.ui" line="668"/>
         <source>&amp;Rename</source>
         <translation>&amp;Перейменувати</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="638"/>
+        <location filename="../main-win.ui" line="671"/>
         <source>F2</source>
         <translation>F2</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="643"/>
+        <location filename="../main-win.ui" line="676"/>
         <source>C&amp;lose Tab</source>
         <translation>З&amp;акрити вкладку</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="646"/>
+        <location filename="../main-win.ui" line="679"/>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="651"/>
+        <location filename="../main-win.ui" line="684"/>
         <source>File &amp;Properties</source>
         <translation>Властивості &amp;файлу</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="654"/>
+        <location filename="../main-win.ui" line="687"/>
         <source>Alt+Return</source>
         <translation>Alt+Return</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="659"/>
+        <location filename="../main-win.ui" line="692"/>
         <source>&amp;Folder Properties</source>
-        <translation>В&amp;ластивості теки</translation>
+        <translation>&amp;Властивості теки</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="688"/>
+        <location filename="../main-win.ui" line="721"/>
         <source>Edit Bookmarks</source>
         <translation>Редагувати закладки</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="693"/>
+        <location filename="../main-win.ui" line="726"/>
         <source>Open &amp;Terminal</source>
         <translation>Відкрити &amp;термінал</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="696"/>
+        <location filename="../main-win.ui" line="729"/>
         <source>F4</source>
         <translation>F4</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="701"/>
-        <source>Open as &amp;Root</source>
-        <translation>Відкрити як &amp;Root</translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="706"/>
+        <location filename="../main-win.ui" line="739"/>
         <source>&amp;Edit Bookmarks</source>
         <translation>&amp;Редагувати закладки</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="718"/>
+        <location filename="../main-win.ui" line="751"/>
         <source>Ctrl+Shift+N</source>
         <translation>Ctrl+Shift+N</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="730"/>
+        <location filename="../main-win.ui" line="763"/>
         <source>Ctrl+Alt+N</source>
         <translation>Ctrl+Alt+N</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="735"/>
+        <location filename="../main-win.ui" line="768"/>
         <source>&amp;Find Files</source>
         <translation>&amp;Знайти файли</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="738"/>
+        <location filename="../main-win.ui" line="771"/>
         <source>F3</source>
         <translation>F3</translation>
     </message>
@@ -1262,43 +1408,38 @@ are left clicked, even when it is not the default file manager.</source>
         <translation>Ств&amp;орити новий</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="92"/>
+        <location filename="../main-win.ui" line="98"/>
         <source>&amp;Help</source>
-        <translation>&amp;Допомога</translation>
+        <translation>&amp;Довідка</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="99"/>
-        <location filename="../main-win.ui" line="122"/>
+        <location filename="../main-win.ui" line="105"/>
+        <location filename="../main-win.ui" line="129"/>
         <source>&amp;View</source>
-        <translation>&amp;Перегляд</translation>
+        <translation>Пере&amp;гляд</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="103"/>
+        <location filename="../main-win.ui" line="109"/>
         <source>&amp;Sorting</source>
-        <translation>&amp;Сортування</translation>
+        <translation>Сор&amp;тування</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="168"/>
+        <location filename="../main-win.ui" line="185"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Редагувати</translation>
+        <translation>З&amp;мінити</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="186"/>
+        <location filename="../main-win.ui" line="204"/>
         <source>&amp;Bookmarks</source>
         <translation>&amp;Закладки</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="193"/>
+        <location filename="../main-win.ui" line="211"/>
         <source>&amp;Go</source>
         <translation>&amp;Перейти</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="210"/>
-        <source>&amp;Tool</source>
-        <translation>&amp;Інструменти</translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="231"/>
+        <location filename="../main-win.ui" line="253"/>
         <source>Main Toolbar</source>
         <translation>Головна панель інструментів</translation>
     </message>
@@ -1306,99 +1447,99 @@ are left clicked, even when it is not the default file manager.</source>
 <context>
     <name>PCManFM::Application</name>
     <message>
-        <location filename="../application.cpp" line="165"/>
+        <location filename="../application.cpp" line="187"/>
         <source>Name of configuration profile</source>
         <translation>Назва профілю налаштування</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="165"/>
+        <location filename="../application.cpp" line="187"/>
         <source>PROFILE</source>
         <translation>ПРОФІЛЬ</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="168"/>
-        <source>Run PCManFM as a daemon</source>
-        <translation>Запустити PCManFM як демон</translation>
+        <location filename="../application.cpp" line="190"/>
+        <source>Run PCManFM-Qt as a daemon</source>
+        <translation>Запустити PCMANFM-QT як фоновий процес</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="171"/>
-        <source>Quit PCManFM</source>
-        <translation>Завершити PCManFM </translation>
+        <location filename="../application.cpp" line="193"/>
+        <source>Quit PCManFM-Qt</source>
+        <translation>Вийти з PCManFM-Qt</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="174"/>
+        <location filename="../application.cpp" line="196"/>
         <source>Launch desktop manager</source>
         <translation>Запустити менеджер стільниці</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="177"/>
+        <location filename="../application.cpp" line="199"/>
         <source>Turn off desktop manager if it&apos;s running</source>
         <translation>Вимкнути менеджер стільниці, якщо він запущений</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="180"/>
+        <location filename="../application.cpp" line="202"/>
         <source>Open desktop preference dialog on the page with the specified name</source>
         <translation>Відкрити діалог налаштування стільниці на сторінці з вказаною назвою</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="180"/>
-        <location filename="../application.cpp" line="195"/>
+        <location filename="../application.cpp" line="202"/>
+        <location filename="../application.cpp" line="217"/>
         <source>NAME</source>
         <translation>НАЗВА</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="183"/>
+        <location filename="../application.cpp" line="205"/>
         <source>Open new window</source>
         <translation>Відкрити нове вікно</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="186"/>
+        <location filename="../application.cpp" line="208"/>
         <source>Open Find Files utility</source>
         <translation>Відкрити інструмент пошуку файлів</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="189"/>
+        <location filename="../application.cpp" line="211"/>
         <source>Set desktop wallpaper from image FILE</source>
-        <translation>Встановити тло стільниці з ФАЙЛУ малюнку</translation>
+        <translation>Встановити тло стільниці з ФАЙЛУ зображення</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="189"/>
+        <location filename="../application.cpp" line="211"/>
         <source>FILE</source>
         <translation>ФАЙЛ</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="192"/>
+        <location filename="../application.cpp" line="214"/>
         <source>MODE</source>
         <translation>РЕЖИМ</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="192"/>
+        <location filename="../application.cpp" line="214"/>
         <source>Set mode of desktop wallpaper. MODE=(%1)</source>
         <translation>Встановити режим тла стільниці. РЕЖИМ=(%1)</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="195"/>
+        <location filename="../application.cpp" line="217"/>
         <source>Open Preferences dialog on the page with the specified name</source>
         <translation>Відкрити діалог налаштування на сторінці з вказаною назвою</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="198"/>
+        <location filename="../application.cpp" line="220"/>
         <source>Files or directories to open</source>
         <translation>Файли або теки для відкриття</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="198"/>
+        <location filename="../application.cpp" line="220"/>
         <source>[FILE1, FILE2,...]</source>
         <translation>[ФАЙЛ1, ФАЙЛ2,...]</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="594"/>
-        <location filename="../application.cpp" line="599"/>
+        <location filename="../application.cpp" line="655"/>
+        <location filename="../application.cpp" line="660"/>
         <source>Error</source>
         <translation>Помилка</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="599"/>
+        <location filename="../application.cpp" line="660"/>
         <source>Terminal emulator is not set.</source>
         <translation>Емулятор терміналу не встановлений.</translation>
     </message>
@@ -1411,7 +1552,7 @@ are left clicked, even when it is not the default file manager.</source>
         <translation>Відкрити в менеджері файлів</translation>
     </message>
     <message>
-        <location filename="../autorundialog.cpp" line="137"/>
+        <location filename="../autorundialog.cpp" line="138"/>
         <source>Removable Disk</source>
         <translation>Знімний диск</translation>
     </message>
@@ -1452,143 +1593,153 @@ are left clicked, even when it is not the default file manager.</source>
 <context>
     <name>PCManFM::DesktopEntryDialog</name>
     <message>
-        <location filename="../desktopentrydialog.cpp" line="26"/>
+        <location filename="../desktopentrydialog.cpp" line="35"/>
         <source>Command:</source>
-        <translation type="unfinished"></translation>
+        <translation>Команда:</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.cpp" line="29"/>
+        <location filename="../desktopentrydialog.cpp" line="36"/>
+        <source>The command to execute.</source>
+        <translation>Команда запуску.</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.cpp" line="39"/>
         <source>URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL-адреса:</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.cpp" line="54"/>
+        <location filename="../desktopentrydialog.cpp" line="40"/>
+        <source>The URL to access.</source>
+        <translation>URL доступу.</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.cpp" line="67"/>
         <source>Select an icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Вибрати піктограму</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.cpp" line="56"/>
+        <location filename="../desktopentrydialog.cpp" line="69"/>
         <source>Images (*.png *.xpm *.svg *.svgz )</source>
-        <translation type="unfinished"></translation>
+        <translation>Зображення (*.png *.xpm *.svg *.svgz )</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.cpp" line="78"/>
+        <location filename="../desktopentrydialog.cpp" line="91"/>
         <source>Select an executable file</source>
-        <translation type="unfinished"></translation>
+        <translation>Вибрати виконуваний файл</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.cpp" line="86"/>
+        <location filename="../desktopentrydialog.cpp" line="99"/>
         <source>Select a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Вибрати файл</translation>
     </message>
 </context>
 <context>
     <name>PCManFM::DesktopPreferencesDialog</name>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="53"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="52"/>
         <source>Fill with background color only</source>
-        <translation>Заповнити тільки кольором фону</translation>
+        <translation>Заповнити лише кольором фону</translation>
+    </message>
+    <message>
+        <location filename="../desktoppreferencesdialog.cpp" line="53"/>
+        <source>Stretch to fill the entire screen</source>
+        <translation>Розтягнути для заповнення цілого екрана</translation>
     </message>
     <message>
         <location filename="../desktoppreferencesdialog.cpp" line="54"/>
-        <source>Stretch to fill the entire screen</source>
-        <translation>Розтягнути для заповнення цілого екрану</translation>
-    </message>
-    <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="55"/>
         <source>Stretch to fit the screen</source>
         <translation>Розтягнути для вміщення в екран</translation>
     </message>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="56"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="55"/>
         <source>Center on the screen</source>
         <translation>Центрувати на екрані</translation>
     </message>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="57"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="56"/>
         <source>Tile the image to fill the entire screen</source>
-        <translation>Розмножити малюнок для заповнення всього екрану</translation>
+        <translation>Розмножити малюнок для заповнення всього екрана</translation>
     </message>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="58"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="57"/>
         <source>Zoom the image to fill the entire screen</source>
-        <translation>Змінити розмір малюнку щоб заповнити весь екран</translation>
+        <translation>Змінити розмір зображення, щоб заповнити весь екран</translation>
     </message>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="252"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="264"/>
         <source>Select Wallpaper</source>
-        <translation type="unfinished"></translation>
+        <translation>Вибрати тло</translation>
     </message>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="256"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="268"/>
         <source>Image Files</source>
-        <translation>Файли малюнків</translation>
+        <translation>Файли зображень</translation>
     </message>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="298"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="310"/>
         <source>Select Wallpaper Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Вибрати теку зображень тла</translation>
     </message>
 </context>
 <context>
     <name>PCManFM::DesktopWindow</name>
     <message>
-        <location filename="../desktopwindow.cpp" line="296"/>
+        <location filename="../desktopwindow.cpp" line="303"/>
         <source>Trash (One item)</source>
-        <translation type="unfinished"></translation>
+        <translation>Смітник (один елемент)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../desktopwindow.cpp" line="299"/>
+        <location filename="../desktopwindow.cpp" line="306"/>
         <source>Trash (%Ln items)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Смітник (%Ln елемент)</numerusform>
+            <numerusform>Смітник (%Ln елементи)</numerusform>
+            <numerusform>Смітник (%Ln елементів)</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="303"/>
+        <location filename="../desktopwindow.cpp" line="310"/>
         <source>Trash (Empty)</source>
-        <translation type="unfinished"></translation>
+        <translation>Смітник (порожній)</translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="338"/>
+        <location filename="../desktopwindow.cpp" line="345"/>
         <source>Computer</source>
-        <translation type="unfinished">Комп&apos;ютер</translation>
+        <translation>Комп&apos;ютер</translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="352"/>
+        <location filename="../desktopwindow.cpp" line="359"/>
         <source>Network</source>
-        <translation type="unfinished">Мережа</translation>
+        <translation>Мережа</translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="943"/>
+        <location filename="../desktopwindow.cpp" line="1011"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Відкрити</translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="948"/>
-        <location filename="../desktopwindow.cpp" line="985"/>
+        <location filename="../desktopwindow.cpp" line="1017"/>
+        <location filename="../desktopwindow.cpp" line="1057"/>
         <source>Stic&amp;k to Current Position</source>
         <translation>Прип&amp;нути до поточної позиції</translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="955"/>
+        <location filename="../desktopwindow.cpp" line="1025"/>
         <source>Empty Trash</source>
-        <translation type="unfinished"></translation>
+        <translation>Спорожнити смітник</translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="1011"/>
+        <location filename="../desktopwindow.cpp" line="1084"/>
         <source>Hide Desktop Items</source>
-        <translation type="unfinished"></translation>
+        <translation>Сховати елементи стільниці</translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="1017"/>
+        <location filename="../desktopwindow.cpp" line="1090"/>
         <source>Create Launcher</source>
-        <translation type="unfinished"></translation>
+        <translation>Створити запускач</translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="1020"/>
+        <location filename="../desktopwindow.cpp" line="1093"/>
         <source>Desktop Preferences</source>
         <translation>Налаштування стільниці</translation>
     </message>
@@ -1596,102 +1747,159 @@ are left clicked, even when it is not the default file manager.</source>
 <context>
     <name>PCManFM::FilterBar</name>
     <message>
-        <location filename="../tabpage.cpp" line="91"/>
+        <location filename="../tabpage.cpp" line="95"/>
         <source>Filter:</source>
-        <translation type="unfinished"></translation>
+        <translation>Фільтр:</translation>
     </message>
 </context>
 <context>
     <name>PCManFM::FilterEdit</name>
     <message>
-        <location filename="../tabpage.cpp" line="61"/>
+        <location filename="../tabpage.cpp" line="65"/>
         <source>Clear text (Ctrl+K or Esc)</source>
-        <translation type="unfinished"></translation>
+        <translation>Очистити текст (Ctrl+K або Esc)</translation>
     </message>
 </context>
 <context>
     <name>PCManFM::MainWindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="139"/>
+        <location filename="../mainwindow.cpp" line="142"/>
         <source>Root Instance</source>
-        <translation type="unfinished"></translation>
+        <translation>Режим root</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="695"/>
+        <location filename="../mainwindow.cpp" line="780"/>
         <source>Hide menu bar</source>
         <translation>Приховати панель меню</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="696"/>
+        <location filename="../mainwindow.cpp" line="781"/>
         <source>This will hide the menu bar completely, use Ctrl+M to show it again.</source>
         <translation>Це приховає панель меню повністю, скористайтесь з Ctrl+M для показу панелі меню знову.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1041"/>
+        <location filename="../mainwindow.cpp" line="1228"/>
         <source>Version: %1</source>
         <translation>Версія: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="172"/>
-        <location filename="../mainwindow.cpp" line="1929"/>
+        <location filename="../mainwindow.cpp" line="175"/>
+        <location filename="../mainwindow.cpp" line="2203"/>
         <source>&amp;Move to Trash</source>
         <translation>&amp;Перемістити до смітника</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="172"/>
-        <location filename="../mainwindow.cpp" line="1929"/>
+        <location filename="../mainwindow.cpp" line="175"/>
+        <location filename="../mainwindow.cpp" line="2203"/>
         <source>&amp;Delete</source>
         <translation>&amp;Вилучити</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1986"/>
-        <location filename="../mainwindow.cpp" line="1994"/>
+        <location filename="../mainwindow.cpp" line="2039"/>
+        <source>Customized View Settings</source>
+        <translation>Власні налаштування вигляду</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="2310"/>
+        <location filename="../mainwindow.cpp" line="2318"/>
         <source>Error</source>
         <translation>Помилка</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1994"/>
+        <location filename="../mainwindow.cpp" line="2318"/>
         <source>Switch user command is not set.</source>
         <translation>Команда пемикання користувачів не встановлена.</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="2420"/>
+        <source>Cleaning Folder Settings</source>
+        <translation>Очищення налаштувань тек</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="2421"/>
+        <source>Do you want to remove settings of nonexistent folders?
+They might be useful if those folders are created again.</source>
+        <translation>Ви хочете вилучити налаштування відсутніх тек?
+Вони можуть знадобитися, якщо ці теки буде повторно створено.</translation>
     </message>
 </context>
 <context>
     <name>PCManFM::PreferencesDialog</name>
     <message>
-        <location filename="../preferencesdialog.cpp" line="200"/>
+        <location filename="../preferencesdialog.cpp" line="206"/>
         <source>Icon View</source>
-        <translation>Вигляд значками</translation>
+        <translation>Перегляд піктограм</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.cpp" line="201"/>
+        <location filename="../preferencesdialog.cpp" line="207"/>
         <source>Compact View</source>
-        <translation>Компактний вигляд</translation>
+        <translation>Компактний перегляд</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.cpp" line="202"/>
+        <location filename="../preferencesdialog.cpp" line="208"/>
         <source>Thumbnail View</source>
-        <translation>Вигляд мініатюрами</translation>
+        <translation>Перегляд мініатюр</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.cpp" line="203"/>
+        <location filename="../preferencesdialog.cpp" line="209"/>
         <source>Detailed List View</source>
-        <translation>Детальний вигляд списком</translation>
+        <translation>Детальний список</translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.cpp" line="279"/>
+        <source>Remove if added by user</source>
+        <translation>Вилучити, якщо додано користувачем</translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.cpp" line="303"/>
+        <source>Open user-defined list</source>
+        <translation>Відкрити визначений користувачем список</translation>
     </message>
 </context>
 <context>
     <name>PCManFM::TabPage</name>
     <message>
-        <location filename="../tabpage.cpp" line="471"/>
+        <location filename="../tabpage.cpp" line="443"/>
+        <source>Search Results</source>
+        <translation>Результати пошуку</translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="446"/>
+        <source>Applications</source>
+        <translation>Застосунки</translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="450"/>
+        <source>Computer</source>
+        <translation>Комп&apos;ютер</translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="453"/>
+        <source>Network</source>
+        <translation>Мережа</translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="456"/>
+        <source>Trash</source>
+        <translation>Смітник</translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="462"/>
+        <source>Desktop</source>
+        <translation>Стільниця</translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="553"/>
         <source>Error</source>
         <translation>Помилка</translation>
     </message>
     <message>
-        <location filename="../tabpage.cpp" line="480"/>
+        <location filename="../tabpage.cpp" line="562"/>
         <source>Free space: %1 (Total: %2)</source>
         <translation>Вільний простір: %1 (Повністю: %2)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tabpage.cpp" line="497"/>
+        <location filename="../tabpage.cpp" line="579"/>
         <source>%n item(s)</source>
         <translation>
             <numerusform>%n пункт</numerusform>
@@ -1700,7 +1908,7 @@ are left clicked, even when it is not the default file manager.</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../tabpage.cpp" line="499"/>
+        <location filename="../tabpage.cpp" line="581"/>
         <source> (%n hidden)</source>
         <translation>
             <numerusform> (%n прихований)</numerusform>
@@ -1709,14 +1917,14 @@ are left clicked, even when it is not the default file manager.</source>
         </translation>
     </message>
     <message>
-        <location filename="../tabpage.cpp" line="504"/>
-        <location filename="../tabpage.cpp" line="692"/>
-        <location filename="../tabpage.cpp" line="706"/>
+        <location filename="../tabpage.cpp" line="586"/>
+        <location filename="../tabpage.cpp" line="789"/>
+        <location filename="../tabpage.cpp" line="803"/>
         <source>Link to</source>
-        <translation type="unfinished"></translation>
+        <translation>Посилання на</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tabpage.cpp" line="718"/>
+        <location filename="../tabpage.cpp" line="815"/>
         <source>%n item(s) selected</source>
         <translation>
             <numerusform>%n штуку(ук) вибрано</numerusform>
@@ -1728,31 +1936,32 @@ are left clicked, even when it is not the default file manager.</source>
 <context>
     <name>PCManFM::View</name>
     <message>
-        <location filename="../view.cpp" line="60"/>
+        <location filename="../view.cpp" line="59"/>
         <source>Many files</source>
-        <translation type="unfinished"></translation>
+        <translation>Багато файлів</translation>
     </message>
     <message numerus="yes">
-        <location filename="../view.cpp" line="61"/>
+        <location filename="../view.cpp" line="60"/>
         <source>Do you want to open these %1 files?</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Бажаєте відкрити цей %1 файл?</numerusform>
+            <numerusform>Бажаєте відкрити ці %1 файли?</numerusform>
+            <numerusform>Бажаєте відкрити ці %1 файлів?</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../view.cpp" line="123"/>
+        <location filename="../view.cpp" line="122"/>
         <source>Open in New T&amp;ab</source>
         <translation>Відкрити в новій &amp;вкладці</translation>
     </message>
     <message>
-        <location filename="../view.cpp" line="127"/>
+        <location filename="../view.cpp" line="126"/>
         <source>Open in New Win&amp;dow</source>
         <translation>Відкрити в новому ві&amp;кні</translation>
     </message>
     <message>
-        <location filename="../view.cpp" line="135"/>
+        <location filename="../view.cpp" line="134"/>
+        <location filename="../view.cpp" line="152"/>
         <source>Open in Termina&amp;l</source>
         <translation>Відкрити в &amp;терміналі</translation>
     </message>
@@ -1776,7 +1985,7 @@ are left clicked, even when it is not the default file manager.</source>
     </message>
     <message>
         <location filename="../preferences.ui" line="50"/>
-        <location filename="../preferences.ui" line="589"/>
+        <location filename="../preferences.ui" line="642"/>
         <source>Thumbnail</source>
         <translation>Мініатюра</translation>
     </message>
@@ -1791,67 +2000,67 @@ are left clicked, even when it is not the default file manager.</source>
         <translation>Більше</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="213"/>
+        <location filename="../preferences.ui" line="222"/>
         <source>Select newly created files</source>
-        <translation type="unfinished"></translation>
+        <translation>Вибрати новостворені файли</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="250"/>
+        <location filename="../preferences.ui" line="296"/>
         <source>Icons</source>
-        <translation>Значки</translation>
+        <translation>Піктограми</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="282"/>
+        <location filename="../preferences.ui" line="328"/>
         <source>Size of big icons:</source>
-        <translation>Розмір великих значків:</translation>
+        <translation>Розмір великих піктограм:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="299"/>
+        <location filename="../preferences.ui" line="345"/>
         <source>Size of small icons:</source>
-        <translation>Розмір малих значків:</translation>
+        <translation>Розмір малих піктограм:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="316"/>
+        <location filename="../preferences.ui" line="362"/>
         <source>Size of thumbnails:</source>
         <translation>Розмір мініатюр:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="330"/>
+        <location filename="../preferences.ui" line="376"/>
         <source>Size of side pane icons:</source>
-        <translation>Розмір значків бічної панелі:</translation>
+        <translation>Розмір піктограм бічної панелі:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="262"/>
+        <location filename="../preferences.ui" line="308"/>
         <source>Icon theme:</source>
-        <translation>Тема значка:</translation>
+        <translation>Тема піктограм:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="493"/>
+        <location filename="../preferences.ui" line="546"/>
         <source>Window</source>
         <translation>Вікно</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="506"/>
+        <location filename="../preferences.ui" line="559"/>
         <source>Always show the tab bar</source>
         <translation>Завжди показувати панель вкладок</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="513"/>
+        <location filename="../preferences.ui" line="566"/>
         <source>Show &apos;Close&apos; buttons on tabs	</source>
         <translation>Показати кнопку &apos;Закрити&apos; на вкладках</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="527"/>
+        <location filename="../preferences.ui" line="580"/>
         <source>Remember the size of the last closed window</source>
         <translation>Пам&apos;ятати розмір останнього закритого вікна</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="534"/>
+        <location filename="../preferences.ui" line="587"/>
         <source>Default width of new windows:</source>
         <translation>Типовий розмір нових вікон:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="548"/>
+        <location filename="../preferences.ui" line="601"/>
         <source>Default height of new windows:</source>
         <translation>Типова висота нових вікон:</translation>
     </message>
@@ -1866,44 +2075,39 @@ are left clicked, even when it is not the default file manager.</source>
         <translation>Відкривати файли одинарним клацанням</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="103"/>
-        <source>Delay of auto-selection in single click mode (0 to disable)</source>
-        <translation>Затримка автовибору в режимі одинарного клацання (0 для вимкнення)</translation>
-    </message>
-    <message>
-        <location filename="../preferences.ui" line="110"/>
+        <location filename="../preferences.ui" line="162"/>
         <source>Default view mode:</source>
         <translation>Типовий режим перегляду:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="123"/>
+        <location filename="../preferences.ui" line="119"/>
         <source> sec</source>
-        <translation> сек</translation>
-    </message>
-    <message>
-        <location filename="../preferences.ui" line="169"/>
-        <source>File Operations</source>
-        <translation>Операції над файлами</translation>
+        <translation> с</translation>
     </message>
     <message>
         <location filename="../preferences.ui" line="175"/>
+        <source>File Operations</source>
+        <translation>Дії з файлами</translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="181"/>
         <source>Confirm before deleting files</source>
         <translation>Підтвердити перед вилученням файлів</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="182"/>
+        <location filename="../preferences.ui" line="188"/>
         <source>Move deleted files to &quot;trash bin&quot; instead of erasing from disk.</source>
         <translation>Перемістити вилучені файли до &quot;смітника&quot; замість витирання їх з диску.</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="622"/>
+        <location filename="../preferences.ui" line="651"/>
         <source>Show thumbnails of files</source>
         <translation>Показати мініатюри файлів</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="612"/>
+        <location filename="../preferences.ui" line="658"/>
         <source>Only show thumbnails for local files</source>
-        <translation>Показати мініатюри тільки для локальних файлів</translation>
+        <translation>Показувати мініатюри лише для локальних файлів</translation>
     </message>
     <message>
         <location filename="../preferences.ui" line="40"/>
@@ -1913,260 +2117,332 @@ are left clicked, even when it is not the default file manager.</source>
     <message>
         <location filename="../preferences.ui" line="90"/>
         <source>If this is unchecked, the DE setting will be used.</source>
-        <translation type="unfinished"></translation>
+        <translation>Якщо це не позначено, буде використано параметр стільничного середовища.</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="133"/>
-        <source>Bookmarks:</source>
-        <translation>Закладки:</translation>
+        <location filename="../preferences.ui" line="103"/>
+        <location filename="../preferences.ui" line="116"/>
+        <source>Set to zero to disable auto-selection.</source>
+        <translation>Встановіть нуль, щоб вимкнути автовибір.</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="141"/>
+        <location filename="../preferences.ui" line="106"/>
+        <source>Delay of auto-selection in single click mode:</source>
+        <translation>Затримка автовибору в режимі одинарного клацання:</translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="144"/>
         <source>Open in current tab</source>
         <translation>Відкрити в поточній вкладці</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="146"/>
+        <location filename="../preferences.ui" line="149"/>
         <source>Open in new tab</source>
         <translation>Відкрити в новій вкладці</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="151"/>
+        <location filename="../preferences.ui" line="154"/>
         <source>Open in new window</source>
         <translation>Відкрити в новому вікні</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="189"/>
+        <location filename="../preferences.ui" line="195"/>
         <source>Erase files on removable media instead of &quot;trash can&quot; creation</source>
         <translation>Витерти файли на знімному диску замість створення &quot;смітника&quot;</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="196"/>
+        <location filename="../preferences.ui" line="202"/>
         <source>Confirm before moving files into &quot;trash can&quot;</source>
         <translation>Підтвердити перед перенесенням до &quot;смітника&quot;</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="203"/>
-        <location filename="../preferences.ui" line="363"/>
-        <location filename="../preferences.ui" line="373"/>
+        <location filename="../preferences.ui" line="209"/>
+        <location filename="../preferences.ui" line="409"/>
+        <location filename="../preferences.ui" line="419"/>
         <source>Requires application restart to take effect completely</source>
-        <translation type="unfinished"></translation>
+        <translation>Потрібно перезапустити програму, щоб всі зміни набули чинності</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="206"/>
+        <location filename="../preferences.ui" line="212"/>
         <source>Launch executable files without prompt</source>
-        <translation type="unfinished"></translation>
+        <translation>Запускати виконувані файли без підтвердження</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="279"/>
-        <location filename="../preferences.ui" line="289"/>
+        <location filename="../preferences.ui" line="219"/>
+        <source>Renamed files will also be selected</source>
+        <translation>Перейменовані файли також буде вибрано</translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="244"/>
+        <source>Number of recent files:</source>
+        <translation>Кількість недавніх файлів:</translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="325"/>
+        <location filename="../preferences.ui" line="335"/>
         <source>Used by Icon View</source>
-        <translation>Використано Переглядом значків</translation>
+        <translation>Використовується Переглядом піктограм</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="296"/>
-        <location filename="../preferences.ui" line="306"/>
+        <location filename="../preferences.ui" line="342"/>
+        <location filename="../preferences.ui" line="352"/>
         <source>Used by Compact View and Detailed List View</source>
-        <translation>Використати Компактний перегляд або Детальний перегляд списком</translation>
+        <translation>Використовується Компактним переглядом або Детальним списком</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="313"/>
-        <location filename="../preferences.ui" line="323"/>
+        <location filename="../preferences.ui" line="359"/>
+        <location filename="../preferences.ui" line="369"/>
         <source>Used by Thumbnail View</source>
-        <translation>Використано Переглядом мініатюрами</translation>
+        <translation>Використовується Переглядом мініатюр</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="343"/>
+        <location filename="../preferences.ui" line="389"/>
         <source>User interface</source>
         <translation>Інтерфейс користувача</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="356"/>
+        <location filename="../preferences.ui" line="402"/>
         <source>Treat backup files as hidden</source>
-        <translation>Трактувати файли бекапу як приховані</translation>
+        <translation>Позначити файли резервних копій прихованими</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="376"/>
+        <location filename="../preferences.ui" line="422"/>
         <source>Show icons of hidden files shadowed</source>
-        <translation>Показати значки прихованих файлів як затінені</translation>
+        <translation>Показати піктограми прихованих файлів затіненими</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="406"/>
+        <location filename="../preferences.ui" line="459"/>
         <source>Minimum item margins in icon view:</source>
-        <translation>Мінімальний проміжок в перегляді значками:</translation>
+        <translation>Найменший відступ у поданні піктограмами:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="413"/>
+        <location filename="../preferences.ui" line="466"/>
         <source>3 px by default.</source>
-        <translation>3 пт типово.</translation>
+        <translation>3 px типово.</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="416"/>
-        <location filename="../preferences.ui" line="440"/>
+        <location filename="../preferences.ui" line="469"/>
+        <location filename="../preferences.ui" line="493"/>
         <source> px</source>
-        <translation>пт</translation>
+        <translation> px</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="429"/>
+        <location filename="../preferences.ui" line="482"/>
         <source>x</source>
         <translation>х</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="436"/>
+        <location filename="../preferences.ui" line="489"/>
         <source>3 px by default.
 A space is also reserved for 3 lines of text.</source>
-        <translation>3 пт типово.
-Зарезервовано також область для 3 лінійок тексту. </translation>
+        <translation>3 px типово.
+Простір також зарезервовано для 3 рядків тексту.</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="453"/>
+        <location filename="../preferences.ui" line="506"/>
         <source>Lock</source>
         <translation>Замок</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="502"/>
+        <location filename="../preferences.ui" line="555"/>
         <source>When unchecked, the tab bar will be shown
 only if there are more than one tab.</source>
-        <translation>Коли невідмічено, панель вкладок буде показано
-тільки тоді, якщо є більше ніж одна вкладка.</translation>
+        <translation>Коли не позначено, панель вкладок буде показано
+лише якщо є більше ніж одна вкладка.</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="520"/>
+        <location filename="../preferences.ui" line="573"/>
         <source>Switch to newly opened tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Перемикатися на щойно відкриту вкладку</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="562"/>
+        <location filename="../preferences.ui" line="615"/>
         <source>Reopen last window tabs in a new window</source>
-        <translation type="unfinished"></translation>
+        <translation>Повторно відкрити останні вкладки вікна в новому вікні</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="748"/>
+        <location filename="../preferences.ui" line="665"/>
+        <location filename="../preferences.ui" line="677"/>
+        <source>The built-in thumbnailer makes thumbnails of images that are supported by Qt.
+
+Usually, most image types are supported. The default size limit is 4 MiB.</source>
+        <translation>Вбудований створювач мініатюр створює мініатюри зображень підтримуваних Qt.
+
+Зазвичай підтримуються більшість типів зображень. Типове обмеження розміру — 4 Мб.</translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="670"/>
+        <source>Image size limit for built-in thumbnailer:</source>
+        <translation>Обмеження розміру зображення для вбудованого створювача мініатюр:</translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="682"/>
+        <location filename="../preferences.ui" line="718"/>
+        <source> MiB</source>
+        <translation> МіБ</translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="698"/>
+        <location filename="../preferences.ui" line="710"/>
+        <source>If existing, external thumbnailers are used for videos, PDF documents, etc.
+
+A value of -1 means that there is no limit for the file size (the default).</source>
+        <translation>Якщо наявні, зовнішні створювачі мініатюр застосовуються для відео, PDF-документів тощо.
+
+Значення «1» означає, що розмір файлу не обмежено (типово).</translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="703"/>
+        <source>File size limit for external thumbnailers:</source>
+        <translation>Обмеження розміру файлу для зовнішніх створювачів мініатюр:</translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="715"/>
+        <source>No limit</source>
+        <translation>Без обмеження</translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="860"/>
         <source>Examples:&lt;br&gt;For terminal: &lt;i&gt;xterm -e %s&lt;/i&gt;&lt;br&gt;For switching user: &lt;i&gt;lxsudo %s&lt;/i&gt; or &lt;i&gt;lxsudo dbus-run-session -- %s&lt;/i&gt;&lt;br&gt;&lt;i&gt;%s&lt;/i&gt; is the command line you want to execute with terminal or su.&lt;br&gt; Important: Please use lxsudo, sudo alone will wreck permissions of the settings file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Приклади:&lt;br&gt;Для термінала: &lt;i&gt;xterm -e %s&lt;/i&gt;&lt;br&gt;Для зміни користувача: &lt;i&gt;lxsudo %s&lt;/i&gt; або &lt;i&gt;lxsudo dbus-run-session -- %s&lt;/i&gt;&lt;br&gt;&lt;i&gt;%s&lt;/i&gt; — це командний рядок, який ви хочете виконати за допомогою термінала або su.&lt;br&gt; Важливо: Застосовуйте lxsudo, окреме sudo зламає дозволи файлу налаштувань.</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="839"/>
+        <location filename="../preferences.ui" line="919"/>
+        <source>Search</source>
+        <translation>Пошук</translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="934"/>
+        <source>Maximum search history:</source>
+        <translation>Максимальний обсяг історії пошуку:</translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="948"/>
+        <source>Clear search history</source>
+        <translation>Очистити історію пошуку</translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="983"/>
         <source>Application restart is needed for changes to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Щоб зміни набрали чинності, потрібно перезапустити програму.</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="595"/>
-        <source>Do not generate thumbnails for image files exceeding this size:</source>
-        <translation>Не створювати мініатюри для файлів малюнків, що мають розмір більший ніж:</translation>
+        <location filename="../preferences.ui" line="136"/>
+        <source>Bookmarks menu:</source>
+        <translation>Меню закладок:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="159"/>
+        <location filename="../preferences.ui" line="129"/>
         <source>Show folder context menu with Ctrl + right click</source>
-        <translation type="unfinished"></translation>
+        <translation>Показувати контекстне меню натисканням Ctrl + клацнути правою кнопкою миші</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="220"/>
+        <location filename="../preferences.ui" line="229"/>
         <source>Open folders in new tabs as far as possible</source>
-        <translation type="unfinished"></translation>
+        <translation>Відкривати теки в нових вкладках якнайдалі</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="223"/>
+        <location filename="../preferences.ui" line="232"/>
         <source>Single window mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Режим одного вікна</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="366"/>
+        <location filename="../preferences.ui" line="412"/>
         <source>Always show real file names</source>
-        <translation type="unfinished"></translation>
+        <translation>Завжди показувати справжні назви файлів</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="383"/>
+        <location filename="../preferences.ui" line="429"/>
         <source>Do not show file tooltips</source>
-        <translation type="unfinished"></translation>
+        <translation>Не показувати підказки до файлів</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="602"/>
-        <source> KB</source>
-        <translation>КБ</translation>
+        <location filename="../preferences.ui" line="436"/>
+        <source>Disable smooth scrolling</source>
+        <translation>Вимкнути плавне гортання</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="619"/>
+        <location filename="../preferences.ui" line="648"/>
         <source>Needs ffmpegthumbnailer</source>
-        <translation>Потрібно ffmpegthumbnailer </translation>
+        <translation>Потрібно ffmpegthumbnailer</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="649"/>
+        <location filename="../preferences.ui" line="754"/>
         <source>Auto Mount</source>
         <translation>Автомонтування</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="655"/>
+        <location filename="../preferences.ui" line="760"/>
         <source>Mount mountable volumes automatically on program startup</source>
-        <translation>Монтувати розділи автоматично при старті програми</translation>
+        <translation>Монтувати розділи автоматично коли програма запускається</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="662"/>
+        <location filename="../preferences.ui" line="767"/>
         <source>Mount removable media automatically when they are inserted</source>
         <translation>Монтувати знімні пристрої автоматично, коли вони вставлені</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="669"/>
+        <location filename="../preferences.ui" line="774"/>
         <source>Show available options for removable media when they are inserted</source>
         <translation>Показати доступні параметри для знімних пристроїв, коли вони вставлені</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="679"/>
+        <location filename="../preferences.ui" line="784"/>
         <source>When removable medium unmounted:</source>
         <translation>Коли знімний пристрій відмонтований:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="685"/>
+        <location filename="../preferences.ui" line="790"/>
         <source>Close &amp;tab containing removable medium</source>
         <translation>Закрити &amp;вкладку, яка містить знімний пристрій</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="692"/>
+        <location filename="../preferences.ui" line="797"/>
         <source>Chan&amp;ge folder in the tab to home folder</source>
         <translation>Змінити &amp;теку у вкладці на домашню теку</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="719"/>
+        <location filename="../preferences.ui" line="824"/>
         <source>Programs</source>
         <translation>Програми</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="728"/>
+        <location filename="../preferences.ui" line="833"/>
         <source>Terminal emulator:</source>
         <translation>Емулятор терміналу:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="735"/>
+        <location filename="../preferences.ui" line="847"/>
         <source>Switch &amp;user command:</source>
         <translation>Команда &amp;перемикання користувача:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="761"/>
+        <location filename="../preferences.ui" line="873"/>
         <source>Archiver in&amp;tegration:</source>
         <translation>Інтеграція з &amp;архіватором:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="784"/>
+        <location filename="../preferences.ui" line="889"/>
         <source>Templates</source>
         <translation>Шаблони</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="790"/>
+        <location filename="../preferences.ui" line="895"/>
         <source>Show only user defined templates in menu</source>
-        <translation>Показати тільки користувацькі шаблони в меню</translation>
+        <translation>Показувати лише користувацькі шаблони в меню</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="797"/>
+        <location filename="../preferences.ui" line="902"/>
         <source>Show only one template for each MIME type</source>
-        <translation>Показати тільки шаблони для кожного типу MIME</translation>
+        <translation>Показувати лише один шаблон для кожного типу MIME</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="804"/>
+        <location filename="../preferences.ui" line="909"/>
         <source>Run default application after creation from template</source>
         <translation>Запустити типову програму після створення з шаблону</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="349"/>
+        <location filename="../preferences.ui" line="395"/>
         <source>Use SI decimal prefixes instead of IEC binary prefixes</source>
         <translation>Використати SI десяткові префікси замість двійкових префіксів IEC</translation>
     </message>
@@ -2174,40 +2450,46 @@ only if there are more than one tab.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../bulkrename.cpp" line="73"/>
+        <location filename="../bulkrename.cpp" line="86"/>
         <source>Renaming files...</source>
-        <translation type="unfinished"></translation>
+        <translation>Перейменування файлів...</translation>
     </message>
     <message>
-        <location filename="../bulkrename.cpp" line="73"/>
+        <location filename="../bulkrename.cpp" line="86"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Перервати</translation>
     </message>
     <message>
-        <location filename="../bulkrename.cpp" line="82"/>
+        <location filename="../bulkrename.cpp" line="95"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Попередження</translation>
     </message>
     <message>
-        <location filename="../bulkrename.cpp" line="82"/>
+        <location filename="../bulkrename.cpp" line="95"/>
         <source>Renaming is aborted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Перейменування перервано.</translation>
     </message>
     <message>
-        <location filename="../bulkrename.cpp" line="108"/>
-        <location filename="../bulkrename.cpp" line="111"/>
+        <location filename="../bulkrename.cpp" line="121"/>
+        <location filename="../bulkrename.cpp" line="124"/>
+        <location filename="../tabpage.cpp" line="1142"/>
         <source>Error</source>
-        <translation type="unfinished">Помилка</translation>
+        <translation>Помилка</translation>
     </message>
     <message>
-        <location filename="../bulkrename.cpp" line="108"/>
+        <location filename="../bulkrename.cpp" line="121"/>
         <source>No file could be renamed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалося перейменувати жодного файлу.</translation>
     </message>
     <message>
-        <location filename="../bulkrename.cpp" line="111"/>
+        <location filename="../bulkrename.cpp" line="124"/>
         <source>Some files could not be renamed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалось перейменувати деякі файли.</translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="1142"/>
+        <source>Cannot open as Admin.</source>
+        <translation>Не вдається відкрити в режимі адміністратора.</translation>
     </message>
 </context>
 </TS>

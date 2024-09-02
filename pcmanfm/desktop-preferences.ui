@@ -136,6 +136,9 @@
           <string>Spacing</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
+          <property name="verticalSpacing">
+           <number>10</number>
+          </property>
           <item row="0" column="0">
            <widget class="QLabel" name="label_7">
             <property name="text">
@@ -203,6 +206,94 @@ A space is also reserved for 3 lines of text.</string>
             </property>
            </spacer>
           </item>
+          <item row="1" column="0" colspan="6" alignment="Qt::AlignLeft">
+           <widget class="QGroupBox" name="groupBox_7">
+            <layout class="QVBoxLayout" name="verticalLayout_6">
+             <property name="spacing">
+              <number>10</number>
+             </property>
+             <property name="leftMargin">
+              <number>5</number>
+             </property>
+             <property name="topMargin">
+              <number>5</number>
+             </property>
+             <property name="rightMargin">
+              <number>5</number>
+             </property>
+             <property name="bottomMargin">
+              <number>5</number>
+             </property>
+             <item alignment="Qt::AlignHCenter">
+              <widget class="QLabel" name="label_13">
+               <property name="text">
+                <string>Margins of work area:</string>
+               </property>
+              </widget>
+             </item>
+             <item alignment="Qt::AlignHCenter">
+              <widget class="QSpinBox" name="topMargin">
+               <property name="suffix">
+                <string> px</string>
+               </property>
+               <property name="maximum">
+                <number>200</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_2">
+               <item>
+                <widget class="QSpinBox" name="leftMargin">
+                 <property name="suffix">
+                  <string> px</string>
+                 </property>
+                 <property name="maximum">
+                  <number>200</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_4">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::MinimumExpanding</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>5</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="rightMargin">
+                 <property name="suffix">
+                  <string> px</string>
+                 </property>
+                 <property name="maximum">
+                  <number>200</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item alignment="Qt::AlignHCenter">
+              <widget class="QSpinBox" name="bottomMargin">
+               <property name="suffix">
+                <string> px</string>
+               </property>
+               <property name="maximum">
+                <number>200</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -214,6 +305,13 @@ are left clicked, even when it is not the default file manager.</string>
          </property>
          <property name="text">
           <string>Open desktop folders in default file manager by left clicking</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="allSticky">
+         <property name="text">
+          <string>Make all items stick to their positions</string>
          </property>
         </widget>
        </item>
@@ -394,6 +492,13 @@ are left clicked, even when it is not the default file manager.</string>
             </property>
            </widget>
           </item>
+          <item row="1" column="0" colspan="6">
+           <widget class="QLineEdit" name="imageFolder">
+            <property name="placeholderText">
+             <string>Wallpaper folder</string>
+            </property>
+           </widget>
+          </item>
           <item row="1" column="6">
            <widget class="QPushButton" name="folderBrowse">
             <property name="text">
@@ -459,13 +564,6 @@ are left clicked, even when it is not the default file manager.</string>
              </size>
             </property>
            </spacer>
-          </item>
-          <item row="1" column="0" colspan="6">
-           <widget class="QLineEdit" name="imageFolder">
-            <property name="placeholderText">
-             <string>Wallpaper folder</string>
-            </property>
-           </widget>
           </item>
           <item row="2" column="1">
            <spacer name="horizontalSpacer_3">

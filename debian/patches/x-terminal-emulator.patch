@@ -1,0 +1,18 @@
+Description: Using "x-terminal-emulator" by default
+ This uses Debian's "x-terminal-emulator" from Debian Alternatives
+ System by default.
+Forwarded: non-needed
+Origin: Debian, https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1034067#5
+Author: Andrew Lee (李健秋) <ajqlee@debian.org>
+
+--- a/config/pcmanfm-qt/lxqt/settings.conf.in
++++ b/config/pcmanfm-qt/lxqt/settings.conf.in
+@@ -4,7 +4,7 @@ FallbackIconThemeName=breeze
+ SuCommand=lxsudo dbus-run-session -- %s
+ Archiver=lxqt-archiver
+ SIUnit=false
+-Terminal=qterminal
++Terminal=x-terminal-emulator
+ 
+ [Behavior]
+ BookmarkOpenMethod=0

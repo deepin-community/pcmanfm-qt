@@ -27,6 +27,8 @@
 
 namespace PCManFM {
 
+const char* TabBar::tabDropped = "_pcmanfm_tab_dropped";
+
 TabBar::TabBar(QWidget *parent):
     QTabBar(parent),
     dragStarted_(false),
@@ -35,11 +37,13 @@ TabBar::TabBar(QWidget *parent):
 }
 
 void TabBar::mousePressEvent(QMouseEvent *event) {
-    QTabBar::mousePressEvent (event);
-    if(detachable_){
-        if(event->button() == Qt::LeftButton
-        && tabAt(event->pos()) > -1) {
+    QTabBar::mousePressEvent(event);
+    if(detachable_) {
+        if(event->button() == Qt::LeftButton && tabAt(event->pos()) > -1) {
             dragStartPosition_ = event->pos();
+        }
+        else {
+            dragStartPosition_ = QPoint();
         }
         dragStarted_ = false;
     }
@@ -52,7 +56,7 @@ void TabBar::mouseMoveEvent(QMouseEvent *event)
         return;
     }
 
-    if(!dragStartPosition_.isNull()
+    if(!dragStarted_ && !dragStartPosition_.isNull()
        && (event->pos() - dragStartPosition_).manhattanLength() >= QApplication::startDragDistance()) {
         dragStarted_ = true;
     }
@@ -64,13 +68,19 @@ void TabBar::mouseMoveEvent(QMouseEvent *event)
             return;
         }
 
+        // NOTE: To be on the safe side (especially under Wayland), we detach or drop the tab
+        // only after finishing the DND; see MainWindow::dropEvent and the queued connection
+        // to TabBar::tabDetached in MainWindow.
+
         QPointer<QDrag> drag = new QDrag(this);
         QMimeData *mimeData = new QMimeData;
         mimeData->setData(QStringLiteral("application/pcmanfm-qt-tab"), QByteArray());
         drag->setMimeData(mimeData);
         int N = count();
         Qt::DropAction dragged = drag->exec(Qt::MoveAction);
-        if(dragged != Qt::MoveAction) { // a tab is dropped outside all windows
+        if(dragged != Qt::MoveAction) {
+            // The drop was not accepted (by any PCManFM-Qt window).
+            // The tab will be detached if there is more than one tab.
             if(N > 1) {
                 Q_EMIT tabDetached();
             }
@@ -78,9 +88,18 @@ void TabBar::mouseMoveEvent(QMouseEvent *event)
                 finishMouseMoveEvent();
             }
         }
-        else { // a tab is dropped into another window
-            if(count() == N) {
-                releaseMouse(); // release the mouse if the drop isn't accepted
+        else {
+            // Since another app can also accept this drop, we check if the object property
+            // "_pcmanfm_tab_dropped" is set (by MainWindow::dropEvent) and detach the tab
+            // if it is not; otherwise, the tab will be dropped into one of our windows.
+            if(property(tabDropped).toBool()) {
+                setProperty(tabDropped, QVariant()); // reset the property
+            }
+            else {
+                if(N > 1)
+                    Q_EMIT tabDetached();
+                else
+                    finishMouseMoveEvent();
             }
         }
         event->accept();
@@ -102,6 +121,11 @@ void TabBar::releaseMouse() {
 }
 
 void TabBar::mouseReleaseEvent(QMouseEvent *event) {
+    if(detachable_) { // reset drag info
+        dragStarted_ = false;
+        dragStartPosition_ = QPoint();
+    }
+
     if (event->button() == Qt::MiddleButton) {
         int index = tabAt(event->pos());
         if (index != -1) {

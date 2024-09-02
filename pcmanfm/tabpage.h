@@ -45,6 +45,7 @@ class Launcher;
 
 class ProxyFilter : public Fm::ProxyFolderModelFilter {
 public:
+    ProxyFilter() : fullName_{true} {}
     bool filterAcceptsRow(const Fm::ProxyFolderModel* model, const std::shared_ptr<const Fm::FileInfo>& info) const;
     virtual ~ProxyFilter() {}
     QString getFilterStr() {
@@ -53,8 +54,12 @@ public:
     void setFilterStr(QString str) {
         filterStr_ = str;
     }
+    void filterFullName(bool fullName) {
+        fullName_ = fullName;
+    }
 
 private:
+    bool fullName_;
     QString filterStr_;
 };
 
@@ -195,6 +200,8 @@ public:
 
     void selectAll();
 
+    void deselectAll();
+
     void invertSelection();
 
     void reload();
@@ -250,11 +257,19 @@ public:
 
     void applyFilter();
 
-    bool hasCustomizedView() {
+    bool hasCustomizedView() const {
         return folderSettings_.isCustomized();
     }
+    bool hasRecursiveCustomizedView() const {
+        return folderSettings_.isCustomized() && folderSettings_.recursive();
+    }
+    bool hasInheritedCustomizedView() const {
+        return !folderSettings_.isCustomized() && folderSettings_.inheritedPath().isValid();
+    }
 
-    void setCustomizedView(bool value);
+    void setCustomizedView(bool value, bool recursive = false);
+
+    void goToCustomizedViewSource();
 
     void transientFilterBar(bool transient);
 
@@ -269,6 +284,12 @@ public:
     }
 
     void backspacePressed();
+
+    void createShortcut();
+
+    void setFilesToSelect(const Fm::FilePathList& files) {
+        filesToSelect_ = files;
+    }
 
 Q_SIGNALS:
     void statusChanged(int type, QString statusText);
@@ -292,6 +313,7 @@ protected Q_SLOTS:
 private:
     void freeFolder();
     QString formatStatusText();
+    void localizeTitle(const Fm::FilePath& path);
 
     void onFolderStartLoading();
     void onFolderFinishLoading();
@@ -303,6 +325,8 @@ private:
     void onFolderRemoved();
     void onFolderUnmount();
     void onFolderContentChanged();
+
+    bool canOpenAdmin();
 
 private:
     View* folderView_;
@@ -319,6 +343,8 @@ private:
     FolderSettings folderSettings_;
     QTimer* selectionTimer_;
     FilterBar* filterBar_;
+    QStringList filesToTrust_;
+    Fm::FilePathList filesToSelect_; // files to select
 };
 
 }

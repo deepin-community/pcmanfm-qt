@@ -41,6 +41,7 @@
 #include <QClipboard>
 #include <QWindow>
 #include <QRandomGenerator>
+#include <QToolTip>
 
 #include "./application.h"
 #include "mainwindow.h"
@@ -62,7 +63,6 @@
 #include <xcb/xcb.h>
 #include <X11/Xlib.h>
 
-#define WORK_AREA_MARGIN 12 // margin of the work area
 #define MIN_SLIDE_INTERVAL 5*60000 // 5 min
 #define MAX_SLIDE_INTERVAL (24*60+55)*60000 // 24 h and 55 min
 
@@ -88,6 +88,9 @@ DesktopWindow::DesktopWindow(int screenNum):
     setAttribute(Qt::WA_X11NetWmWindowTypeDesktop);
     setAttribute(Qt::WA_DeleteOnClose);
 
+    // the title can be used for setting WM rules, especially under Wayland compositors
+    setWindowTitle(QStringLiteral("pcmanfm-desktop") + QString::number(screenNum_));
+
     // set our custom file launcher
     View::setFileLauncher(&fileLauncher_);
 
@@ -100,7 +103,7 @@ DesktopWindow::DesktopWindow(int screenNum):
     // This is to workaround Qt bug 54384 which affects Qt >= 5.6
     // https://bugreports.qt.io/browse/QTBUG-54384
     // Setting a QPixmap larger then the screen resolution to desktop's QPalette won't work.
-    // So we make the viewport transparent by preventing its backround from being filled automatically.
+    // So we make the viewport transparent by preventing its background from being filled automatically.
     // Then we paint desktop's background ourselves by using its paint event handling method.
     listView_->viewport()->setAutoFillBackground(false);
 
@@ -127,6 +130,7 @@ DesktopWindow::DesktopWindow(int screenNum):
         proxyModel_ = new Fm::ProxyFolderModel();
         proxyModel_->setSourceModel(model_);
         proxyModel_->setShowThumbnails(settings.showThumbnails());
+        proxyModel_->setBackupAsHidden(settings.backupAsHidden());
         proxyModel_->sort(settings.desktopSortColumn(), settings.desktopSortOrder());
         proxyModel_->setFolderFirst(settings.desktopSortFolderFirst());
         proxyModel_->setHiddenLast(settings.desktopSortHiddenLast());
@@ -136,6 +140,9 @@ DesktopWindow::DesktopWindow(int screenNum):
         connect(proxyModel_, &Fm::ProxyFolderModel::rowsAboutToBeRemoved, this, &DesktopWindow::onRowsAboutToBeRemoved);
         connect(proxyModel_, &Fm::ProxyFolderModel::layoutChanged, this, &DesktopWindow::onLayoutChanged);
         connect(proxyModel_, &Fm::ProxyFolderModel::sortFilterChanged, this, &DesktopWindow::onModelSortFilterChanged);
+
+        connect(this, &Fm::FolderView::inlineRenamed, this, &DesktopWindow::onInlineRenaming);
+        connect(this, &Fm::FolderView::dropIsDecided, this, &DesktopWindow::onDecidingDrop);
     }
 
     // remove frame
@@ -170,7 +177,7 @@ DesktopWindow::DesktopWindow(int screenNum):
     shortcut = new QShortcut(QKeySequence(Qt::Key_F2), this); // rename
     connect(shortcut, &QShortcut::activated, this, &DesktopWindow::onRenameActivated);
 
-    shortcut = new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_F2), this); // bulk rename
+    shortcut = new QShortcut(QKeySequence(Qt::SHIFT + Qt::Key_F2), this); // bulk rename
     connect(shortcut, &QShortcut::activated, this, &DesktopWindow::onBulkRenameActivated);
 
     shortcut = new QShortcut(QKeySequence(Qt::ALT + Qt::Key_Return), this); // properties
@@ -390,6 +397,9 @@ void DesktopWindow::onTrashChanged(GFileMonitor* /*monitor*/, GFile* /*gf*/, GFi
 }
 
 void DesktopWindow::updateTrashIcon() {
+    if(listView_->isHidden()) {
+        return; // will be updated as soon as desktop is shown
+    }
     struct UpdateTrashData {
         QPointer<DesktopWindow> desktop;
         Fm::FilePath trashPath;
@@ -468,7 +478,9 @@ void DesktopWindow::setDesktopFolder() {
         // free the previous model and folder
         if(model_) {
             disconnect(model_, &Fm::FolderModel::filesAdded, this, &DesktopWindow::onFilesAdded);
-            proxyModel_->setSourceModel(nullptr);
+            if(proxyModel_) {
+                proxyModel_->setSourceModel(nullptr);
+            }
             delete model_;
             model_ = nullptr;
         }
@@ -483,7 +495,17 @@ void DesktopWindow::setDesktopFolder() {
     folder_ = model_->folder();
     connect(folder_.get(), &Fm::Folder::startLoading, this, &DesktopWindow::onFolderStartLoading);
     connect(folder_.get(), &Fm::Folder::finishLoading, this, &DesktopWindow::onFolderFinishLoading);
+
+    if(proxyModel_ == nullptr) {
+        proxyModel_ = new Fm::ProxyFolderModel();
+        setModel(proxyModel_);
+        connect(proxyModel_, &Fm::ProxyFolderModel::rowsInserted, this, &DesktopWindow::onRowsInserted);
+        connect(proxyModel_, &Fm::ProxyFolderModel::rowsAboutToBeRemoved, this, &DesktopWindow::onRowsAboutToBeRemoved);
+        connect(proxyModel_, &Fm::ProxyFolderModel::layoutChanged, this, &DesktopWindow::onLayoutChanged);
+        connect(proxyModel_, &Fm::ProxyFolderModel::sortFilterChanged, this, &DesktopWindow::onModelSortFilterChanged);
+    }
     proxyModel_->setSourceModel(model_);
+
     if(folder_->isLoaded()) {
         onFolderStartLoading();
         onFolderFinishLoading();
@@ -493,7 +515,7 @@ void DesktopWindow::setDesktopFolder() {
     }
 }
 
-void DesktopWindow::setWallpaperFile(QString filename) {
+void DesktopWindow::setWallpaperFile(const QString& filename) {
     wallpaperFile_ = filename;
 }
 
@@ -501,11 +523,11 @@ void DesktopWindow::setWallpaperMode(WallpaperMode mode) {
     wallpaperMode_ = mode;
 }
 
-void DesktopWindow::setLastSlide(QString filename) {
+void DesktopWindow::setLastSlide(const QString& filename) {
     lastSlide_ = filename;
 }
 
-void DesktopWindow::setWallpaperDir(QString dirname) {
+void DesktopWindow::setWallpaperDir(const QString& dirname) {
     wallpaperDir_ = dirname;
 }
 
@@ -527,7 +549,7 @@ QImage DesktopWindow::getWallpaperImage() const {
             // auto-transform jpeg images based on their EXIF data
             QImageReader reader(wallpaperFile_);
             QImageIOHandler::Transformations tr = reader.transformation();
-            QMatrix m;
+            QTransform m;
             // mirroring
             if(tr & QImageIOHandler::TransformationMirror) {
                 m.scale(-1, 1);
@@ -547,7 +569,8 @@ QImage DesktopWindow::getWallpaperImage() const {
     return image;
 }
 
-QImage DesktopWindow::loadWallpaperFile(QSize requiredSize) {
+QImage DesktopWindow::loadWallpaperFile(QSize requiredSize, bool checkMTime) {
+   static const QString timeFormat(QLatin1String("yyyy-MM-dd-hh:mm:ss.zzz"));
     // NOTE: for ease of programming, we only use the cache for the primary screen.
     bool useCache = (screenNum_ == -1 || screenNum_ == 0);
     QFile info;
@@ -564,35 +587,45 @@ QImage DesktopWindow::loadWallpaperFile(QSize requiredSize) {
         cacheFileName += QLatin1String("/wallpaper.cache");
 
         // read info file
-        QString origin;
+        QString origin, mtime;
         info.setFileName(cacheFileName + QStringLiteral(".info"));
         if(info.open(QIODevice::ReadOnly)) {
-            // FIXME: we need to compare mtime to see if the cache is out of date
             origin = QString::fromLocal8Bit(info.readLine());
+            if(origin.endsWith(QLatin1Char('\n'))) {
+                origin.chop(1);
+                if(checkMTime) {
+                    mtime = QString::fromLocal8Bit(info.readLine());
+                }
+            }
             info.close();
-            if(!origin.isEmpty()) {
-                // try to see if we can get the size of the cached image.
-                QImageReader reader(cacheFileName);
-                reader.setAutoDetectImageFormat(true);
-                QSize cachedSize = reader.size();
-                qDebug() << "size of cached file" << cachedSize << ", requiredSize:" << requiredSize;
-                if(cachedSize.isValid()) {
-                    if(cachedSize == requiredSize) { // see if the cached wallpaper has the size we want
-                        QImage image = reader.read(); // return the loaded image
-                        qDebug() << "origin" << origin;
-                        if(origin == wallpaperFile_) {
+            if(!origin.isEmpty() && origin == wallpaperFile_) {
+                // if needed, check whether the cache is up-to-date
+                bool isUptodate = true;
+                if(checkMTime) {
+                    isUptodate = (mtime == QFileInfo(wallpaperFile_).lastModified().toString(timeFormat));
+                }
+                if(isUptodate) {
+                    // try to see if we can get the size of the cached image.
+                    QImageReader reader(cacheFileName);
+                    reader.setAutoDetectImageFormat(true);
+                    QSize cachedSize = reader.size();
+                    //qDebug() << "size of cached file" << cachedSize << ", requiredSize:" << requiredSize;
+                    if(cachedSize.isValid()) {
+                        if(cachedSize == requiredSize) { // see if the cached wallpaper has the size we want
+                            QImage image = reader.read(); // return the loaded image
+                            //qDebug() << "origin" << origin;
                             return image;
                         }
                     }
                 }
             }
         }
-        qDebug() << "no cached wallpaper. generate a new one!";
+        //qDebug() << "no cached wallpaper. generate a new one!";
     }
 
     // we don't have a cached scaled image, load the original file
     QImage image = getWallpaperImage();
-    qDebug() << "size of original image" << image.size();
+    //qDebug() << "size of original image" << image.size();
     if(image.isNull() || image.size() == requiredSize) { // if the original size is what we want
         return image;
     }
@@ -602,9 +635,12 @@ QImage DesktopWindow::loadWallpaperFile(QSize requiredSize) {
     // FIXME: should we save the scaled image if its size is larger than the original image?
 
     if(useCache) {
-        // write the path of the original image to the .info file
+        // write the path and modification time of the original image to the .info file
         if(info.open(QIODevice::WriteOnly)) {
-            info.write(wallpaperFile_.toLocal8Bit());
+            QTextStream out(&info);
+            out << wallpaperFile_
+                << QLatin1Char('\n')
+                << QFileInfo(wallpaperFile_).lastModified().toString(timeFormat);
             info.close();
 
             // write the scaled cache image to disk
@@ -617,97 +653,116 @@ QImage DesktopWindow::loadWallpaperFile(QSize requiredSize) {
             }
             scaled.save(cacheFileName, format);
         }
-        qDebug() << "wallpaper cached saved to " << cacheFileName;
+        //qDebug() << "wallpaper cached saved to " << cacheFileName;
         // FIXME: we might delay the write of the cached image?
     }
     return scaled;
 }
 
 // really generate the background pixmap according to current settings and apply it.
-void DesktopWindow::updateWallpaper() {
+void DesktopWindow::updateWallpaper(bool checkMTime) {
     if(wallpaperMode_ != WallpaperNone) {  // use wallpaper
+        auto screen = getDesktopScreen();
+        if(screen == nullptr) {
+            return;
+        }
         QPixmap pixmap;
         QImage image;
         Settings& settings = static_cast<Application* >(qApp)->settings();
-        auto screen = getDesktopScreen();
-        bool perScreenWallpaper(screen != nullptr && screen->virtualSiblings().size() > 1 && settings.perScreenWallpaper());
+        const auto screens = screen->virtualSiblings();
+        bool perScreenWallpaper(screens.size() > 1 && settings.perScreenWallpaper());
+
+        // the pixmap's size should be calculated by considering
+        // the positions and device pixel ratios of all screens
+        QRect pixmapRect;
+        for(const auto& scr : screens) {
+            pixmapRect |= QRect(scr->geometry().topLeft(), scr->size() * scr->devicePixelRatio());
+        }
+        const QSize pixmapSize = pixmapRect.size();
+
+        // the pixmap's device pixel ratio
+        qreal DPRatio = windowHandle() ? windowHandle()->devicePixelRatio() : qApp->devicePixelRatio();
+
         if(wallpaperMode_ == WallpaperTile) { // use the original size
             image = getWallpaperImage();
             if(!image.isNull()) {
                 // Note: We can't use the QPainter::drawTiledPixmap(), because it doesn't tile
                 // correctly for background pixmaps bigger than the current screen size.
-                const QSize s = size();
-                pixmap = QPixmap{s};
+                pixmap = QPixmap{pixmapSize};
                 QPainter painter{&pixmap};
-                for (int x = 0; x < s.width(); x += image.width()) {
-                    for (int y = 0; y < s.height(); y += image.height()) {
+                for (int x = 0; x < pixmapSize.width(); x += image.width()) {
+                    for (int y = 0; y < pixmapSize.height(); y += image.height()) {
                         painter.drawImage(x, y, image);
                     }
                 }
+                pixmap.setDevicePixelRatio(DPRatio);
             }
         }
         else if(wallpaperMode_ == WallpaperStretch) {
             if(perScreenWallpaper) {
-                const QSize s = size();
-                pixmap = QPixmap{s};
+                pixmap = QPixmap{pixmapSize};
                 QPainter painter{&pixmap};
                 pixmap.fill(bgColor_);
                 image = getWallpaperImage();
                 if(!image.isNull()) {
                     QImage scaled;
-                    const auto screens = screen->virtualSiblings();
                     for(const auto& scr : screens) {
-                        scaled = image.scaled(scr->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+                        scaled = image.scaled(scr->size() * scr->devicePixelRatio(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
                         painter.drawImage(scr->geometry().x(), scr->geometry().y(), scaled);
                     }
                 }
+                pixmap.setDevicePixelRatio(DPRatio);
             }
             else {
-                image = loadWallpaperFile(size());
+                image = loadWallpaperFile(pixmapSize, checkMTime);
                 pixmap = QPixmap::fromImage(image);
+                pixmap.setDevicePixelRatio(DPRatio);
             }
         }
         else { // WallpaperCenter || WallpaperFit
             if(perScreenWallpaper) {
-                const QSize s = size();
-                pixmap = QPixmap{s};
+                pixmap = QPixmap{pixmapSize};
                 QPainter painter{&pixmap};
                 pixmap.fill(bgColor_);
                 image = getWallpaperImage();
                 if(!image.isNull()) {
                     QImage scaled;
                     int x, y;
-                    const auto screens = screen->virtualSiblings();
                     if(wallpaperMode_ == WallpaperCenter) {
                         for(const auto& scr : screens) {
+                            const auto scrSize = scr->size() * scr->devicePixelRatio();
                             // get the gap between image and screen to avoid overlapping and displacement
-                            int x_gap = (image.width() - scr->geometry().width()) / 2;
-                            int y_gap = (image.height() - scr->geometry().height()) / 2;
-                            scaled = image.copy(qMax(x_gap, 0), qMax(y_gap, 0), scr->geometry().width(), scr->geometry().height());
+                            int x_gap = (image.width() - scrSize.width()) / 2;
+                            int y_gap = (image.height() - scrSize.height()) / 2;
+                            scaled = image.copy(qMax(x_gap, 0), qMax(y_gap, 0), scrSize.width(), scrSize.height());
                             x = scr->geometry().x() + qMax(0, -x_gap);
-                            y = scr->geometry().y() + qMax(0, - y_gap);
+                            y = scr->geometry().y() + qMax(0, -y_gap);
+                            painter.save();
+                            painter.setClipRect(QRect(x, y, image.width(), image.height()));
                             painter.drawImage(x, y, scaled);
+                            painter.restore();
                         }
                     }
                     else if((wallpaperMode_ == WallpaperFit || wallpaperMode_ == WallpaperZoom)
                             && image.width() > 0 && image.height() > 0) {
                         for(const auto& scr : screens) {
+                            const auto scrSize = scr->size() * scr->devicePixelRatio();
                             // get the screen-to-image ratio to calculate the scale factors
-                            const qreal w_ratio = static_cast<qreal>(scr->geometry().width()) / image.width();
-                            const qreal h_ratio = static_cast<qreal>(scr->geometry().height()) / image.height();
+                            const qreal w_ratio = static_cast<qreal>(scrSize.width()) / image.width();
+                            const qreal h_ratio = static_cast<qreal>(scrSize.height()) / image.height();
                             if(w_ratio <= h_ratio) {
                                 if(wallpaperMode_ == WallpaperFit) {
                                     // fit horizontally
-                                    scaled = image.scaledToWidth(scr->geometry().width(), Qt::SmoothTransformation);
+                                    scaled = image.scaledToWidth(scrSize.width(), Qt::SmoothTransformation);
                                     x = scr->geometry().x();
-                                    y = scr->geometry().y() + (scr->geometry().height() - scaled.height()) / 2;
+                                    y = scr->geometry().y() + (scrSize.height() - scaled.height()) / 2;
                                 }
                                 else { // zoom
                                     // fit vertically
-                                    scaled = image.scaledToHeight(scr->geometry().height(), Qt::SmoothTransformation);
+                                    scaled = image.scaledToHeight(scrSize.height(), Qt::SmoothTransformation);
                                     // crop to avoid overlapping
-                                    int x_gap = (scaled.width() - scr->geometry().width()) / 2;
-                                    scaled = scaled.copy(x_gap, 0, scr->geometry().width(), scaled.height());
+                                    int x_gap = (scaled.width() - scrSize.width()) / 2;
+                                    scaled = scaled.copy(x_gap, 0, scrSize.width(), scaled.height());
                                     x = scr->geometry().x();
                                     y = scr->geometry().y();
                                 }
@@ -715,16 +770,16 @@ void DesktopWindow::updateWallpaper() {
                             else  { // w_ratio > h_ratio
                                 if(wallpaperMode_ == WallpaperFit) {
                                     // fit vertically
-                                    scaled = image.scaledToHeight(scr->geometry().height(), Qt::SmoothTransformation);
-                                    x = scr->geometry().x() + (scr->geometry().width() - scaled.width()) / 2;
+                                    scaled = image.scaledToHeight(scrSize.height(), Qt::SmoothTransformation);
+                                    x = scr->geometry().x() + (scrSize.width() - scaled.width()) / 2;
                                     y = scr->geometry().y();
                                 }
                                 else { // zoom
                                     // fit horizonatally
-                                    scaled = image.scaledToWidth(scr->geometry().width(), Qt::SmoothTransformation);
+                                    scaled = image.scaledToWidth(scrSize.width(), Qt::SmoothTransformation);
                                     // crop to avoid overlapping
-                                    int y_gap = (scaled.height() - scr->geometry().height()) / 2;
-                                    scaled = scaled.copy(0, y_gap, scaled.width(), scr->geometry().height());
+                                    int y_gap = (scaled.height() - scrSize.height()) / 2;
+                                    scaled = scaled.copy(0, y_gap, scaled.width(), scrSize.height());
                                     x = scr->geometry().x();
                                     y = scr->geometry().y();
                                 }
@@ -733,6 +788,7 @@ void DesktopWindow::updateWallpaper() {
                         }
                     }
                 }
+                pixmap.setDevicePixelRatio(DPRatio);
             }
             else {
                 if(wallpaperMode_ == WallpaperCenter) {
@@ -752,17 +808,18 @@ void DesktopWindow::updateWallpaper() {
                     if(origSize.isValid()) {
                         QSize desiredSize = origSize;
                         Qt::AspectRatioMode mode = (wallpaperMode_ == WallpaperFit ? Qt::KeepAspectRatio : Qt::KeepAspectRatioByExpanding);
-                        desiredSize.scale(width(), height(), mode);
-                        image = loadWallpaperFile(desiredSize); // load the scaled image
+                        desiredSize.scale(pixmapSize, mode);
+                        image = loadWallpaperFile(desiredSize, checkMTime); // load the scaled image
                     }
                 }
                 if(!image.isNull()) {
-                    pixmap = QPixmap(size());
+                    pixmap = QPixmap{pixmapSize};
                     QPainter painter(&pixmap);
                     pixmap.fill(bgColor_);
-                    int x = (width() - image.width()) / 2;
-                    int y = (height() - image.height()) / 2;
+                    int x = (pixmapSize.width() - image.width()) / 2;
+                    int y = (pixmapSize.height() - image.height()) / 2;
                     painter.drawImage(x, y, image);
+                    pixmap.setDevicePixelRatio(DPRatio);
                 }
             }
         }
@@ -850,6 +907,19 @@ void DesktopWindow::nextWallpaper() {
 }
 
 void DesktopWindow::updateFromSettings(Settings& settings, bool changeSlide) {
+    // Sicne the layout may be changed by what follows, we need to redo our layout.
+    // We also clear the current index to set it to the visually first item.
+    selectionModel()->clearCurrentIndex();
+    queueRelayout();
+
+    // general PCManFM::View settings
+    setAutoSelectionDelay(settings.singleClick() ? settings.autoSelectionDelay() : 0);
+    setCtrlRightClick(settings.ctrlRightClick());
+    if(proxyModel_) {
+        proxyModel_->setShowThumbnails(settings.showThumbnails());
+        proxyModel_->setBackupAsHidden(settings.backupAsHidden());
+    }
+
     setDesktopFolder();
     setWallpaperFile(settings.wallpaper());
     setWallpaperMode(settings.wallpaperMode());
@@ -870,8 +940,6 @@ void DesktopWindow::updateFromSettings(Settings& settings, bool changeSlide) {
     setIconSize(Fm::FolderView::IconMode, QSize(settings.desktopIconSize(), settings.desktopIconSize()));
     setMargins(settings.desktopCellMargins());
     updateShortcutsFromSettings(settings);
-    // setIconSize and setMargins may trigger relayout of items by QListView, so we need to do the layout again.
-    queueRelayout();
     setForeground(settings.desktopFgColor());
     setBackground(settings.desktopBgColor());
     setShadow(settings.desktopShadowColor());
@@ -909,7 +977,7 @@ void DesktopWindow::updateFromSettings(Settings& settings, bool changeSlide) {
         wallpaperTimer_ = nullptr;
     }
 
-    updateWallpaper();
+    updateWallpaper(true);
     update();
 
     if(wallpaperTimer_) {
@@ -929,7 +997,7 @@ void DesktopWindow::onFileClicked(int type, const std::shared_ptr<const Fm::File
     }
     else {
         // special right-click menus for our desktop shortcuts
-        if(fileInfo && fileInfo->isDesktopEntry() && type == Fm::FolderView::ContextMenuClick) {
+        if(fileInfo && fileInfo->isDesktopEntry() && type == Fm::FolderView::ContextMenuClick && hasSelection()) {
             Settings& settings = static_cast<Application* >(qApp)->settings();
             const QStringList ds = settings.desktopShortcuts();
             if(!ds.isEmpty()) {
@@ -945,10 +1013,12 @@ void DesktopWindow::onFileClicked(int type, const std::shared_ptr<const Fm::File
                         onFileClicked(Fm::FolderView::ActivatedClick, fileInfo);
                     });
                     // "Stick" action for all
-                    action = menu->addAction(tr("Stic&k to Current Position"));
-                    action->setCheckable(true);
-                    action->setChecked(customItemPos_.find(fileInfo->name()) != customItemPos_.cend());
-                    connect(action, &QAction::toggled, this, &DesktopWindow::onStickToCurrentPos);
+                    if(!settings.allSticky()) {
+                        action = menu->addAction(tr("Stic&k to Current Position"));
+                        action->setCheckable(true);
+                        action->setChecked(customItemPos_.find(fileInfo->name()) != customItemPos_.cend());
+                        connect(action, &QAction::toggled, this, &DesktopWindow::onStickToCurrentPos);
+                    }
                     // "Empty Trash" action for Trash shortcut
                     if(fileName == QLatin1String("trash-can.desktop")) {
                         menu->addSeparator();
@@ -982,21 +1052,24 @@ void DesktopWindow::onFileClicked(int type, const std::shared_ptr<const Fm::File
 void DesktopWindow::prepareFileMenu(Fm::FileMenu* menu) {
     // qDebug("DesktopWindow::prepareFileMenu");
     PCManFM::View::prepareFileMenu(menu);
-    QAction* action = new QAction(tr("Stic&k to Current Position"), menu);
-    action->setCheckable(true);
-    menu->insertSeparator(menu->separator2());
-    menu->insertAction(menu->separator2(), action);
 
-    bool checked(true);
-    auto files = menu->files();
-    for(const auto& file : files) {
-        if(customItemPos_.find(file->name()) == customItemPos_.cend()) {
-            checked = false;
-            break;
+    if(!static_cast<Application*>(qApp)->settings().allSticky()) {
+        QAction* action = new QAction(tr("Stic&k to Current Position"), menu);
+        action->setCheckable(true);
+        menu->insertSeparator(menu->separator2());
+        menu->insertAction(menu->separator2(), action);
+
+        bool checked(true);
+        auto files = menu->files();
+        for(const auto& file : files) {
+            if(customItemPos_.find(file->name()) == customItemPos_.cend()) {
+                checked = false;
+                break;
+            }
         }
+        action->setChecked(checked);
+        connect(action, &QAction::toggled, this, &DesktopWindow::onStickToCurrentPos);
     }
-    action->setChecked(checked);
-    connect(action, &QAction::toggled, this, &DesktopWindow::onStickToCurrentPos);
 }
 
 void DesktopWindow::prepareFolderMenu(Fm::FolderMenu* menu) {
@@ -1029,7 +1102,11 @@ void DesktopWindow::toggleDesktop() {
     // a relayout is needed on showing the items for the first time
     // because the positions aren't updated while the view is hidden
     if(!desktopHideItems_) {
+        listView_->setUpdatesEnabled(false); // prevent items from shaking
         listView_->setFocus(); // refocus the view
+        if(trashMonitor_) {
+            updateTrashIcon();
+        }
         queueRelayout();
     }
     else {
@@ -1047,12 +1124,14 @@ void DesktopWindow::selectAll() {
 void DesktopWindow::onCreatingShortcut() {
     DesktopEntryDialog* dlg = new DesktopEntryDialog(this);
     dlg->setAttribute(Qt::WA_DeleteOnClose);
-    connect(dlg, &DesktopEntryDialog::desktopEntryCreated, [this] (const QString& name) {
+    connect(dlg, &DesktopEntryDialog::desktopEntryCreated, [this] (const Fm::FilePath&, const QString& name) {
         filesToTrust_ << name;
     });
     dlg->show();
-    dlg->raise();
-    dlg->activateWindow();
+    if(!static_cast<Application*>(qApp)->underWayland()) {
+        dlg->raise();
+        dlg->activateWindow();
+    }
 }
 
 void DesktopWindow::onDesktopPreferences() {
@@ -1063,8 +1142,6 @@ void DesktopWindow::onRowsInserted(const QModelIndex& parent, int start, int end
     Q_UNUSED(parent);
     Q_UNUSED(start);
     Q_UNUSED(end);
-    // disable view updates temporarily and delay relayout to prevent items from shaking
-    listView_->setUpdatesEnabled(false);
     queueRelayout(100);
 }
 
@@ -1090,10 +1167,9 @@ void DesktopWindow::onRowsAboutToBeRemoved(const QModelIndex& parent, int start,
             }
         }
         if(changed) {
-            saveItemPositions();
+            storeCustomPos();
         }
     }
-    listView_->setUpdatesEnabled(false);
     queueRelayout(100);
 }
 
@@ -1126,13 +1202,13 @@ void DesktopWindow::onFolderFinishLoading() {
 void DesktopWindow::onFilesAdded(const Fm::FileInfoList files) {
     if(static_cast<Application*>(qApp)->settings().selectNewFiles()) {
         if(!selectionTimer_) {
-            selectFiles(files, false);
             selectionTimer_ = new QTimer (this);
             selectionTimer_->setSingleShot(true);
-            selectionTimer_->start(200);
+            if(selectFiles(files, false)) {
+                selectionTimer_->start(200);
+            }
         }
-        else {
-            selectFiles(files, selectionTimer_->isActive());
+        else if(selectFiles(files, selectionTimer_->isActive())) {
             selectionTimer_->start(200);
         }
     }
@@ -1153,8 +1229,13 @@ void DesktopWindow::removeBottomGap() {
     auto itemSize = delegate->itemSize();
     //qDebug() << "delegate:" << delegate->itemSize();
     QSize cellMargins = getMargins();
+    Settings& settings = static_cast<Application* >(qApp)->settings();
     int workAreaHeight = screen->availableVirtualGeometry().height()
-                         - 2 * WORK_AREA_MARGIN;
+                         - settings.workAreaMargins().top()
+                         - settings.workAreaMargins().bottom();
+    if(workAreaHeight <= 0) {
+        return;
+    }
     int cellHeight = itemSize.height() + listView_->spacing();
     int iconNumber = workAreaHeight / cellHeight;
     int bottomGap = workAreaHeight % cellHeight;
@@ -1169,7 +1250,6 @@ void DesktopWindow::removeBottomGap() {
     qreal exactNumber = (static_cast<qreal>(cellHeight) - static_cast<qreal>(bottomGap))
                         / (2 * static_cast<qreal>(iconNumber) + static_cast<qreal>(2));
     int subtrahend = (int)exactNumber + ((int)exactNumber == exactNumber ? 0 : 1);
-    Settings& settings = static_cast<Application*>(qApp)->settings();
     int minCellHeight = settings.desktopCellMargins().height();
     if(subtrahend > 0
             && cellMargins.height() - subtrahend >= minCellHeight) {
@@ -1188,6 +1268,20 @@ void DesktopWindow::removeBottomGap() {
     setShadow(settings.desktopShadowColor());
 }
 
+void DesktopWindow::onInlineRenaming(const QString& oldName, const QString& newName) {
+    // preserve custom position on inline renaming
+    auto old_name = oldName.toStdString();
+    for(auto it = customItemPos_.cbegin(); it != customItemPos_.cend(); ++it) {
+        if(it->first == old_name) {
+            auto pos = it->second;
+            customItemPos_.erase(it);
+            customItemPos_[newName.toStdString()] = pos;
+            storeCustomPos();
+            break;
+        }
+    }
+}
+
 void DesktopWindow::paintBackground(QPaintEvent* event) {
     // This is to workaround Qt bug 54384 which affects Qt >= 5.6
     // https://bugreports.qt.io/browse/QTBUG-54384
@@ -1196,7 +1290,9 @@ void DesktopWindow::paintBackground(QPaintEvent* event) {
         painter.fillRect(event->rect(), QBrush(bgColor_));
     }
     else {
-        painter.drawPixmap(event->rect(), wallpaperPixmap_, event->rect());
+        QRectF r(QPointF(event->rect().topLeft()) * wallpaperPixmap_.devicePixelRatio(),
+                 QSizeF(event->rect().size()) * wallpaperPixmap_.devicePixelRatio());
+        painter.drawPixmap(event->rect(), wallpaperPixmap_, r.toRect());
     }
 }
 
@@ -1233,20 +1329,38 @@ void DesktopWindow::trustOurDesktopShortcut(std::shared_ptr<const Fm::FileInfo> 
     }
 }
 
+QRect DesktopWindow::getWorkArea(QScreen* screen) const {
+    QRect workArea = screen->availableVirtualGeometry();
+    QMargins margins = static_cast<Application* >(qApp)->settings().workAreaMargins();
+    // switch between right and left with RTL to use the usual (LTR) calculations later
+    if(layoutDirection() == Qt::RightToLeft) {
+        int right = margins.right();
+        margins.setRight(margins.left());
+        margins.setLeft(right);
+        workArea = workArea.marginsRemoved(margins);
+        workArea.moveLeft(rect().right() - workArea.right());
+    }
+    else {
+        workArea = workArea.marginsRemoved(margins);
+    }
+    return workArea;
+}
+
 // QListView does item layout in a very inflexible way, so let's do our custom layout again.
 // FIXME: this is very inefficient, but due to the design flaw of QListView, this is currently the only workaround.
 void DesktopWindow::relayoutItems() {
-    auto screen = getDesktopScreen();
-    if(screen == nullptr) {
-        return;
-    }
-    loadItemPositions(); // something may have changed
-    // qDebug("relayoutItems()");
     if(relayoutTimer_) {
         // this slot might be called from the timer, so we cannot delete it directly here.
         relayoutTimer_->deleteLater();
         relayoutTimer_ = nullptr;
     }
+    auto screen = getDesktopScreen();
+    if(screen == nullptr) {
+        return;
+    }
+    retrieveCustomPos(); // something may have changed
+
+    bool allSticky = static_cast<Application*>(qApp)->settings().allSticky();
 
     int row = 0;
     int rowCount = proxyModel_->rowCount();
@@ -1254,15 +1368,17 @@ void DesktopWindow::relayoutItems() {
     auto delegate = static_cast<Fm::FolderItemDelegate*>(listView_->itemDelegateForColumn(0));
     auto itemSize = delegate->itemSize();
 
-    QRect workArea = screen->availableVirtualGeometry();
-    workArea.adjust(WORK_AREA_MARGIN, WORK_AREA_MARGIN, -WORK_AREA_MARGIN, -WORK_AREA_MARGIN);
-    // qDebug() << "workArea" << screenNum_ <<  workArea;
+    QRect workArea = getWorkArea(screen);
+
     // FIXME: we use an internal class declared in a private header here, which is pretty bad.
     QPoint pos = workArea.topLeft();
     for(; row < rowCount; ++row) {
         QModelIndex index = proxyModel_->index(row, 0);
         int itemWidth = delegate->sizeHint(listView_->getViewOptions(), index).width();
         auto file = proxyModel_->fileInfoFromIndex(index);
+        if(file == nullptr) {
+            continue;
+        }
         auto name = file->name();
         if(filesToTrust_.contains(QString::fromStdString(name))) {
             file->setTrustable(true);
@@ -1270,13 +1386,12 @@ void DesktopWindow::relayoutItems() {
         }
         else if(file->isDesktopEntry()) {
             trustOurDesktopShortcut(file);
-         }
+        }
         auto find_it = customItemPos_.find(name);
         if(find_it != customItemPos_.cend()) { // the item has a custom position
             QPoint customPos = find_it->second;
-            // center the contents vertically
+            // center the contents horizontally
             listView_->setPositionForIndex(customPos + QPoint((itemSize.width() - itemWidth) / 2, 0), index);
-            // qDebug() << "set custom pos:" << name << row << index << customPos;
             continue;
         }
         // check if the current pos is already occupied by a custom item
@@ -1292,9 +1407,14 @@ void DesktopWindow::relayoutItems() {
             --row;
         }
         else {
-            // center the contents vertically
+            // center the contents horizontally
             listView_->setPositionForIndex(pos + QPoint((itemSize.width() - itemWidth) / 2, 0), index);
-            // qDebug() << "set pos" << name << row << index << pos;
+
+            // if all items should be sticky, add this item to custom positions
+            if(allSticky && pos.x() + itemSize.width() <= workArea.right() + 1) {
+                customItemPos_[name] = pos;
+                customPosStorage_[name] = pos;
+            }
         }
         // move to next cell in the column
         pos.setY(pos.y() + itemSize.height() + listView_->spacing());
@@ -1305,75 +1425,105 @@ void DesktopWindow::relayoutItems() {
         }
     }
 
+    // make the visually first item be the current item if there is no current index
+    if(rowCount > 0 && !listView_->currentIndex().isValid()) {
+        pos = workArea.topLeft();
+        while(workArea.contains(pos)) {
+            QPoint insidePoint(pos.x() + (itemSize.width() + listView_->spacing()) / 2,
+                               pos.y() + listView_->spacing() / 2 + getMargins().height() + 1);
+            QModelIndex index = listView_->indexAt(insidePoint);
+            if(index.isValid()) {
+                selectionModel()->setCurrentIndex(index, QItemSelectionModel::Current);
+                break;
+            }
+            pos.setY(pos.y() + itemSize.height() + listView_->spacing());
+            if(pos.y() + itemSize.height() > workArea.bottom() + 1) {
+                pos.setX(pos.x() + itemSize.width() + listView_->spacing());
+                pos.setY(workArea.top());
+            }
+        }
+    }
+
     if(!listView_->updatesEnabled()) {
         listView_->setUpdatesEnabled(true);
     }
 }
 
+// NOTE: We load custom positions from the config file at startup and store them in
+// customPosStorage_ to keep track of them without constantly saving them to the disk
+// during the session. customPosStorage_ should be written to the disk on exiting.
+//
+// In contrast, customItemPos_ reflects the real custom positions at the moment, which
+// may not be suitable for saving to the disk because it may be affected by temporary
+// changes to geometry that we do not want to remember at the next session.
+
 void DesktopWindow::loadItemPositions() {
-    auto screen = getDesktopScreen();
-    if(screen == nullptr) {
-        return;
-    }
-    // load custom item positions
-    customItemPos_.clear();
+    // load custom item positions from the config file and store them in the memory
+    customPosStorage_.clear();
     Settings& settings = static_cast<Application*>(qApp)->settings();
     QString configFile = QStringLiteral("%1/desktop-items-%2.conf").arg(settings.profileDir(settings.profileName())).arg(screenNum_);
     QSettings file(configFile, QSettings::IniFormat);
 
-    auto delegate = static_cast<Fm::FolderItemDelegate*>(listView_->itemDelegateForColumn(0));
-    auto grid = delegate->itemSize();
-    QRect workArea = screen->availableVirtualGeometry();
-    workArea.adjust(WORK_AREA_MARGIN, WORK_AREA_MARGIN, -WORK_AREA_MARGIN, -WORK_AREA_MARGIN);
-    QString desktopDir = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
-    desktopDir += QLatin1Char('/');
-    std::vector<QPoint> usedPos;
-    for(auto& item: customItemPos_) {
-        usedPos.push_back(item.second);
-    }
-
-    // FIXME: this is inefficient
     const auto names = file.childGroups();
     for(const QString& name : names) {
-        if(!QFile::exists(desktopDir + name)) {
-            // the file may have been removed from outside LXQT
-            continue;
-        }
         file.beginGroup(name);
-        QVariant var = file.value(QStringLiteral("pos"));
-        if(var.isValid()) {
-            QPoint customPos = var.toPoint();
-            if(customPos.x() >= workArea.x() && customPos.y() >= workArea.y()
-                    && customPos.x() + grid.width() <= workArea.right() + 1
-                    && customPos.y() + grid.height() <= workArea.bottom() + 1) {
-                // correct positions that are't aligned to the grid
-                alignToGrid(customPos, workArea.topLeft(), grid, listView_->spacing());
-                // FIXME: this is very inefficient
-                while(std::find(usedPos.cbegin(), usedPos.cend(), customPos) != usedPos.cend()) {
-                    customPos.setY(customPos.y() + grid.height() + listView_->spacing());
-                    if(customPos.y() + grid.height() > workArea.bottom() + 1) {
-                        customPos.setX(customPos.x() + grid.width() + listView_->spacing());
-                        customPos.setY(workArea.top());
-                    }
-                }
-                customItemPos_[name.toStdString()] = customPos;
-                usedPos.push_back(customPos);
-            }
-        }
+        customPosStorage_[name.toStdString()] = file.value(QStringLiteral("pos")).toPoint();
         file.endGroup();
     }
 }
 
+void DesktopWindow::retrieveCustomPos() {
+    // retrieve custom item positions from the memory and normalize them
+    auto screen = getDesktopScreen();
+    if(screen == nullptr) {
+        return;
+    }
+    customItemPos_.clear();
+    auto delegate = static_cast<Fm::FolderItemDelegate*>(listView_->itemDelegateForColumn(0));
+    auto grid = delegate->itemSize();
+    QRect workArea = getWorkArea(screen);
+    QString desktopDir = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+    desktopDir += QLatin1Char('/');
+    std::vector<QPoint> usedPos;
+
+    for(auto it = customPosStorage_.cbegin(); it != customPosStorage_.cend(); ++it) {
+        auto& name = it->first;
+        if(!QFile::exists(desktopDir + QString::fromStdString(name))) {
+            continue;
+        }
+        auto customPos = it->second;
+        // skip positions before the left edge, above the top edge or
+        // below the bottom edge of the work area
+        if(customPos.x() >= workArea.left()
+           && customPos.y() >= workArea.top()
+           && customPos.y() + grid.height() <= workArea.bottom() + 1) {
+            // correct positions that aren't aligned to the grid
+            alignToGrid(customPos, workArea.topLeft(), grid, listView_->spacing());
+            // guarantee different positions for different items
+            while(std::find(usedPos.cbegin(), usedPos.cend(), customPos) != usedPos.cend()) {
+                customPos.setY(customPos.y() + grid.height() + listView_->spacing());
+                if(customPos.y() + grid.height() > workArea.bottom() + 1) {
+                    customPos.setX(customPos.x() + grid.width() + listView_->spacing());
+                    customPos.setY(workArea.top());
+                }
+            }
+            // also, skip positions after the right edge of the work area
+            if(customPos.x() + grid.width() <= workArea.right() + 1) {
+                customItemPos_[name] = customPos;
+                usedPos.push_back(customPos);
+            }
+        }
+    }
+}
+
 void DesktopWindow::saveItemPositions() {
+    // write custom item positions to the config file
     Settings& settings = static_cast<Application*>(qApp)->settings();
-    // store custom item positions
     QString configFile = QStringLiteral("%1/desktop-items-%2.conf").arg(settings.profileDir(settings.profileName())).arg(screenNum_);
-    // FIXME: using QSettings here is inefficient and it's not friendly to UTF-8.
     QSettings file(configFile, QSettings::IniFormat);
     file.clear(); // remove all existing entries
 
-    // FIXME: we have to remove dead entries not associated to any files?
-    for(auto it = customItemPos_.cbegin(); it != customItemPos_.cend(); ++it) {
+    for(auto it = customPosStorage_.cbegin(); it != customPosStorage_.cend(); ++it) {
         auto& name = it->first;
         auto& pos = it->second;
         file.beginGroup(QString::fromStdString(name));
@@ -1382,27 +1532,34 @@ void DesktopWindow::saveItemPositions() {
     }
 }
 
+void DesktopWindow::storeCustomPos() {
+    // store custom item positions in the memory
+    customPosStorage_.clear();
+    customPosStorage_ = customItemPos_;
+}
+
 void DesktopWindow::onStickToCurrentPos(bool toggled) {
     QModelIndexList indexes = listView_->selectionModel()->selectedIndexes();
     if(!indexes.isEmpty()) {
         bool relayout(false);
         QModelIndexList::const_iterator it;
         for(it = indexes.constBegin(); it != indexes.constEnd(); ++it) {
-            auto file = proxyModel_->fileInfoFromIndex(*it);
-            auto name = file->name();
-            if(toggled) { // remember the current custom position
-                QRect itemRect = listView_->rectForIndex(*it);
-                customItemPos_[name] = itemRect.topLeft();
-            }
-            else { // cancel custom position and perform relayout
-                auto item = customItemPos_.find(name);
-                if(item != customItemPos_.end()) {
-                    customItemPos_.erase(item);
-                    relayout = true;
+            if(auto file = proxyModel_->fileInfoFromIndex(*it)) {
+                auto name = file->name();
+                if(toggled) { // remember the current custom position
+                    QRect itemRect = listView_->rectForIndex(*it);
+                    customItemPos_[name] = itemRect.topLeft();
+                }
+                else { // cancel custom position and perform relayout
+                    auto item = customItemPos_.find(name);
+                    if(item != customItemPos_.end()) {
+                        customItemPos_.erase(item);
+                        relayout = true;
+                    }
                 }
             }
         }
-        saveItemPositions();
+        storeCustomPos();
         if(relayout) {
             relayoutItems();
         }
@@ -1413,6 +1570,9 @@ void DesktopWindow::queueRelayout(int delay) {
     // qDebug() << "queueRelayout";
     removeBottomGap();
     if(!relayoutTimer_) {
+        if(listView_->updatesEnabled()) {
+            listView_->setUpdatesEnabled(false); // prevent items from shaking as far as possible
+        }
         relayoutTimer_ = new QTimer();
         relayoutTimer_->setSingleShot(true);
         connect(relayoutTimer_, &QTimer::timeout, this, &DesktopWindow::relayoutItems);
@@ -1516,6 +1676,165 @@ void DesktopWindow::onFilePropertiesActivated() {
     }
 }
 
+QModelIndex DesktopWindow::navigateWithKey(int key, Qt::KeyboardModifiers modifiers, const QModelIndex& start) {
+    QModelIndex curIndx;
+    if(!start.isValid()) { // start with the current index
+        curIndx = listView_->currentIndex();
+        if(!curIndx.isValid()) {
+            return QModelIndex();
+        }
+    }
+    else {
+        curIndx = start;
+    }
+    QPoint pos = listView_->visualRect(curIndx).topLeft();
+    QModelIndex index;
+    bool withShift((modifiers & Qt::ShiftModifier) && !(modifiers & Qt::ControlModifier));
+
+    switch(key) {
+    case Qt::Key_PageDown:
+        while(curIndx.isValid() && listView_->visualRect(curIndx).left() == pos.x()) {
+            if(withShift) {
+                selectionModel()->setCurrentIndex(curIndx, QItemSelectionModel::Select);
+            }
+            else {
+                index = curIndx;
+            }
+            curIndx = navigateWithKey(Qt::Key_Down, modifiers, curIndx);
+        }
+        break;
+    case Qt::Key_PageUp: {
+        while(curIndx.isValid() && listView_->visualRect(curIndx).left() == pos.x()) {
+            if(withShift) {
+                selectionModel()->setCurrentIndex(curIndx, QItemSelectionModel::Select);
+            }
+            else {
+                index = curIndx;
+            }
+            curIndx = navigateWithKey(Qt::Key_Up, modifiers, curIndx);
+        }
+        break;
+    }
+    case Qt::Key_End: {
+        while(curIndx.isValid()) {
+            if(withShift) {
+                selectionModel()->setCurrentIndex(curIndx, QItemSelectionModel::Select);;
+            }
+            else {
+                index = curIndx;
+            }
+            curIndx = navigateWithKey(Qt::Key_Down, modifiers, curIndx);
+        }
+        break;
+    }
+    case Qt::Key_Home: {
+        while(curIndx.isValid()) {
+            if(withShift) {
+                selectionModel()->setCurrentIndex(curIndx, QItemSelectionModel::Select);
+            }
+            else {
+                index = curIndx;
+            }
+            curIndx = navigateWithKey(Qt::Key_Up, modifiers, curIndx);
+        }
+        break;
+    }
+    default: { // arrow keys
+        auto screen = getDesktopScreen();
+        if(screen == nullptr) {
+            return QModelIndex();
+        }
+        auto delegate = static_cast<Fm::FolderItemDelegate*>(listView_->itemDelegateForColumn(0));
+        auto itemSize = delegate->itemSize();
+        QRect workArea = getWorkArea(screen);
+        int columns = workArea.width() / (itemSize.width() + listView_->spacing());
+        int rows = workArea.height() / (itemSize.height() + listView_->spacing());
+        if(columns <= 0 || rows <= 0) {
+            break;
+        }
+        bool rtl(layoutDirection() == Qt::RightToLeft);
+        while(!index.isValid() && workArea.contains(pos)) {
+            switch(key) {
+            case Qt::Key_Up:
+                pos.setY(pos.y() - itemSize.height() - listView_->spacing());
+                if(pos.y() < workArea.top()) {
+                    if(rtl) {
+                        pos.setX(pos.x() + itemSize.width() + listView_->spacing());
+                    }
+                    else {
+                        pos.setX(pos.x() - itemSize.width() - listView_->spacing());
+                    }
+                    pos.setY(workArea.top() + (rows - 1) * (itemSize.height() + listView_->spacing()));
+                }
+                break;
+            case Qt::Key_Right:
+                pos.setX(pos.x() + itemSize.width() + listView_->spacing());
+                if(pos.x() + itemSize.width() > workArea.right() + 1) {
+                    if(rtl) {
+                        pos.setY(pos.y() - itemSize.height() - listView_->spacing());
+                        pos.setX(workArea.right() + 1 - (columns - 1) * (itemSize.width() + listView_->spacing()));
+                    }
+                    else {
+                        pos.setY(pos.y() + itemSize.height() + listView_->spacing());
+                        pos.setX(workArea.left());
+                    }
+                }
+                break;
+            case Qt::Key_Left:
+                pos.setX(pos.x() - itemSize.width() - listView_->spacing());
+                if(pos.x() < workArea.left()) {
+                    if(rtl) {
+                        pos.setY(pos.y() + itemSize.height() + listView_->spacing());
+                        pos.setX(workArea.right() + 1 - itemSize.width() - listView_->spacing());
+                    }
+                    else {
+                        pos.setY(pos.y() - itemSize.height() - listView_->spacing());
+                        pos.setX(workArea.left() + (columns - 1) * (itemSize.width() + listView_->spacing()));
+                    }
+                }
+                break;
+            default: // consider any other value as Qt::Key_Down
+                pos.setY(pos.y() + itemSize.height() + listView_->spacing());
+                if(pos.y() + itemSize.height() > workArea.bottom() + 1) {
+                    if(rtl) {
+                        pos.setX(pos.x() - itemSize.width() - listView_->spacing());
+                    }
+                    else {
+                        pos.setX(pos.x() + itemSize.width() + listView_->spacing());
+                    }
+                    pos.setY(workArea.top());
+                }
+                break;
+            }
+            QPoint insidePoint(pos.x() + (itemSize.width() + listView_->spacing()) / 2,
+                               pos.y() + listView_->spacing() / 2 + getMargins().height() + 1);
+            index = listView_->indexAt(insidePoint);
+        }
+        break;
+    }
+    }
+
+    if(!start.isValid() && index.isValid()
+       // for compatibility with Qt's behavior, in the case of an impossible movement,
+       // don't select an unselected current index
+       && index != listView_->currentIndex()) {
+        if(modifiers & Qt::ControlModifier) {
+            // only change the current item
+            selectionModel()->setCurrentIndex(index, QItemSelectionModel::Current);
+        }
+        else if(modifiers & Qt::ShiftModifier) {
+            // add items to the the selection
+            selectionModel()->select(curIndx, QItemSelectionModel::Select);
+            selectionModel()->setCurrentIndex(index, QItemSelectionModel::Select);
+        }
+        else {
+            // clear the previous selection and select the item
+            selectionModel()->setCurrentIndex(index, QItemSelectionModel::ClearAndSelect);
+        }
+    }
+    return index;
+}
+
 bool DesktopWindow::event(QEvent* event) {
     switch(event->type()) {
     case QEvent::WinIdChange: {
@@ -1549,6 +1868,7 @@ bool DesktopWindow::event(QEvent* event) {
 }
 
 #undef FontChange // this seems to be defined in Xlib headers as a macro, undef it!
+#undef KeyPress // like above
 
 bool DesktopWindow::eventFilter(QObject* watched, QEvent* event) {
     if(watched == listView_) {
@@ -1559,6 +1879,19 @@ bool DesktopWindow::eventFilter(QObject* watched, QEvent* event) {
                 queueRelayout();
             }
             break;
+        case QEvent::KeyPress: {
+            QToolTip::showText(QPoint(), QString()); // remove the tooltip, if any
+            QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
+            int k = keyEvent->key();
+            if(k == Qt::Key_Down || k == Qt::Key_Up
+               || k == Qt::Key_Right || k == Qt::Key_Left
+               || k == Qt::Key_PageUp || k == Qt::Key_PageDown
+               || k == Qt::Key_Home || k == Qt::Key_End) {
+                navigateWithKey(k, keyEvent->modifiers());
+                return true;
+            }
+            break;
+        }
         default:
             break;
         }
@@ -1573,6 +1906,10 @@ bool DesktopWindow::eventFilter(QObject* watched, QEvent* event) {
         case QEvent::Wheel:
             // removal of scrollbars is not enough to prevent scrolling
             return true;
+        case QEvent::DragLeave:
+            // remove the drop indicator on leaving the widget during DND
+            dropRect_ = QRect();
+            break;
         default:
             break;
         }
@@ -1587,8 +1924,7 @@ void DesktopWindow::childDragMoveEvent(QDragMoveEvent* e) { // see DesktopWindow
     }
     auto delegate = static_cast<Fm::FolderItemDelegate*>(listView_->itemDelegateForColumn(0));
     auto grid = delegate->itemSize();
-    QRect workArea = screen->availableVirtualGeometry();
-    workArea.adjust(WORK_AREA_MARGIN, WORK_AREA_MARGIN, -WORK_AREA_MARGIN, -WORK_AREA_MARGIN);
+    QRect workArea = getWorkArea(screen);
     bool isTrash;
     QRect oldDropRect = dropRect_;
     dropRect_ = QRect();
@@ -1637,9 +1973,7 @@ void DesktopWindow::childDropEvent(QDropEvent* e) {
     }
     auto delegate = static_cast<Fm::FolderItemDelegate*>(listView_->itemDelegateForColumn(0));
     auto grid = delegate->itemSize();
-    QRect workArea = screen->availableVirtualGeometry();
-    workArea.adjust(WORK_AREA_MARGIN, WORK_AREA_MARGIN, -WORK_AREA_MARGIN, -WORK_AREA_MARGIN);
-
+    QRect workArea = getWorkArea(screen);
     const QMimeData* mimeData = e->mimeData();
     bool moveItem = false;
     QModelIndex curIndx = listView_->currentIndex();
@@ -1678,36 +2012,72 @@ void DesktopWindow::childDropEvent(QDropEvent* e) {
             }
         }
     }
+    bool rtl(layoutDirection() == Qt::RightToLeft);
     if(moveItem) {
         e->accept();
         // move selected items to the drop position, preserving their relative positions
-        const QPoint dropPos = e->pos();
-        if(curIndx.isValid()) {
-            QPoint curPoint = listView_->visualRect(curIndx).topLeft();
+        QPoint dropPos = e->pos();
 
-            // first move the current item to the drop position
+        if(curIndx.isValid() && !workArea.isEmpty()) {
+            QPoint curPoint = listView_->visualRect(curIndx).topLeft();
+            bool reachedLastCell = false;
+            QPoint nxtPos = dropPos;
+            std::set<std::string> droppedFiles;
+
+            // First move the current item to the drop position.
             auto file = proxyModel_->fileInfoFromIndex(curIndx);
             if(file) {
                 QPoint pos = dropPos;
-                stickToPosition(file->name(), pos, workArea, grid);
+
+                // NOTE: DND always reports the drop position in the usual (LTR) coordinates.
+                // Therefore, to have the same calculations regardless of the layout direction,
+                // we reverse the x-coordinate with RTL.
+                if(rtl) {
+                    pos.setX(width() - pos.x());
+                }
+
+                reachedLastCell = stickToPosition(file->name(), pos,
+                                                  workArea, grid,
+                                                  droppedFiles, reachedLastCell);
+                nxtPos = pos;
+                droppedFiles.insert(file->name());
             }
 
-            // then move the other items so that their relative postions are preserved
-            const QModelIndexList selected = selectedIndexes();
-            for(const QModelIndex& indx : selected) {
+            // Then move the other items so that their relative positions are preserved.
+            QModelIndexList selected = selectedIndexes();
+            // sort the selection from left to right and top to bottom, in order to make
+            // the positions of dropped items more predictable
+            std::sort(selected.begin(), selected.end(), [this] (const QModelIndex& a, const QModelIndex& b) {
+                QPoint pa = listView_->visualRect(a).topLeft();
+                QPoint pb = listView_->visualRect(b).topLeft();
+                return (pa.x() != pb.x() ? pa.x() < pb.x() : pa.y() < pb.y());
+            });
+            for(const QModelIndex& indx : qAsConst(selected)) {
                 if(indx == curIndx) {
                     continue;
                 }
                 file = proxyModel_->fileInfoFromIndex(indx);
                 if(file) {
                     QPoint nxtDropPos = dropPos + listView_->visualRect(indx).topLeft() - curPoint;
-                    nxtDropPos.setX(qBound(workArea.left(), nxtDropPos.x(), workArea.right() + 1));
-                    nxtDropPos.setY(qBound(workArea.top(), nxtDropPos.y(), workArea.bottom() + 1));
-                    stickToPosition(file->name(), nxtDropPos, workArea, grid);
+
+                    if(rtl) { // like above
+                        nxtDropPos.setX(width() - nxtDropPos.x());
+                    }
+
+                    if(!workArea.contains(nxtDropPos)) {
+                        // if the drop point is outside the work area, forget about
+                        // keeping relative positions and choose the next position
+                        nxtDropPos = nxtPos;
+                    }
+                    reachedLastCell = stickToPosition(file->name(), nxtDropPos,
+                                                       workArea, grid,
+                                                       droppedFiles, reachedLastCell);
+                    nxtPos = nxtDropPos;
+                    droppedFiles.insert(file->name());
                 }
             }
         }
-        saveItemPositions();
+        storeCustomPos();
         queueRelayout();
     }
     else {
@@ -1738,31 +2108,57 @@ void DesktopWindow::childDropEvent(QDropEvent* e) {
             }
         }
 
+        // store current positions before the drop; see DesktopWindow::onDecidingDrop()
+        storeCustomPos();
+
         Fm::FolderView::childDropEvent(e);
 
         // remove the drop indicator after the drop is finished
         dropRect_ = QRect();
         listView_->viewport()->update();
 
-        // position dropped items successively, starting with the drop rectangle
-        if(mimeData->hasUrls()
-           && (e->dropAction() == Qt::CopyAction
-               || e->dropAction() == Qt::MoveAction
-               || e->dropAction() == Qt::LinkAction)) {
+        // do not proceed if items are dropped on a directory
+        if(auto file = proxyModel_->fileInfoFromIndex(dropIndex)) {
+            if(file->isDir()) {
+                return;
+            }
+        }
+
+        // Reserve successive positions for dropped items, starting with the drop rectangle.
+        if(!workArea.isEmpty()
+           && mimeData->hasUrls()) {
             const QString desktopDir = XdgDir::readDesktopDir() + QString(QLatin1String("/"));
             QPoint dropPos = e->pos();
+            if(rtl) { // see the previous case for the reason
+                dropPos.setX(width() - dropPos.x());
+            }
             const QList<QUrl> urlList = mimeData->urls();
             bool reachedLastCell = false;
+            std::set<std::string> droppedFiles;
             for(const QUrl& url : urlList) {
                 QString name = url.fileName();
                 if(!name.isEmpty()
                    // don't stick to the position if there is an overwrite prompt
                    && !QFile::exists(desktopDir + name)) {
-                    reachedLastCell = stickToPosition(name.toStdString(), dropPos, workArea, grid, reachedLastCell);
+                    reachedLastCell = stickToPosition(name.toStdString(), dropPos,
+                                                      workArea, grid,
+                                                      droppedFiles, reachedLastCell);
+                    droppedFiles.insert(name.toStdString());
                 }
             }
-            saveItemPositions();
+            // Wait for FolderView::dropIsDecided() to know whether the new positions should be stored
+            // on accepting the drop or the original positions should be restored on cancelling it.
         }
+    }
+}
+
+void DesktopWindow::onDecidingDrop(bool accepted) {
+    if(accepted) {
+        storeCustomPos();
+    }
+    else {
+        customItemPos_.clear();
+        customItemPos_ = customPosStorage_;
     }
 }
 
@@ -1770,8 +2166,14 @@ void DesktopWindow::childDropEvent(QDropEvent* e) {
 // starting from the drop point, and carries the existing sticky items with them,
 // until it reaches the last cell and then puts the remaining items in the opposite
 // direction. In this way, it creates a natural DND, especially with multiple files.
-bool DesktopWindow::stickToPosition(const std::string& file, QPoint& pos, const QRect& workArea, const QSize& grid, bool reachedLastCell) {
-    // normalize the position, depending on the positioning direction
+bool DesktopWindow::stickToPosition(const std::string& file, QPoint& pos,
+                                    const QRect& workArea, const QSize& grid,
+                                    const std::set<std::string>& droppedFiles, bool reachedLastCell) {
+    if(workArea.isEmpty()) {
+        return reachedLastCell;
+    }
+
+    // Normalize the position, depending on the positioning direction.
     if(!reachedLastCell) { // default direction: top -> bottom, left -> right
 
         // put the drop point inside the work area to prevent unnatural jumps
@@ -1802,9 +2204,9 @@ bool DesktopWindow::stickToPosition(const std::string& file, QPoint& pos, const 
         }
     }
 
-    // find if there is a sticky item at this position
+    // Find if there is a sticky item at this position.
     std::string otherFile;
-    bool isTrash = false;
+    bool skipPos = false;
     auto oldItem = std::find_if(customItemPos_.cbegin(),
                                 customItemPos_.cend(),
                                 [pos](const std::pair<std::string, QPoint>& elem) {
@@ -1812,25 +2214,30 @@ bool DesktopWindow::stickToPosition(const std::string& file, QPoint& pos, const 
                                 });
     if(oldItem != customItemPos_.cend()) {
         otherFile = oldItem->first;
-        if(trashMonitor_ && otherFile != file && otherFile == "trash-can.desktop") {
-            isTrash = true; // occupied by a sticky Trash
+        if(!otherFile.empty() && otherFile != file) {
+            if(trashMonitor_ && otherFile == "trash-can.desktop") {
+                skipPos = true; // the sticky Trash
+            }
+            if(!skipPos && std::find(droppedFiles.cbegin(), droppedFiles.cend(), otherFile) != droppedFiles.cend()) {
+                skipPos = true; // an already dropped file
+            }
         }
     }
 
-    if(!isTrash) {
-        // stick to the position if it is not occupied by Trash
-        // NOTE: In this way, a sticky Trash can be moved only explicitly.
+    // Stick to the position if it is not occupied by Trash or a dropped file.
+    // NOTE: In this way, the sticky Trash will not be moved by other items.
+    if(!skipPos) {
         customItemPos_[file] = pos;
     }
 
-    // check whether we are in the last visible cell if it isn't reached already
+    // Check whether we are in the last visible cell.
     if(!reachedLastCell
        && pos.y() + 2 * grid.height() + listView_->spacing() > workArea.bottom() + 1
        && pos.x() + 2 * grid.width() + listView_->spacing() > workArea.right() + 1) {
         reachedLastCell = true;
     }
 
-    // find the next position
+    // Find the next position.
     if(reachedLastCell) {
         // when this is the last visible cell, reverse the positioning direction
         // to avoid off-screen items later
@@ -1847,13 +2254,14 @@ bool DesktopWindow::stickToPosition(const std::string& file, QPoint& pos, const 
         }
     }
 
-    // if the position was ocupied by Trash, go to the next postiton
-    if(isTrash) {
-        reachedLastCell = stickToPosition(file, pos, workArea, grid, reachedLastCell);
+    // if the position was occupied by Trash or a dropped file, go to the next postiton
+    if(skipPos) {
+        reachedLastCell = stickToPosition(file, pos, workArea, grid, droppedFiles, reachedLastCell);
     }
     // but if there was another sticky item at the same position, move it to the next position
     else if(!otherFile.empty() && otherFile != file) {
-        reachedLastCell = stickToPosition(otherFile, pos, workArea, grid, reachedLastCell);
+        QPoint _pos = pos;
+        reachedLastCell = stickToPosition(otherFile, _pos, workArea, grid, droppedFiles, reachedLastCell);
     }
 
     return reachedLastCell;
@@ -1870,8 +2278,20 @@ void DesktopWindow::alignToGrid(QPoint& pos, const QPoint& topLeft, const QSize&
 // the text or icon rectangle but we make an exception for Trash because we want
 // to trash dropped items once the drop point is inside the Trash cell.
 QModelIndex DesktopWindow::indexForPos(bool* isTrash, const QPoint& pos, const QRect& workArea, const QSize& grid) const {
+    if(workArea.isEmpty()) {
+        return QModelIndex();
+    }
+
     // first normalize the position
     QPoint p(pos);
+
+    // QAbstractItemView::indexAt() always refers to the usual (LTR) coordinates, which is
+    // provided by "pos". Therefore, to have the same normalizing calculations regardless of
+    // the layout direction, we reverse the x-coordinate with RTL and restore it in the end.
+    if(layoutDirection() == Qt::RightToLeft) {
+        p.setX(width() - p.x());
+    }
+
     if(p.y() + grid.height() > workArea.bottom() + 1) {
         p.setY(workArea.bottom() + 1 - grid.height());
     }
@@ -1885,6 +2305,12 @@ QModelIndex DesktopWindow::indexForPos(bool* isTrash, const QPoint& pos, const Q
     // (if there is any item, its icon is immediately below the middle of its top side)
     p.setX(p.x() + (grid.width() + listView_->spacing()) / 2);
     p.setY(p.y() + listView_->spacing() / 2 + getMargins().height() + 1);
+
+    // restore the x-coordinate with RTL
+    if(layoutDirection() == Qt::RightToLeft) {
+        p.setX(width() - p.x());
+    }
+
     // if this is the Trash cell, return its index
     QModelIndex indx = listView_->indexAt(p);
     if(indx.isValid() && indx.model()) {
@@ -1913,6 +2339,7 @@ void DesktopWindow::paintEvent(QPaintEvent* event) {
 void DesktopWindow::setScreenNum(int num) {
     if(screenNum_ != num) {
         screenNum_ = num;
+        loadItemPositions(); // the config file is different
         queueRelayout();
     }
 }

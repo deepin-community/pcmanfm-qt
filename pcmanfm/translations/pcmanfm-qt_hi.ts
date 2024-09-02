@@ -6,27 +6,29 @@
     <message>
         <location filename="../about.ui" line="14"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>परिचय</translation>
     </message>
     <message>
         <location filename="../about.ui" line="25"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;PCManFM-Qt&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;PCManFM-Qt&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../about.ui" line="48"/>
         <source>Lightweight file manager</source>
-        <translation type="unfinished"></translation>
+        <translation>लाइटवेट फ़ाइल प्रबंधक</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="91"/>
+        <location filename="../about.ui" line="122"/>
         <source>Programming:
 * Hong Jen Yee (PCMan) &lt;pcman.tw@gmail.com&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>प्रोग्रामिंग:
+* Hong Jen Yee (PCMan) &lt;pcman.tw@gmail.com&gt;
+</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="113"/>
+        <location filename="../about.ui" line="144"/>
         <source>PCManFM-Qt File Manager
 
 Copyright (C) 2009 - 2014 洪任諭 (Hong Jen Yee)
@@ -44,23 +46,43 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.</source>
-        <translation type="unfinished"></translation>
+        <translation>PCManFM-Qt फ़ाइल प्रबंधक
+
+कॉपीराइट (C) 2009 - 2014 洪任諭 (हांग जेन यी)
+
+यह  प्रोग्राम एक मुफ्त सॉफ्टवेयर है; आप इसे पुनर्वितरित कर सकते हैं और/या
+जीएनयू जनरल पब्लिक लाइसेंस की शर्तों के तहत इसे संशोधित कर सकते हैं
+जैसा कि फ्री सॉफ्टवेयर फाउंडेशन द्वारा प्रकाशित किया गया है; या तो लाइसेंस के
+ संस्करण 2, या (आपकी इच्छानुसार), किसी बाद के संस्करण में.
+
+यह प्रोग्राम इस उम्मीद में वितरित किया जाता है कि यह उपयोगी होगा,
+लेकिन बिना किसी वारंटी के; किसी विशेष उद्देश्य के लिए अनुरूपता या फिटनेस 
+संबंधी किसी भी निहित वारंटी के बिना. अधिक जानकारी के लिए जीएनयू जनरल
+पब्लिक लाइसेंस देखें.
+
+इस प्रोग्राम के साथ आपको GNU जनरल पब्लिक लाइसेंस की एक प्रति प्राप्त होनी
+चाहिए थी; यदि नहीं, तो निम्न पते पर लिखें.
+फ्री सॉफ्टवेयर फाउंडेशन, इंक., 51 फ्रैंकलिन स्ट्रीट, पांचवीं मंजिल, बोस्टन, एमए 02110-1301, यूएसए.</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="82"/>
+        <location filename="../about.ui" line="113"/>
         <source>Authors</source>
-        <translation type="unfinished"></translation>
+        <translation>लेखकगण</translation>
     </message>
     <message>
         <location filename="../about.ui" line="58"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/lxqt/pcmanfm-qt&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/lxqt/pcmanfm-qt&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
-</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/lxqt/pcmanfm-qt&quot;&gt;https://github.com/lxqt/pcmanfm-qt&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../about.ui" line="104"/>
-        <source>License</source>
+        <location filename="../about.ui" line="74"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Wiki: &lt;a href=&quot;https://github.com/lxqt/pcmanfm-qt/wiki&quot;&gt;https://github.com/lxqt/pcmanfm-qt/wiki&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../about.ui" line="135"/>
+        <source>License</source>
+        <translation>लाइसेंस</translation>
     </message>
 </context>
 <context>
@@ -68,27 +90,28 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.<
     <message>
         <location filename="../autorun.ui" line="14"/>
         <source>Removable medium is inserted</source>
-        <translation type="unfinished"></translation>
+        <translation>हटाने योग्य माध्यम डाला गया है</translation>
     </message>
     <message>
         <location filename="../autorun.ui" line="33"/>
         <source>&lt;b&gt;Removable medium is inserted&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;हटाने योग्य माध्यम डाला गया है
+&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../autorun.ui" line="40"/>
         <source>Type of medium:</source>
-        <translation type="unfinished"></translation>
+        <translation>माध्यम प्रकार :</translation>
     </message>
     <message>
         <location filename="../autorun.ui" line="47"/>
         <source>Detecting...</source>
-        <translation type="unfinished"></translation>
+        <translation>पता लगा रहे हैं...</translation>
     </message>
     <message>
         <location filename="../autorun.ui" line="56"/>
         <source>Please select the action you want to perform:</source>
-        <translation type="unfinished"></translation>
+        <translation>कृपया वह क्रिया चुनें जिसे आप करना चाहते हैं :</translation>
     </message>
 </context>
 <context>
@@ -96,22 +119,32 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.<
     <message>
         <location filename="../bulk-rename.ui" line="6"/>
         <source>Bulk Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>अनेक नामकरण</translation>
     </message>
     <message>
-        <location filename="../bulk-rename.ui" line="48"/>
+        <location filename="../bulk-rename.ui" line="47"/>
         <source># will be replaced by numbers starting with:</source>
+        <translation># को इनसे शुरू होने वाली संख्याओं से प्रतिस्थापित किया जाएगा :</translation>
+    </message>
+    <message>
+        <location filename="../bulk-rename.ui" line="80"/>
+        <source>Pad numbers with zero if possible</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bulk-rename.ui" line="71"/>
+        <location filename="../bulk-rename.ui" line="87"/>
+        <source>Use localized numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bulk-rename.ui" line="27"/>
         <source>Rename selected files to:</source>
-        <translation type="unfinished"></translation>
+        <translation>चयनित फ़ाइलों का नाम बदलें :</translation>
     </message>
     <message>
-        <location filename="../bulk-rename.ui" line="84"/>
+        <location filename="../bulk-rename.ui" line="40"/>
         <source>Name#</source>
-        <translation type="unfinished"></translation>
+        <translation>नाम#</translation>
     </message>
 </context>
 <context>
@@ -119,42 +152,42 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.<
     <message>
         <location filename="../connect.ui" line="14"/>
         <source>Connect to remote server</source>
-        <translation type="unfinished"></translation>
+        <translation>रिमोट सर्वर से कनेक्ट करें</translation>
     </message>
     <message>
-        <location filename="../connect.ui" line="23"/>
+        <location filename="../connect.ui" line="80"/>
         <source>Anonymous &amp;login</source>
-        <translation type="unfinished"></translation>
+        <translation>बेनामी &amp;लॉगिन</translation>
+    </message>
+    <message>
+        <location filename="../connect.ui" line="90"/>
+        <source>Login as &amp;user:</source>
+        <translation>&amp;उपयोगकर्ता के रूप में लॉगिन करें :</translation>
+    </message>
+    <message>
+        <location filename="../connect.ui" line="29"/>
+        <source>Specify remote folder to connect</source>
+        <translation>कनेक्ट करने के लिए दूरस्थ फ़ोल्डर निर्दिष्ट करें</translation>
     </message>
     <message>
         <location filename="../connect.ui" line="36"/>
-        <source>Login as &amp;user:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../connect.ui" line="65"/>
-        <source>Specify remote folder to connect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../connect.ui" line="72"/>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रकार :</translation>
     </message>
     <message>
-        <location filename="../connect.ui" line="79"/>
+        <location filename="../connect.ui" line="56"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>पोर्ट :</translation>
     </message>
     <message>
-        <location filename="../connect.ui" line="86"/>
+        <location filename="../connect.ui" line="70"/>
         <source>Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>पथ :</translation>
     </message>
     <message>
-        <location filename="../connect.ui" line="96"/>
+        <location filename="../connect.ui" line="46"/>
         <source>Host:</source>
-        <translation type="unfinished"></translation>
+        <translation>होस्ट :</translation>
     </message>
 </context>
 <context>
@@ -162,73 +195,121 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.<
     <message>
         <location filename="../desktopentrydialog.ui" line="14"/>
         <source>Create Launcher</source>
-        <translation type="unfinished"></translation>
+        <translation>लॉन्चर बनाएं</translation>
     </message>
     <message>
         <location filename="../desktopentrydialog.ui" line="38"/>
         <source>Name:</source>
+        <translation>नाम :</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="45"/>
+        <source>Specific name of this launcher.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="55"/>
+        <location filename="../desktopentrydialog.ui" line="58"/>
         <source>Description:</source>
+        <translation>विवरण :</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="65"/>
+        <source>A short description or generic name, like &quot;Web Browser&quot; or &quot;Home Directory&quot;.
+
+It can be left empty.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="69"/>
+        <location filename="../desktopentrydialog.ui" line="77"/>
         <source>Comment:</source>
+        <translation>टिप्पणी :</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="84"/>
+        <source>A short comment.
+
+It can be left empty.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="83"/>
+        <location filename="../desktopentrydialog.ui" line="117"/>
         <source>Command:</source>
-        <translation type="unfinished"></translation>
+        <translation>आदेश :</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="99"/>
-        <location filename="../desktopentrydialog.ui" line="127"/>
+        <location filename="../desktopentrydialog.ui" line="133"/>
+        <location filename="../desktopentrydialog.ui" line="164"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="108"/>
+        <location filename="../desktopentrydialog.ui" line="142"/>
         <source>Icon:</source>
+        <translation>चिह्न :</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="151"/>
+        <source>Icon to display in file manager, menus, etc.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="136"/>
-        <location filename="../desktopentrydialog.ui" line="146"/>
+        <location filename="../desktopentrydialog.ui" line="173"/>
+        <location filename="../desktopentrydialog.ui" line="183"/>
         <source>Run in terminal?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../desktopentrydialog.ui" line="139"/>
-        <source>Terminal:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../desktopentrydialog.ui" line="150"/>
-        <source>No</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../desktopentrydialog.ui" line="155"/>
-        <source>Yes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../desktopentrydialog.ui" line="163"/>
-        <source>Type:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../desktopentrydialog.ui" line="171"/>
-        <source>Application</source>
-        <translation type="unfinished"></translation>
+        <translation>टर्मिनल में चलाएं?</translation>
     </message>
     <message>
         <location filename="../desktopentrydialog.ui" line="176"/>
+        <source>Terminal:</source>
+        <translation>टर्मिनल :</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="186"/>
+        <source>Whether the launched program should run in a terminal window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="190"/>
+        <source>No</source>
+        <translation>नहीं</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="195"/>
+        <source>Yes</source>
+        <translation>हाँ</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="203"/>
+        <source>Type:</source>
+        <translation>प्रकार :</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="210"/>
+        <source>Whether this is a link or executes a command.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="214"/>
+        <source>Application</source>
+        <translation>अनुप्रयोग</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="219"/>
         <source>Link</source>
+        <translation>लिंक</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="96"/>
+        <source>Categories:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="103"/>
+        <source>Semicolon separated categories in which the entry should be shown if it is used by the DE&apos;s main menu (e.g., when put inside ~/.local/share/applications).
+
+It is needed only when you want to use the created file in the main menu. Otherwise, you could leave it empty.
+
+Examples: AudioVideo, Audio, Video, Development, Education, Game, Graphics, Network, Office, Settings, System, Utility, Qt.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -237,32 +318,32 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.<
     <message>
         <location filename="../desktop-folder.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>फारम</translation>
     </message>
     <message>
         <location filename="../desktop-folder.ui" line="23"/>
         <source>Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>डेस्कटॉप</translation>
     </message>
     <message>
         <location filename="../desktop-folder.ui" line="29"/>
         <source>Desktop folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>डेस्कटॉप फ़ोल्डर :</translation>
     </message>
     <message>
         <location filename="../desktop-folder.ui" line="36"/>
         <source>Image file</source>
-        <translation type="unfinished"></translation>
+        <translation>छवि फ़ाइल</translation>
     </message>
     <message>
         <location filename="../desktop-folder.ui" line="42"/>
         <source>Folder path</source>
-        <translation type="unfinished"></translation>
+        <translation>फ़ोल्डर पथ</translation>
     </message>
     <message>
         <location filename="../desktop-folder.ui" line="49"/>
         <source>&amp;Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;ब्राउज़ करें</translation>
     </message>
 </context>
 <context>
@@ -270,226 +351,242 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.<
     <message>
         <location filename="../desktop-preferences.ui" line="14"/>
         <source>Desktop Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>डेस्कटॉप वरीयताएँ</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="240"/>
-        <location filename="../desktop-preferences.ui" line="246"/>
+        <location filename="../desktop-preferences.ui" line="338"/>
+        <location filename="../desktop-preferences.ui" line="344"/>
         <source>Background</source>
-        <translation type="unfinished"></translation>
+        <translation>पृष्ठभूमि</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="287"/>
+        <location filename="../desktop-preferences.ui" line="385"/>
         <source>Wallpaper mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>वॉलपेपर मोड :</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="310"/>
+        <location filename="../desktop-preferences.ui" line="408"/>
         <source>Wallpaper image file:</source>
-        <translation type="unfinished"></translation>
+        <translation>वॉलपेपर छवि फ़ाइल :</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="252"/>
+        <location filename="../desktop-preferences.ui" line="350"/>
         <source>Select background color:</source>
-        <translation type="unfinished"></translation>
+        <translation>पृष्ठभूमि का रंग चुनें :</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="319"/>
+        <location filename="../desktop-preferences.ui" line="417"/>
         <source>Image file</source>
-        <translation type="unfinished"></translation>
+        <translation>छवि फ़ाइल</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="325"/>
+        <location filename="../desktop-preferences.ui" line="423"/>
         <source>Image file path</source>
-        <translation type="unfinished"></translation>
+        <translation>छवि फ़ाइल का पथ</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="332"/>
+        <location filename="../desktop-preferences.ui" line="430"/>
         <source>&amp;Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;ब्राउज़ करें</translation>
     </message>
     <message>
         <location filename="../desktop-preferences.ui" line="30"/>
         <source>Icons</source>
-        <translation type="unfinished"></translation>
+        <translation>आइकन्स</translation>
     </message>
     <message>
         <location filename="../desktop-preferences.ui" line="36"/>
         <source>Icon size:</source>
-        <translation type="unfinished"></translation>
+        <translation>आइकन का आकार :</translation>
     </message>
     <message>
         <location filename="../desktop-preferences.ui" line="49"/>
         <source>Label Text</source>
-        <translation type="unfinished"></translation>
+        <translation>लेबल टेक्स्ट</translation>
     </message>
     <message>
         <location filename="../desktop-preferences.ui" line="113"/>
         <source>Select shadow color:</source>
-        <translation type="unfinished"></translation>
+        <translation>छाया रंग चुनें :</translation>
     </message>
     <message>
         <location filename="../desktop-preferences.ui" line="61"/>
         <source>Select font:</source>
-        <translation type="unfinished"></translation>
+        <translation>फ़ॉन्ट चुनें :</translation>
     </message>
     <message>
         <location filename="../desktop-preferences.ui" line="24"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>सामान्य</translation>
     </message>
     <message>
         <location filename="../desktop-preferences.ui" line="87"/>
         <source>Select text color:</source>
-        <translation type="unfinished"></translation>
+        <translation>टेक्स्ट का रंग चुनें :</translation>
     </message>
     <message>
         <location filename="../desktop-preferences.ui" line="136"/>
         <source>Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>रिक्ति</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="142"/>
+        <location filename="../desktop-preferences.ui" line="145"/>
         <source>Minimum item margins:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../desktop-preferences.ui" line="149"/>
-        <source>3 px by default.</source>
-        <translation type="unfinished"></translation>
+        <translation>न्यूनतम आइटम मार्जिन :</translation>
     </message>
     <message>
         <location filename="../desktop-preferences.ui" line="152"/>
-        <location filename="../desktop-preferences.ui" line="176"/>
+        <source>3 px by default.</source>
+        <translation>3 px आरंभिक मान.</translation>
+    </message>
+    <message>
+        <location filename="../desktop-preferences.ui" line="155"/>
+        <location filename="../desktop-preferences.ui" line="179"/>
+        <location filename="../desktop-preferences.ui" line="237"/>
+        <location filename="../desktop-preferences.ui" line="249"/>
+        <location filename="../desktop-preferences.ui" line="275"/>
+        <location filename="../desktop-preferences.ui" line="287"/>
         <source> px</source>
-        <translation type="unfinished"></translation>
+        <translation> px</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="165"/>
+        <location filename="../desktop-preferences.ui" line="168"/>
         <source>x</source>
-        <translation type="unfinished"></translation>
+        <translation>x</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="172"/>
+        <location filename="../desktop-preferences.ui" line="175"/>
         <source>1 px by default.
 A space is also reserved for 3 lines of text.</source>
-        <translation type="unfinished"></translation>
+        <translation>1 px आरंभिक मान.
+3 पंक्तियों के आलेख के लिए भी स्थान आरक्षित है.</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="189"/>
+        <location filename="../desktop-preferences.ui" line="192"/>
         <source>Lock</source>
+        <translation>ताला</translation>
+    </message>
+    <message>
+        <location filename="../desktop-preferences.ui" line="230"/>
+        <source>Margins of work area:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="212"/>
+        <location filename="../desktop-preferences.ui" line="303"/>
         <source>By default, desktop folders will be opened in PCManFM-Qt if they
 are left clicked, even when it is not the default file manager.</source>
-        <translation type="unfinished"></translation>
+        <translation>आरंभिक रूप में, बाएँ क्लिक से डेस्कटॉप फ़ोल्डर PCManFM-Qt में खोले जाएंगे, यदि वह
+आरंभिक फ़ाइल प्रबंधक न हो तब भी.</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="216"/>
+        <location filename="../desktop-preferences.ui" line="307"/>
         <source>Open desktop folders in default file manager by left clicking</source>
-        <translation type="unfinished"></translation>
+        <translation>डेस्कटॉप फ़ोल्डर को बायाँ क्लिक करके डिफ़ॉल्ट फ़ाइल प्रबंधक में खोलें</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="275"/>
+        <location filename="../desktop-preferences.ui" line="314"/>
+        <source>Make all items stick to their positions</source>
+        <translation>सभी वस्तुओं को उनके स्थान पर टिकाएं</translation>
+    </message>
+    <message>
+        <location filename="../desktop-preferences.ui" line="373"/>
         <source>Wallpaper</source>
-        <translation type="unfinished"></translation>
+        <translation>वॉलपेपर</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="341"/>
+        <location filename="../desktop-preferences.ui" line="439"/>
         <source>Transform image based on EXIF data</source>
-        <translation type="unfinished"></translation>
+        <translation>EXIF डेटा के आधार पर छवि को रूपांतरित करें</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="348"/>
+        <location filename="../desktop-preferences.ui" line="446"/>
         <source>Individual wallpaper for each monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रत्येक मॉनिटर के लिए अलग-अलग वॉलपेपर</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="375"/>
+        <location filename="../desktop-preferences.ui" line="473"/>
         <source>Slide Show</source>
-        <translation type="unfinished"></translation>
+        <translation>स्लाइड प्रदर्शन</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="381"/>
+        <location filename="../desktop-preferences.ui" line="479"/>
         <source>Enable Slide Show</source>
-        <translation type="unfinished"></translation>
+        <translation>स्लाइड प्रदर्शन सक्षम करें</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="393"/>
+        <location filename="../desktop-preferences.ui" line="491"/>
         <source>Wallpaper image folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>वॉलपेपर छवि फ़ोल्डर :</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="400"/>
+        <location filename="../desktop-preferences.ui" line="505"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>ब्राउज़</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="407"/>
+        <location filename="../desktop-preferences.ui" line="512"/>
         <source> hour(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../desktop-preferences.ui" line="417"/>
-        <source>and</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../desktop-preferences.ui" line="430"/>
-        <source>Intervals less than 5min will be ignored</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../desktop-preferences.ui" line="433"/>
-        <source>Interval:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../desktop-preferences.ui" line="440"/>
-        <source> minute(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../desktop-preferences.ui" line="466"/>
-        <source>Wallpaper folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../desktop-preferences.ui" line="489"/>
-        <source>Randomize the slide show</source>
-        <translation type="unfinished"></translation>
+        <translation> घंटे</translation>
     </message>
     <message>
         <location filename="../desktop-preferences.ui" line="522"/>
+        <source>and</source>
+        <translation>और</translation>
+    </message>
+    <message>
+        <location filename="../desktop-preferences.ui" line="535"/>
+        <source>Intervals less than 5min will be ignored</source>
+        <translation>5 मिनट से कम के अंतराल पर ध्यान नहीं दिया जाएगा</translation>
+    </message>
+    <message>
+        <location filename="../desktop-preferences.ui" line="538"/>
+        <source>Interval:</source>
+        <translation>अंतराल :</translation>
+    </message>
+    <message>
+        <location filename="../desktop-preferences.ui" line="545"/>
+        <source> minute(s)</source>
+        <translation> मिनट</translation>
+    </message>
+    <message>
+        <location filename="../desktop-preferences.ui" line="498"/>
+        <source>Wallpaper folder</source>
+        <translation>वॉलपेपर फ़ोल्डर</translation>
+    </message>
+    <message>
+        <location filename="../desktop-preferences.ui" line="587"/>
+        <source>Randomize the slide show</source>
+        <translation>स्लाइड प्रदर्शन को रैंडमाइज करें</translation>
+    </message>
+    <message>
+        <location filename="../desktop-preferences.ui" line="620"/>
         <source>Visible Shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>दृश्यमान शॉर्टकट</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="528"/>
+        <location filename="../desktop-preferences.ui" line="626"/>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>घर</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="539"/>
+        <location filename="../desktop-preferences.ui" line="637"/>
         <source>Trash</source>
-        <translation type="unfinished"></translation>
+        <translation>कचरा</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="550"/>
+        <location filename="../desktop-preferences.ui" line="648"/>
         <source>Computer</source>
-        <translation type="unfinished"></translation>
+        <translation>कम्प्यूटर</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="561"/>
+        <location filename="../desktop-preferences.ui" line="659"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>नेटवर्क</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="516"/>
+        <location filename="../desktop-preferences.ui" line="614"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>उन्नत</translation>
     </message>
 </context>
 <context>
@@ -497,161 +594,161 @@ are left clicked, even when it is not the default file manager.</source>
     <message>
         <location filename="../shortcuts.ui" line="14"/>
         <source>Hidden Shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>छिपे हुए शॉर्टकट</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="21"/>
         <source>Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>शॉर्टकट</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="26"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>ऐक्शन</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="31"/>
         <source>Esc</source>
-        <translation type="unfinished"></translation>
+        <translation>Esc</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="34"/>
         <source>Focus view, clear filter bar</source>
-        <translation type="unfinished"></translation>
+        <translation>फ़ोकस दृश्य, फ़िल्टर बार हटाएं</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="39"/>
         <source>Ctrl+Esc</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Esc</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="42"/>
         <source>Focus side-pane</source>
-        <translation type="unfinished"></translation>
+        <translation>साइड-पेन पर फ़ोकस करें</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="47"/>
         <source>Ctrl+L</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+L</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="50"/>
         <location filename="../shortcuts.ui" line="58"/>
         <source>Focus path entry</source>
-        <translation type="unfinished"></translation>
+        <translation>पथ प्रविष्टि पर केन्द्रित करें</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="55"/>
         <source>Alt+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+D</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="63"/>
         <source>Ctrl+Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Tab</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="66"/>
         <location filename="../shortcuts.ui" line="82"/>
         <source>Next tab</source>
-        <translation type="unfinished"></translation>
+        <translation>अगला टैब</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="71"/>
         <source>Ctrl+Shift+Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Tab</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="74"/>
         <location filename="../shortcuts.ui" line="90"/>
         <source>Previous tab</source>
-        <translation type="unfinished"></translation>
+        <translation>पिछला टैब</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="79"/>
         <source>Ctrl+PageDown</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+PageDown</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="87"/>
         <source>Ctrl+PageUp</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+PageUp</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="95"/>
         <source>Ctrl+Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+नंबर</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="98"/>
         <location filename="../shortcuts.ui" line="106"/>
         <source>Jump to tab</source>
-        <translation type="unfinished"></translation>
+        <translation>टैब पर जाएं</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="103"/>
         <source>Alt+Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+नंबर</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="111"/>
         <source>Backspace</source>
-        <translation type="unfinished"></translation>
+        <translation>बैकस्पेस</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="114"/>
         <source>Go up</source>
-        <translation type="unfinished"></translation>
+        <translation>ऊपर जायें</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="119"/>
         <source>Ctrl+F</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+F</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="122"/>
         <source>Search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>संवाद में खोजें</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="127"/>
         <source>Shift+Insert</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+Insert</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="130"/>
         <source>Paste into transient filter bar</source>
-        <translation type="unfinished"></translation>
+        <translation>क्षणिक फ़िल्टर बार में चिपकाएँ</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="135"/>
-        <source>Drag+Shift</source>
+        <source>Drop+Shift</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../shortcuts.ui" line="143"/>
+        <source>Drop+Ctrl</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../shortcuts.ui" line="151"/>
+        <source>Drop+Shift+Ctrl</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="138"/>
         <source>Move file on dropping</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../shortcuts.ui" line="143"/>
-        <source>Drag+Ctrl</source>
-        <translation type="unfinished"></translation>
+        <translation>फ़ाइल को छोड़ने पर नई जगह ले जाएँ</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="146"/>
         <source>Copy file on dropping</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../shortcuts.ui" line="151"/>
-        <source>Drag+Shift+Ctrl</source>
-        <translation type="unfinished"></translation>
+        <translation>छोड़ने पर फ़ाइल कॉपी करें</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="154"/>
         <source>Make a symlink on dropping</source>
-        <translation type="unfinished"></translation>
+        <translation>छोड़ने पर सिम्लिंक बनाएं</translation>
     </message>
 </context>
 <context>
@@ -659,583 +756,644 @@ are left clicked, even when it is not the default file manager.</source>
     <message>
         <location filename="../main-win.ui" line="14"/>
         <source>File Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>फ़ाइल प्रबंधक</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="132"/>
-        <source>&amp;Toolbars</source>
-        <translation type="unfinished"></translation>
+        <location filename="../main-win.ui" line="81"/>
+        <source>Recent F&amp;iles</source>
+        <translation>हाल ही की फाइल्स</translation>
     </message>
     <message>
         <location filename="../main-win.ui" line="139"/>
-        <source>Path &amp;Bar</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Toolbars</source>
+        <translation>&amp;टूलबार्स</translation>
     </message>
     <message>
         <location filename="../main-win.ui" line="146"/>
+        <source>Path &amp;Bar</source>
+        <translation>पथ &amp;बार</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="153"/>
         <source>&amp;Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;फ़िल्टरिंग</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="265"/>
+        <location filename="../main-win.ui" line="228"/>
+        <source>&amp;Tools</source>
+        <translation>&amp;टूल्स</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="287"/>
         <source>Go &amp;Up</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;ऊपर जाएं</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="268"/>
+        <location filename="../main-win.ui" line="290"/>
         <source>Go Up</source>
-        <translation type="unfinished"></translation>
+        <translation>ऊपर जाएं</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="271"/>
+        <location filename="../main-win.ui" line="293"/>
         <source>Alt+Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+Up</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="280"/>
+        <location filename="../main-win.ui" line="302"/>
         <source>&amp;Home</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;घर</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="283"/>
+        <location filename="../main-win.ui" line="305"/>
         <source>Alt+Home</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+Home</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="292"/>
+        <location filename="../main-win.ui" line="314"/>
         <source>&amp;Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;रीलोड करें</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="295"/>
+        <location filename="../main-win.ui" line="317"/>
         <source>F5</source>
-        <translation type="unfinished"></translation>
+        <translation>F5</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="304"/>
+        <location filename="../main-win.ui" line="326"/>
         <source>Go</source>
-        <translation type="unfinished"></translation>
+        <translation>जाएँ</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="313"/>
+        <location filename="../main-win.ui" line="335"/>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>निकलें</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="322"/>
+        <location filename="../main-win.ui" line="344"/>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>परिचय (&amp;A)</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="331"/>
+        <location filename="../main-win.ui" line="353"/>
         <source>&amp;New Window</source>
-        <translation type="unfinished"></translation>
+        <translation>नई विंडो (&amp;N)</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="334"/>
+        <location filename="../main-win.ui" line="356"/>
         <source>New Window</source>
-        <translation type="unfinished"></translation>
+        <translation>नया विंडो</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="337"/>
+        <location filename="../main-win.ui" line="359"/>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="345"/>
+        <location filename="../main-win.ui" line="367"/>
         <source>Show &amp;Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;छुपा हुआ दिखाएं</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="348"/>
+        <location filename="../main-win.ui" line="370"/>
         <source>Ctrl+H</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="357"/>
+        <location filename="../main-win.ui" line="379"/>
         <source>&amp;Computer</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;कम्प्यूटर</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="366"/>
+        <location filename="../main-win.ui" line="388"/>
         <source>&amp;Trash</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;कचरा</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="371"/>
+        <location filename="../main-win.ui" line="393"/>
         <source>&amp;Network</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;नेटवर्क</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="380"/>
+        <location filename="../main-win.ui" line="402"/>
         <source>&amp;Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;डेस्कटॉप</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="389"/>
+        <location filename="../main-win.ui" line="411"/>
         <source>&amp;Add to Bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;बुकमार्क्स में जोड़ें</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="394"/>
+        <location filename="../main-win.ui" line="416"/>
         <source>&amp;Applications</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;अनुप्रयोग</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="399"/>
+        <location filename="../main-win.ui" line="421"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>रीलोड करें</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="407"/>
+        <location filename="../main-win.ui" line="429"/>
         <source>&amp;Icon View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;आइकन दृश्य</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="415"/>
+        <location filename="../main-win.ui" line="437"/>
         <source>&amp;Compact View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;कॉम्पैक्ट दृश्य</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="423"/>
+        <location filename="../main-win.ui" line="445"/>
         <source>&amp;Detailed List</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;विस्तृत सूची</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="431"/>
+        <location filename="../main-win.ui" line="453"/>
         <source>&amp;Thumbnail View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;थंबनेल दृश्य</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="440"/>
+        <location filename="../main-win.ui" line="462"/>
         <source>Cu&amp;t</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;काटें</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="443"/>
+        <location filename="../main-win.ui" line="465"/>
         <source>Ctrl+X</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+X</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="452"/>
+        <location filename="../main-win.ui" line="474"/>
         <source>&amp;Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;प्रतिलिपि</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="455"/>
+        <location filename="../main-win.ui" line="477"/>
         <source>Ctrl+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+C</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="464"/>
+        <location filename="../main-win.ui" line="486"/>
         <source>&amp;Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;चिपकाएं</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="467"/>
+        <location filename="../main-win.ui" line="489"/>
         <source>Ctrl+V</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+V</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="472"/>
+        <location filename="../main-win.ui" line="494"/>
         <source>Select &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;सबको चुनें</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="475"/>
+        <location filename="../main-win.ui" line="497"/>
         <source>Ctrl+A</source>
+        <translation>Ctrl+A</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="502"/>
+        <source>De&amp;select All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="480"/>
+        <location filename="../main-win.ui" line="505"/>
+        <source>Ctrl+D</source>
+        <translation>Ctrl+D</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="510"/>
         <source>Pr&amp;eferences</source>
-        <translation type="unfinished"></translation>
+        <translation>वरीयताएँ (&amp;e)</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="488"/>
+        <location filename="../main-win.ui" line="518"/>
         <source>&amp;Ascending</source>
-        <translation type="unfinished"></translation>
+        <translation>आरोही क्रम (&amp;A)</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="496"/>
+        <location filename="../main-win.ui" line="526"/>
         <source>&amp;Descending</source>
-        <translation type="unfinished"></translation>
+        <translation>अवरोही क्रम (&amp;D)</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="504"/>
+        <location filename="../main-win.ui" line="534"/>
         <source>&amp;By File Name</source>
-        <translation type="unfinished"></translation>
+        <translation>फ़ाइल के नाम से (&amp;B)</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="512"/>
+        <location filename="../main-win.ui" line="542"/>
         <source>By &amp;Modification Time</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;संशोधन समय के अनुसार</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="520"/>
+        <location filename="../main-win.ui" line="550"/>
+        <source>By C&amp;reation Time</source>
+        <translation>&amp;निर्माण समय के अनुसार</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="558"/>
         <source>By Deletio&amp;n Time</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;हटाए जाने के समय से</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="528"/>
+        <location filename="../main-win.ui" line="566"/>
         <source>By File &amp;Type</source>
-        <translation type="unfinished"></translation>
+        <translation>फ़ाइल &amp;प्रकार के अनुसार</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="536"/>
+        <location filename="../main-win.ui" line="574"/>
         <source>By &amp;Owner</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;स्वामी द्वारा</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="544"/>
+        <location filename="../main-win.ui" line="582"/>
         <source>By &amp;Group</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;समूह द्वारा</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="552"/>
+        <location filename="../main-win.ui" line="590"/>
         <source>&amp;Folder First</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="560"/>
-        <source>&amp;Hidden Last</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="568"/>
-        <source>&amp;Preserve sorting for this folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="667"/>
-        <source>&amp;Case Sensitive</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="675"/>
-        <source>By File &amp;Size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="680"/>
-        <source>&amp;Close Window</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="683"/>
-        <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="715"/>
-        <source>&amp;Folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="727"/>
-        <source>&amp;Blank File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="851"/>
-        <source>&amp;Show/Focus Filter Bar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="854"/>
-        <source>Show Filter Bar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="857"/>
-        <source>Ctrl+I</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="865"/>
-        <source>S&amp;plit View</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="868"/>
-        <source>Split View</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="871"/>
-        <source>F6</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="876"/>
-        <source>&amp;Copy Full Path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="879"/>
-        <source>Ctrl+Shift+C</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="890"/>
-        <source>Show Thumb&amp;nails</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="893"/>
-        <source>Show Thumbnails</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="901"/>
-        <source>S&amp;ide Pane</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="904"/>
-        <source>F9</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="909"/>
-        <source>Hidden &amp;Shortcuts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="749"/>
-        <source>Ctrl+B</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="754"/>
-        <source>&amp;Clear All Filters</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="757"/>
-        <source>Ctrl+Shift+K</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="766"/>
-        <source>Close &amp;previous tabs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="775"/>
-        <source>Close &amp;next tabs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="814"/>
-        <source>&amp;Preserve Settings for This Folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="819"/>
-        <source>Connect to &amp;Server</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="827"/>
-        <source>&amp;Location</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="835"/>
-        <source>&amp;Path Buttons</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="840"/>
-        <source>&amp;Bulk Rename</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="843"/>
-        <source>Bulk Rename</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="846"/>
-        <source>Ctrl+F2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="780"/>
-        <source>Close &amp;other tabs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="746"/>
-        <source>Permanent &amp;filter bar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="788"/>
-        <source>&amp;Menu bar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="791"/>
-        <source>Menu bar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="794"/>
-        <source>Ctrl+M</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="803"/>
-        <location filename="../main-win.ui" line="806"/>
-        <source>Menu</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="577"/>
-        <source>New &amp;Tab</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="580"/>
-        <source>New Tab</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="583"/>
-        <source>Ctrl+T</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="592"/>
-        <source>Go &amp;Back</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="595"/>
-        <source>Go Back</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;फ़ोल्डर सबसे पहले</translation>
     </message>
     <message>
         <location filename="../main-win.ui" line="598"/>
-        <source>Alt+Left</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Hidden Last</source>
+        <translation>&amp;छुपा हुआ अंत में</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="879"/>
+        <source>Shift+F2</source>
+        <translation>Shift+F2</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="963"/>
+        <source>Preserve Settings Recursively from &amp;Here</source>
+        <translation>&amp;यहाँ से सेटिंग्स को पुनरावृत्ति रूप से सुरक्षित रखें</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="968"/>
+        <source>&amp;Go to Source of Inherited Settings</source>
+        <translation>विरासत में मिली सेटिंग्स के स्रोत पर &amp;जाएं</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="973"/>
+        <source>&amp;Remove Settings of Nonexistent Folders</source>
+        <translation>&amp;अनुपलब्ध फ़ोल्डर की सेटिंग हटाएँ</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="981"/>
+        <source>&amp;Clear</source>
+        <translation>&amp;साफ़-सुथरा</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="651"/>
+        <source>Ctrl+Shift+A</source>
+        <translation>Ctrl+Shift+A</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="700"/>
+        <source>&amp;Case Sensitive</source>
+        <translation>&amp;अक्षर संवेदनशील</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="708"/>
+        <source>By File &amp;Size</source>
+        <translation>फ़ाइल &amp;आकार द्वारा</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="713"/>
+        <source>&amp;Close Window</source>
+        <translation>विंडो &amp;बंद करें</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="716"/>
+        <source>Ctrl+Q</source>
+        <translation>Ctrl+Q</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="734"/>
+        <source>Open Tab in &amp;Root Instance</source>
+        <translation>&amp;रूट इंस्टेंस में टैब खोलें</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="748"/>
+        <source>&amp;Folder</source>
+        <translation>&amp;फ़ोल्डर</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="760"/>
+        <source>&amp;Blank File</source>
+        <translation>&amp;रिक्त फ़ाइल</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="847"/>
+        <source>Preserve Settings for &amp;This Folder</source>
+        <translation>&amp;इस फ़ोल्डर के लिए सेटिंग्स को सुरक्षित रखें</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="884"/>
+        <source>&amp;Show/Focus Filter Bar</source>
+        <translation>फ़िल्टर बार &amp;दिखाएँ/केन्द्रित करें</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="887"/>
+        <source>Show Filter Bar</source>
+        <translation>फ़िल्टर बार दिखाएँ</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="890"/>
+        <source>Ctrl+I</source>
+        <translation>Ctrl+I</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="898"/>
+        <source>S&amp;plit View</source>
+        <translation>वि&amp;भाजित दृश्य</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="901"/>
+        <source>Split View</source>
+        <translation>विभाजित दृश्य</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="904"/>
+        <source>F6</source>
+        <translation>F6</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="909"/>
+        <source>&amp;Copy Full Path</source>
+        <translation>पूर्ण पथ की &amp;प्रतिलिपि बनाएँ</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="912"/>
+        <source>Ctrl+Shift+C</source>
+        <translation>Ctrl+Shift+C</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="923"/>
+        <source>Show Thumb&amp;nails</source>
+        <translation>थंबने&amp;ल दिखाएँ</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="926"/>
+        <source>Show Thumbnails</source>
+        <translation>थंबनेल दिखाएँ</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="934"/>
+        <source>S&amp;ide Pane</source>
+        <translation>साइड पेन</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="937"/>
+        <source>F9</source>
+        <translation>F9</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="942"/>
+        <source>Hidden &amp;Shortcuts</source>
+        <translation>अदृश्य शॉर्टकट (&amp;S)</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="947"/>
+        <source>Open Tab in &amp;Admin Mode</source>
+        <translation>&amp;व्यवस्थापक मोड में टैब खोलें</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="952"/>
+        <location filename="../main-win.ui" line="955"/>
+        <source>Create Launcher</source>
+        <translation>लॉन्चर बनाएं</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="782"/>
+        <source>Ctrl+B</source>
+        <translation>Ctrl+B</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="787"/>
+        <source>&amp;Clear All Filters</source>
+        <translation>&amp;सभी फ़िल्टर साफ़ करें</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="790"/>
+        <source>Ctrl+Shift+K</source>
+        <translation>Ctrl+Shift+K</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="799"/>
+        <source>Close &amp;previous tabs</source>
+        <translation>पिछले टैब्स बंद करें</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="808"/>
+        <source>Close &amp;next tabs</source>
+        <translation>&amp;अगले टैब बंद करें</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="852"/>
+        <source>Connect to &amp;Server</source>
+        <translation>&amp;सर्वर से जुड़ें</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="860"/>
+        <source>&amp;Location</source>
+        <translation>&amp;स्थान</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="868"/>
+        <source>&amp;Path Buttons</source>
+        <translation>&amp;पथ-बटन</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="873"/>
+        <source>&amp;Bulk Rename</source>
+        <translation>&amp;थोक में नाम बदलें</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="876"/>
+        <source>Bulk Rename</source>
+        <translation>अनेक नामकरण</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="813"/>
+        <source>Close &amp;other tabs</source>
+        <translation>&amp;अन्य टैब बंद करें</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="779"/>
+        <source>Permanent &amp;filter bar</source>
+        <translation>स्थायी &amp;फ़िल्टर बार</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="821"/>
+        <source>&amp;Menu bar</source>
+        <translation>&amp;मेनू पट्टी</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="824"/>
+        <source>Menu bar</source>
+        <translation>मेनू पट्टी</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="827"/>
+        <source>Ctrl+M</source>
+        <translation>Ctrl+M</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="836"/>
+        <location filename="../main-win.ui" line="839"/>
+        <source>Menu</source>
+        <translation>मेनू</translation>
     </message>
     <message>
         <location filename="../main-win.ui" line="607"/>
-        <source>Go &amp;Forward</source>
-        <translation type="unfinished"></translation>
+        <source>New &amp;Tab</source>
+        <translation>नया &amp;टैब</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="160"/>
+        <source>&amp;Customized View Settings</source>
+        <translation>&amp;अनुकूलित दृश्य सेटिंग्स</translation>
     </message>
     <message>
         <location filename="../main-win.ui" line="610"/>
-        <source>Go Forward</source>
-        <translation type="unfinished"></translation>
+        <source>New Tab</source>
+        <translation>नया टैब</translation>
     </message>
     <message>
         <location filename="../main-win.ui" line="613"/>
+        <source>Ctrl+T</source>
+        <translation>Ctrl+T</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="622"/>
+        <source>Go &amp;Back</source>
+        <translation>&amp;पीछे जाएँ</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="625"/>
+        <source>Go Back</source>
+        <translation>पीछे जाएँ</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="628"/>
+        <source>Alt+Left</source>
+        <translation>Alt+Left</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="637"/>
+        <source>Go &amp;Forward</source>
+        <translation>आगे &amp;बढ़ें</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="640"/>
+        <source>Go Forward</source>
+        <translation>आगे बढ़ें</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="643"/>
         <source>Alt+Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+Right</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="618"/>
+        <location filename="../main-win.ui" line="648"/>
         <source>&amp;Invert Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>चयन को उल्टा करें</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="627"/>
+        <location filename="../main-win.ui" line="660"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>मिटाएँ (&amp;D)</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="630"/>
+        <location filename="../main-win.ui" line="663"/>
         <source>Del</source>
-        <translation type="unfinished"></translation>
+        <translation>Del</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="635"/>
+        <location filename="../main-win.ui" line="668"/>
         <source>&amp;Rename</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="638"/>
+        <location filename="../main-win.ui" line="671"/>
         <source>F2</source>
-        <translation type="unfinished"></translation>
+        <translation>F2</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="643"/>
+        <location filename="../main-win.ui" line="676"/>
         <source>C&amp;lose Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="646"/>
+        <location filename="../main-win.ui" line="679"/>
         <source>Ctrl+W</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="651"/>
+        <location filename="../main-win.ui" line="684"/>
         <source>File &amp;Properties</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="654"/>
+        <location filename="../main-win.ui" line="687"/>
         <source>Alt+Return</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="659"/>
+        <location filename="../main-win.ui" line="692"/>
         <source>&amp;Folder Properties</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="688"/>
+        <location filename="../main-win.ui" line="721"/>
         <source>Edit Bookmarks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="693"/>
+        <location filename="../main-win.ui" line="726"/>
         <source>Open &amp;Terminal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="696"/>
+        <location filename="../main-win.ui" line="729"/>
         <source>F4</source>
-        <translation type="unfinished"></translation>
+        <translation>F4</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="701"/>
-        <source>Open as &amp;Root</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="706"/>
+        <location filename="../main-win.ui" line="739"/>
         <source>&amp;Edit Bookmarks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="718"/>
+        <location filename="../main-win.ui" line="751"/>
         <source>Ctrl+Shift+N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="730"/>
+        <location filename="../main-win.ui" line="763"/>
         <source>Ctrl+Alt+N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="735"/>
+        <location filename="../main-win.ui" line="768"/>
         <source>&amp;Find Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="738"/>
+        <location filename="../main-win.ui" line="771"/>
         <source>F3</source>
-        <translation type="unfinished"></translation>
+        <translation>F3</translation>
     </message>
     <message>
         <location filename="../main-win.ui" line="70"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>फ़ाइल (&amp;F)</translation>
     </message>
     <message>
         <location filename="../main-win.ui" line="74"/>
@@ -1243,143 +1401,138 @@ are left clicked, even when it is not the default file manager.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="92"/>
+        <location filename="../main-win.ui" line="98"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>मदद (&amp;H)</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="99"/>
-        <location filename="../main-win.ui" line="122"/>
+        <location filename="../main-win.ui" line="105"/>
+        <location filename="../main-win.ui" line="129"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>देखें (&amp;V)</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="103"/>
+        <location filename="../main-win.ui" line="109"/>
         <source>&amp;Sorting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="168"/>
+        <location filename="../main-win.ui" line="185"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>संपादन (&amp;E)</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="186"/>
+        <location filename="../main-win.ui" line="204"/>
         <source>&amp;Bookmarks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="193"/>
+        <location filename="../main-win.ui" line="211"/>
         <source>&amp;Go</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="210"/>
-        <source>&amp;Tool</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="231"/>
+        <location filename="../main-win.ui" line="253"/>
         <source>Main Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>मुख्य टूलबार</translation>
     </message>
 </context>
 <context>
     <name>PCManFM::Application</name>
     <message>
-        <location filename="../application.cpp" line="165"/>
+        <location filename="../application.cpp" line="187"/>
         <source>Name of configuration profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="165"/>
+        <location filename="../application.cpp" line="187"/>
         <source>PROFILE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="168"/>
-        <source>Run PCManFM as a daemon</source>
+        <location filename="../application.cpp" line="190"/>
+        <source>Run PCManFM-Qt as a daemon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="171"/>
-        <source>Quit PCManFM</source>
+        <location filename="../application.cpp" line="193"/>
+        <source>Quit PCManFM-Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="174"/>
+        <location filename="../application.cpp" line="196"/>
         <source>Launch desktop manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="177"/>
+        <location filename="../application.cpp" line="199"/>
         <source>Turn off desktop manager if it&apos;s running</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="180"/>
+        <location filename="../application.cpp" line="202"/>
         <source>Open desktop preference dialog on the page with the specified name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="180"/>
-        <location filename="../application.cpp" line="195"/>
+        <location filename="../application.cpp" line="202"/>
+        <location filename="../application.cpp" line="217"/>
         <source>NAME</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="183"/>
+        <location filename="../application.cpp" line="205"/>
         <source>Open new window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="186"/>
+        <location filename="../application.cpp" line="208"/>
         <source>Open Find Files utility</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="189"/>
+        <location filename="../application.cpp" line="211"/>
         <source>Set desktop wallpaper from image FILE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="189"/>
+        <location filename="../application.cpp" line="211"/>
         <source>FILE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="192"/>
+        <location filename="../application.cpp" line="214"/>
         <source>MODE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="192"/>
+        <location filename="../application.cpp" line="214"/>
         <source>Set mode of desktop wallpaper. MODE=(%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="195"/>
+        <location filename="../application.cpp" line="217"/>
         <source>Open Preferences dialog on the page with the specified name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="198"/>
+        <location filename="../application.cpp" line="220"/>
         <source>Files or directories to open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="198"/>
+        <location filename="../application.cpp" line="220"/>
         <source>[FILE1, FILE2,...]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="594"/>
-        <location filename="../application.cpp" line="599"/>
+        <location filename="../application.cpp" line="655"/>
+        <location filename="../application.cpp" line="660"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="599"/>
+        <location filename="../application.cpp" line="660"/>
         <source>Terminal emulator is not set.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1392,7 +1545,7 @@ are left clicked, even when it is not the default file manager.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../autorundialog.cpp" line="137"/>
+        <location filename="../autorundialog.cpp" line="138"/>
         <source>Removable Disk</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1433,32 +1586,42 @@ are left clicked, even when it is not the default file manager.</source>
 <context>
     <name>PCManFM::DesktopEntryDialog</name>
     <message>
-        <location filename="../desktopentrydialog.cpp" line="26"/>
+        <location filename="../desktopentrydialog.cpp" line="35"/>
         <source>Command:</source>
+        <translation>आदेश :</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.cpp" line="36"/>
+        <source>The command to execute.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.cpp" line="29"/>
+        <location filename="../desktopentrydialog.cpp" line="39"/>
         <source>URL:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.cpp" line="54"/>
+        <location filename="../desktopentrydialog.cpp" line="40"/>
+        <source>The URL to access.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.cpp" line="67"/>
         <source>Select an icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.cpp" line="56"/>
+        <location filename="../desktopentrydialog.cpp" line="69"/>
         <source>Images (*.png *.xpm *.svg *.svgz )</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.cpp" line="78"/>
+        <location filename="../desktopentrydialog.cpp" line="91"/>
         <source>Select an executable file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.cpp" line="86"/>
+        <location filename="../desktopentrydialog.cpp" line="99"/>
         <source>Select a file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1466,47 +1629,47 @@ are left clicked, even when it is not the default file manager.</source>
 <context>
     <name>PCManFM::DesktopPreferencesDialog</name>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="53"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="52"/>
         <source>Fill with background color only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="54"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="53"/>
         <source>Stretch to fill the entire screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="55"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="54"/>
         <source>Stretch to fit the screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="56"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="55"/>
         <source>Center on the screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="57"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="56"/>
         <source>Tile the image to fill the entire screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="58"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="57"/>
         <source>Zoom the image to fill the entire screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="252"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="264"/>
         <source>Select Wallpaper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="256"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="268"/>
         <source>Image Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="298"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="310"/>
         <source>Select Wallpaper Folder</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1514,12 +1677,12 @@ are left clicked, even when it is not the default file manager.</source>
 <context>
     <name>PCManFM::DesktopWindow</name>
     <message>
-        <location filename="../desktopwindow.cpp" line="296"/>
+        <location filename="../desktopwindow.cpp" line="303"/>
         <source>Trash (One item)</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../desktopwindow.cpp" line="299"/>
+        <location filename="../desktopwindow.cpp" line="306"/>
         <source>Trash (%Ln items)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -1527,56 +1690,56 @@ are left clicked, even when it is not the default file manager.</source>
         </translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="303"/>
+        <location filename="../desktopwindow.cpp" line="310"/>
         <source>Trash (Empty)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="338"/>
+        <location filename="../desktopwindow.cpp" line="345"/>
         <source>Computer</source>
-        <translation type="unfinished"></translation>
+        <translation>कम्प्यूटर</translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="352"/>
+        <location filename="../desktopwindow.cpp" line="359"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>नेटवर्क</translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="943"/>
+        <location filename="../desktopwindow.cpp" line="1011"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="948"/>
-        <location filename="../desktopwindow.cpp" line="985"/>
+        <location filename="../desktopwindow.cpp" line="1017"/>
+        <location filename="../desktopwindow.cpp" line="1057"/>
         <source>Stic&amp;k to Current Position</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="955"/>
+        <location filename="../desktopwindow.cpp" line="1025"/>
         <source>Empty Trash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="1011"/>
+        <location filename="../desktopwindow.cpp" line="1084"/>
         <source>Hide Desktop Items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="1017"/>
+        <location filename="../desktopwindow.cpp" line="1090"/>
         <source>Create Launcher</source>
-        <translation type="unfinished"></translation>
+        <translation>लॉन्चर बनाएं</translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="1020"/>
+        <location filename="../desktopwindow.cpp" line="1093"/>
         <source>Desktop Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>डेस्कटॉप वरीयताएँ</translation>
     </message>
 </context>
 <context>
     <name>PCManFM::FilterBar</name>
     <message>
-        <location filename="../tabpage.cpp" line="91"/>
+        <location filename="../tabpage.cpp" line="95"/>
         <source>Filter:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1584,7 +1747,7 @@ are left clicked, even when it is not the default file manager.</source>
 <context>
     <name>PCManFM::FilterEdit</name>
     <message>
-        <location filename="../tabpage.cpp" line="61"/>
+        <location filename="../tabpage.cpp" line="65"/>
         <source>Clear text (Ctrl+K or Esc)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1592,86 +1755,142 @@ are left clicked, even when it is not the default file manager.</source>
 <context>
     <name>PCManFM::MainWindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="139"/>
+        <location filename="../mainwindow.cpp" line="142"/>
         <source>Root Instance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="695"/>
+        <location filename="../mainwindow.cpp" line="780"/>
         <source>Hide menu bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="696"/>
+        <location filename="../mainwindow.cpp" line="781"/>
         <source>This will hide the menu bar completely, use Ctrl+M to show it again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1041"/>
+        <location filename="../mainwindow.cpp" line="1228"/>
         <source>Version: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="172"/>
-        <location filename="../mainwindow.cpp" line="1929"/>
+        <location filename="../mainwindow.cpp" line="175"/>
+        <location filename="../mainwindow.cpp" line="2203"/>
         <source>&amp;Move to Trash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="172"/>
-        <location filename="../mainwindow.cpp" line="1929"/>
+        <location filename="../mainwindow.cpp" line="175"/>
+        <location filename="../mainwindow.cpp" line="2203"/>
         <source>&amp;Delete</source>
+        <translation>मिटाएँ (&amp;D)</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="2039"/>
+        <source>Customized View Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1986"/>
-        <location filename="../mainwindow.cpp" line="1994"/>
+        <location filename="../mainwindow.cpp" line="2310"/>
+        <location filename="../mainwindow.cpp" line="2318"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1994"/>
+        <location filename="../mainwindow.cpp" line="2318"/>
         <source>Switch user command is not set.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="2420"/>
+        <source>Cleaning Folder Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="2421"/>
+        <source>Do you want to remove settings of nonexistent folders?
+They might be useful if those folders are created again.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PCManFM::PreferencesDialog</name>
     <message>
-        <location filename="../preferencesdialog.cpp" line="200"/>
+        <location filename="../preferencesdialog.cpp" line="206"/>
         <source>Icon View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.cpp" line="201"/>
+        <location filename="../preferencesdialog.cpp" line="207"/>
         <source>Compact View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.cpp" line="202"/>
+        <location filename="../preferencesdialog.cpp" line="208"/>
         <source>Thumbnail View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.cpp" line="203"/>
+        <location filename="../preferencesdialog.cpp" line="209"/>
         <source>Detailed List View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.cpp" line="279"/>
+        <source>Remove if added by user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.cpp" line="303"/>
+        <source>Open user-defined list</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PCManFM::TabPage</name>
     <message>
-        <location filename="../tabpage.cpp" line="471"/>
+        <location filename="../tabpage.cpp" line="443"/>
+        <source>Search Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="446"/>
+        <source>Applications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="450"/>
+        <source>Computer</source>
+        <translation>कम्प्यूटर</translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="453"/>
+        <source>Network</source>
+        <translation>नेटवर्क</translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="456"/>
+        <source>Trash</source>
+        <translation>कचरा</translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="462"/>
+        <source>Desktop</source>
+        <translation>डेस्कटॉप</translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="553"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabpage.cpp" line="480"/>
+        <location filename="../tabpage.cpp" line="562"/>
         <source>Free space: %1 (Total: %2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../tabpage.cpp" line="497"/>
+        <location filename="../tabpage.cpp" line="579"/>
         <source>%n item(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -1679,7 +1898,7 @@ are left clicked, even when it is not the default file manager.</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../tabpage.cpp" line="499"/>
+        <location filename="../tabpage.cpp" line="581"/>
         <source> (%n hidden)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -1687,14 +1906,14 @@ are left clicked, even when it is not the default file manager.</source>
         </translation>
     </message>
     <message>
-        <location filename="../tabpage.cpp" line="504"/>
-        <location filename="../tabpage.cpp" line="692"/>
-        <location filename="../tabpage.cpp" line="706"/>
+        <location filename="../tabpage.cpp" line="586"/>
+        <location filename="../tabpage.cpp" line="789"/>
+        <location filename="../tabpage.cpp" line="803"/>
         <source>Link to</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../tabpage.cpp" line="718"/>
+        <location filename="../tabpage.cpp" line="815"/>
         <source>%n item(s) selected</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -1705,12 +1924,12 @@ are left clicked, even when it is not the default file manager.</source>
 <context>
     <name>PCManFM::View</name>
     <message>
-        <location filename="../view.cpp" line="60"/>
+        <location filename="../view.cpp" line="59"/>
         <source>Many files</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../view.cpp" line="61"/>
+        <location filename="../view.cpp" line="60"/>
         <source>Do you want to open these %1 files?</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -1718,17 +1937,18 @@ are left clicked, even when it is not the default file manager.</source>
         </translation>
     </message>
     <message>
-        <location filename="../view.cpp" line="123"/>
+        <location filename="../view.cpp" line="122"/>
         <source>Open in New T&amp;ab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view.cpp" line="127"/>
+        <location filename="../view.cpp" line="126"/>
         <source>Open in New Win&amp;dow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view.cpp" line="135"/>
+        <location filename="../view.cpp" line="134"/>
+        <location filename="../view.cpp" line="152"/>
         <source>Open in Termina&amp;l</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1738,7 +1958,7 @@ are left clicked, even when it is not the default file manager.</source>
     <message>
         <location filename="../preferences.ui" line="14"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>पसंद</translation>
     </message>
     <message>
         <location filename="../preferences.ui" line="45"/>
@@ -1752,7 +1972,7 @@ are left clicked, even when it is not the default file manager.</source>
     </message>
     <message>
         <location filename="../preferences.ui" line="50"/>
-        <location filename="../preferences.ui" line="589"/>
+        <location filename="../preferences.ui" line="642"/>
         <source>Thumbnail</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1764,70 +1984,70 @@ are left clicked, even when it is not the default file manager.</source>
     <message>
         <location filename="../preferences.ui" line="60"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>उन्नत</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="213"/>
+        <location filename="../preferences.ui" line="222"/>
         <source>Select newly created files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="250"/>
+        <location filename="../preferences.ui" line="296"/>
         <source>Icons</source>
-        <translation type="unfinished"></translation>
+        <translation>आइकन्स</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="282"/>
+        <location filename="../preferences.ui" line="328"/>
         <source>Size of big icons:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="299"/>
+        <location filename="../preferences.ui" line="345"/>
         <source>Size of small icons:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="316"/>
+        <location filename="../preferences.ui" line="362"/>
         <source>Size of thumbnails:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="330"/>
+        <location filename="../preferences.ui" line="376"/>
         <source>Size of side pane icons:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="262"/>
+        <location filename="../preferences.ui" line="308"/>
         <source>Icon theme:</source>
-        <translation type="unfinished"></translation>
+        <translation>आइकन थीम :</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="493"/>
+        <location filename="../preferences.ui" line="546"/>
         <source>Window</source>
-        <translation type="unfinished"></translation>
+        <translation>विंडो</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="506"/>
+        <location filename="../preferences.ui" line="559"/>
         <source>Always show the tab bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="513"/>
+        <location filename="../preferences.ui" line="566"/>
         <source>Show &apos;Close&apos; buttons on tabs	</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="527"/>
+        <location filename="../preferences.ui" line="580"/>
         <source>Remember the size of the last closed window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="534"/>
+        <location filename="../preferences.ui" line="587"/>
         <source>Default width of new windows:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="548"/>
+        <location filename="../preferences.ui" line="601"/>
         <source>Default height of new windows:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1842,42 +2062,37 @@ are left clicked, even when it is not the default file manager.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="103"/>
-        <source>Delay of auto-selection in single click mode (0 to disable)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences.ui" line="110"/>
+        <location filename="../preferences.ui" line="162"/>
         <source>Default view mode:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="123"/>
+        <location filename="../preferences.ui" line="119"/>
         <source> sec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="169"/>
+        <location filename="../preferences.ui" line="175"/>
         <source>File Operations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="175"/>
+        <location filename="../preferences.ui" line="181"/>
         <source>Confirm before deleting files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="182"/>
+        <location filename="../preferences.ui" line="188"/>
         <source>Move deleted files to &quot;trash bin&quot; instead of erasing from disk.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="622"/>
+        <location filename="../preferences.ui" line="651"/>
         <source>Show thumbnails of files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="612"/>
+        <location filename="../preferences.ui" line="658"/>
         <source>Only show thumbnails for local files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1892,255 +2107,324 @@ are left clicked, even when it is not the default file manager.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="133"/>
-        <source>Bookmarks:</source>
+        <location filename="../preferences.ui" line="103"/>
+        <location filename="../preferences.ui" line="116"/>
+        <source>Set to zero to disable auto-selection.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="141"/>
+        <location filename="../preferences.ui" line="106"/>
+        <source>Delay of auto-selection in single click mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="144"/>
         <source>Open in current tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="146"/>
+        <location filename="../preferences.ui" line="149"/>
         <source>Open in new tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="151"/>
+        <location filename="../preferences.ui" line="154"/>
         <source>Open in new window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="189"/>
+        <location filename="../preferences.ui" line="195"/>
         <source>Erase files on removable media instead of &quot;trash can&quot; creation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="196"/>
+        <location filename="../preferences.ui" line="202"/>
         <source>Confirm before moving files into &quot;trash can&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="203"/>
-        <location filename="../preferences.ui" line="363"/>
-        <location filename="../preferences.ui" line="373"/>
+        <location filename="../preferences.ui" line="209"/>
+        <location filename="../preferences.ui" line="409"/>
+        <location filename="../preferences.ui" line="419"/>
         <source>Requires application restart to take effect completely</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="206"/>
+        <location filename="../preferences.ui" line="212"/>
         <source>Launch executable files without prompt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="279"/>
-        <location filename="../preferences.ui" line="289"/>
+        <location filename="../preferences.ui" line="219"/>
+        <source>Renamed files will also be selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="244"/>
+        <source>Number of recent files:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="325"/>
+        <location filename="../preferences.ui" line="335"/>
         <source>Used by Icon View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="296"/>
-        <location filename="../preferences.ui" line="306"/>
+        <location filename="../preferences.ui" line="342"/>
+        <location filename="../preferences.ui" line="352"/>
         <source>Used by Compact View and Detailed List View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="313"/>
-        <location filename="../preferences.ui" line="323"/>
+        <location filename="../preferences.ui" line="359"/>
+        <location filename="../preferences.ui" line="369"/>
         <source>Used by Thumbnail View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="343"/>
+        <location filename="../preferences.ui" line="389"/>
         <source>User interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="356"/>
+        <location filename="../preferences.ui" line="402"/>
         <source>Treat backup files as hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="376"/>
+        <location filename="../preferences.ui" line="422"/>
         <source>Show icons of hidden files shadowed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="406"/>
+        <location filename="../preferences.ui" line="459"/>
         <source>Minimum item margins in icon view:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="413"/>
+        <location filename="../preferences.ui" line="466"/>
         <source>3 px by default.</source>
-        <translation type="unfinished"></translation>
+        <translation>3 px आरंभिक मान.</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="416"/>
-        <location filename="../preferences.ui" line="440"/>
+        <location filename="../preferences.ui" line="469"/>
+        <location filename="../preferences.ui" line="493"/>
         <source> px</source>
-        <translation type="unfinished"></translation>
+        <translation> px</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="429"/>
+        <location filename="../preferences.ui" line="482"/>
         <source>x</source>
-        <translation type="unfinished"></translation>
+        <translation>x</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="436"/>
+        <location filename="../preferences.ui" line="489"/>
         <source>3 px by default.
 A space is also reserved for 3 lines of text.</source>
-        <translation type="unfinished"></translation>
+        <translation>1 px आरंभिक मान.
+3 पंक्तियों के आलेख के लिए भी स्थान आरक्षित है. {3 ?} {3 ?}</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="453"/>
+        <location filename="../preferences.ui" line="506"/>
         <source>Lock</source>
-        <translation type="unfinished"></translation>
+        <translation>ताला</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="502"/>
+        <location filename="../preferences.ui" line="555"/>
         <source>When unchecked, the tab bar will be shown
 only if there are more than one tab.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="520"/>
+        <location filename="../preferences.ui" line="573"/>
         <source>Switch to newly opened tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="562"/>
+        <location filename="../preferences.ui" line="615"/>
         <source>Reopen last window tabs in a new window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="748"/>
+        <location filename="../preferences.ui" line="665"/>
+        <location filename="../preferences.ui" line="677"/>
+        <source>The built-in thumbnailer makes thumbnails of images that are supported by Qt.
+
+Usually, most image types are supported. The default size limit is 4 MiB.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="670"/>
+        <source>Image size limit for built-in thumbnailer:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="682"/>
+        <location filename="../preferences.ui" line="718"/>
+        <source> MiB</source>
+        <translation> MiB</translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="698"/>
+        <location filename="../preferences.ui" line="710"/>
+        <source>If existing, external thumbnailers are used for videos, PDF documents, etc.
+
+A value of -1 means that there is no limit for the file size (the default).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="703"/>
+        <source>File size limit for external thumbnailers:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="715"/>
+        <source>No limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="860"/>
         <source>Examples:&lt;br&gt;For terminal: &lt;i&gt;xterm -e %s&lt;/i&gt;&lt;br&gt;For switching user: &lt;i&gt;lxsudo %s&lt;/i&gt; or &lt;i&gt;lxsudo dbus-run-session -- %s&lt;/i&gt;&lt;br&gt;&lt;i&gt;%s&lt;/i&gt; is the command line you want to execute with terminal or su.&lt;br&gt; Important: Please use lxsudo, sudo alone will wreck permissions of the settings file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="839"/>
+        <location filename="../preferences.ui" line="919"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="934"/>
+        <source>Maximum search history:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="948"/>
+        <source>Clear search history</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="983"/>
         <source>Application restart is needed for changes to take effect.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="595"/>
-        <source>Do not generate thumbnails for image files exceeding this size:</source>
+        <location filename="../preferences.ui" line="136"/>
+        <source>Bookmarks menu:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="159"/>
+        <location filename="../preferences.ui" line="129"/>
         <source>Show folder context menu with Ctrl + right click</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="220"/>
+        <location filename="../preferences.ui" line="229"/>
         <source>Open folders in new tabs as far as possible</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="223"/>
+        <location filename="../preferences.ui" line="232"/>
         <source>Single window mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="366"/>
+        <location filename="../preferences.ui" line="412"/>
         <source>Always show real file names</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="383"/>
+        <location filename="../preferences.ui" line="429"/>
         <source>Do not show file tooltips</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="602"/>
-        <source> KB</source>
+        <location filename="../preferences.ui" line="436"/>
+        <source>Disable smooth scrolling</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="619"/>
+        <location filename="../preferences.ui" line="648"/>
         <source>Needs ffmpegthumbnailer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="649"/>
+        <location filename="../preferences.ui" line="754"/>
         <source>Auto Mount</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="655"/>
+        <location filename="../preferences.ui" line="760"/>
         <source>Mount mountable volumes automatically on program startup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="662"/>
+        <location filename="../preferences.ui" line="767"/>
         <source>Mount removable media automatically when they are inserted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="669"/>
+        <location filename="../preferences.ui" line="774"/>
         <source>Show available options for removable media when they are inserted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="679"/>
+        <location filename="../preferences.ui" line="784"/>
         <source>When removable medium unmounted:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="685"/>
+        <location filename="../preferences.ui" line="790"/>
         <source>Close &amp;tab containing removable medium</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="692"/>
+        <location filename="../preferences.ui" line="797"/>
         <source>Chan&amp;ge folder in the tab to home folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="719"/>
+        <location filename="../preferences.ui" line="824"/>
         <source>Programs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="728"/>
+        <location filename="../preferences.ui" line="833"/>
         <source>Terminal emulator:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="735"/>
+        <location filename="../preferences.ui" line="847"/>
         <source>Switch &amp;user command:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="761"/>
+        <location filename="../preferences.ui" line="873"/>
         <source>Archiver in&amp;tegration:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="784"/>
+        <location filename="../preferences.ui" line="889"/>
         <source>Templates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="790"/>
+        <location filename="../preferences.ui" line="895"/>
         <source>Show only user defined templates in menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="797"/>
+        <location filename="../preferences.ui" line="902"/>
         <source>Show only one template for each MIME type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="804"/>
+        <location filename="../preferences.ui" line="909"/>
         <source>Run default application after creation from template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="349"/>
+        <location filename="../preferences.ui" line="395"/>
         <source>Use SI decimal prefixes instead of IEC binary prefixes</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2148,39 +2432,45 @@ only if there are more than one tab.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../bulkrename.cpp" line="73"/>
+        <location filename="../bulkrename.cpp" line="86"/>
         <source>Renaming files...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bulkrename.cpp" line="73"/>
+        <location filename="../bulkrename.cpp" line="86"/>
         <source>Abort</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bulkrename.cpp" line="82"/>
+        <location filename="../bulkrename.cpp" line="95"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bulkrename.cpp" line="82"/>
+        <location filename="../bulkrename.cpp" line="95"/>
         <source>Renaming is aborted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bulkrename.cpp" line="108"/>
-        <location filename="../bulkrename.cpp" line="111"/>
+        <location filename="../bulkrename.cpp" line="121"/>
+        <location filename="../bulkrename.cpp" line="124"/>
+        <location filename="../tabpage.cpp" line="1142"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bulkrename.cpp" line="108"/>
+        <location filename="../bulkrename.cpp" line="121"/>
         <source>No file could be renamed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bulkrename.cpp" line="111"/>
+        <location filename="../bulkrename.cpp" line="124"/>
         <source>Some files could not be renamed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="1142"/>
+        <source>Cannot open as Admin.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

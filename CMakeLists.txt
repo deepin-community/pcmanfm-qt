@@ -7,16 +7,16 @@ cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)
 project(pcmanfm-qt)
 
 # PcmanFm-Qt Version
-set(PCMANFM_QT_VERSION_MAJOR 0)
-set(PCMANFM_QT_VERSION_MINOR 16)
+set(PCMANFM_QT_VERSION_MAJOR 1)
+set(PCMANFM_QT_VERSION_MINOR 4)
 set(PCMANFM_QT_VERSION_PATCH 0)
 
 set(PCMANFM_QT_VERSION ${PCMANFM_QT_VERSION_MAJOR}.${PCMANFM_QT_VERSION_MINOR}.${PCMANFM_QT_VERSION_PATCH})
 
 # Minimum versions
-set(LIBFMQT_MINIMUM_VERSION "0.16.0")
-set(LXQTBT_MINIMUM_VERSION "0.8.0")
-set(QT_MINIMUM_VERSION "5.12.0")
+set(LIBFMQT_MINIMUM_VERSION "1.4.0")
+set(LXQTBT_MINIMUM_VERSION "0.13.0")
+set(QT_MINIMUM_VERSION "5.15.0")
 
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
@@ -69,6 +69,11 @@ if(BUILD_DOCUMENTATION)
     )
     install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/docs" DESTINATION "${CMAKE_INSTALL_DOCDIR}")
 endif()
+
+install(
+    FILES icons/pcmanfm-qt.svg
+    DESTINATION "${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/scalable/apps"
+)
 
 add_subdirectory(autostart)
 add_subdirectory(config)
