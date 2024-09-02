@@ -64,20 +64,22 @@ public:
     void setShadow(const QColor& color);
     void setBackground(const QColor& color);
     void setDesktopFolder();
-    void setWallpaperFile(QString filename);
+    void setWallpaperFile(const QString& filename);
     void setWallpaperMode(WallpaperMode mode = WallpaperStretch);
-    void setLastSlide(QString filename);
-    void setWallpaperDir(QString dirname);
+    void setLastSlide(const QString& filename);
+    void setWallpaperDir(const QString& dirname);
     void setSlideShowInterval(int interval);
     void setWallpaperRandomize(bool randomize);
 
     // void setWallpaperAlpha(qreal alpha);
-    void updateWallpaper();
+    void updateWallpaper(bool checkMTime = false);
     bool pickWallpaper();
     void nextWallpaper();
     void updateFromSettings(Settings& settings, bool changeSlide = true);
 
     void queueRelayout(int delay = 0);
+
+    void saveItemPositions();
 
     int screenNum() const {
         return screenNum_;
@@ -94,9 +96,10 @@ protected:
     virtual void onFileClicked(int type, const std::shared_ptr<const Fm::FileInfo>& fileInfo) override;
 
     void loadItemPositions();
-    void saveItemPositions();
+    void retrieveCustomPos();
+    void storeCustomPos();
 
-    QImage loadWallpaperFile(QSize requiredSize);
+    QImage loadWallpaperFile(QSize requiredSize, bool checkMTime);
 
     virtual bool event(QEvent* event) override;
     virtual bool eventFilter(QObject* watched, QEvent* event) override;
@@ -137,12 +140,19 @@ protected Q_SLOTS:
 
     void updateTrashIcon();
 
+    void onInlineRenaming(const QString& oldName, const QString& newName);
+
+    void onDecidingDrop(bool accepted);
+
 private:
     void removeBottomGap();
+    QRect getWorkArea(QScreen* screen) const;
     void addDesktopActions(QMenu* menu);
     void paintBackground(QPaintEvent* event);
     void paintDropIndicator();
-    bool stickToPosition(const std::string& file, QPoint& pos, const QRect& workArea, const QSize& grid, bool reachedLastCell = false);
+    bool stickToPosition(const std::string& file, QPoint& pos,
+                         const QRect& workArea, const QSize& grid,
+                         const std::set<std::string>& droppedFiles,  bool reachedLastCell);
     static void alignToGrid(QPoint& pos, const QPoint& topLeft, const QSize& grid, const int spacing);
 
     void updateShortcutsFromSettings(Settings& settings);
@@ -157,6 +167,8 @@ private:
     bool isTrashCan(std::shared_ptr<const Fm::FileInfo> file) const;
 
     QImage getWallpaperImage() const;
+
+    QModelIndex navigateWithKey(int key, Qt::KeyboardModifiers modifiers, const QModelIndex& start = QModelIndex());
 
     QModelIndex indexForPos(bool* isTrash, const QPoint& pos, const QRect& workArea, const QSize& grid) const;
 
@@ -181,7 +193,8 @@ private:
     bool desktopHideItems_;
 
     int screenNum_;
-    std::unordered_map<std::string, QPoint> customItemPos_;
+    std::unordered_map<std::string, QPoint> customItemPos_; // real custom positions
+    std::unordered_map<std::string, QPoint> customPosStorage_; // savable custom positions
     QTimer* relayoutTimer_;
     QTimer* selectionTimer_;
 

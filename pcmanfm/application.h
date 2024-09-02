@@ -50,7 +50,7 @@ class ProxyStyle: public QProxyStyle {
 public:
     ProxyStyle() : QProxyStyle() {}
     virtual ~ProxyStyle() {}
-    virtual int styleHint(StyleHint hint, const QStyleOption* option = 0, const QWidget* widget = 0, QStyleHintReturn* returnData = 0) const;
+    virtual int styleHint(StyleHint hint, const QStyleOption* option = nullptr, const QWidget* widget = nullptr, QStyleHintReturn* returnData = nullptr) const;
 };
 
 class Application : public QApplication {
@@ -72,14 +72,25 @@ public:
         return libFm_;
     }
 
+    bool openingLastTabs() const {
+      return openingLastTabs_;
+    }
+
+    bool underWayland() const {
+      return underWayland_;
+    }
+
     // public interface exported via dbus
-    void launchFiles(QString cwd, QStringList paths, bool inNewWindow, bool reopenLastTabs);
-    void setWallpaper(QString path, QString modeString);
-    void preferences(QString page);
-    void desktopPrefrences(QString page);
+    void launchFiles(const QString& cwd, const QStringList& paths, bool inNewWindow, bool reopenLastTabs);
+    void setWallpaper(const QString& path, const QString& modeString);
+    void preferences(const QString& page);
+    void desktopPrefrences(const QString& page);
     void editBookmarks();
     void desktopManager(bool enabled);
     void findFiles(QStringList paths = QStringList());
+    void ShowFolders(const QStringList& uriList, const QString& startupId);
+    void ShowItems(const QStringList& uriList, const QString& startupId);
+    void ShowItemProperties(const QStringList& uriList, const QString& startupId);
     void connectToServer();
 
     bool desktopManagerEnabled() {
@@ -95,6 +106,8 @@ public:
     QString profileName() {
         return profileName_;
     }
+
+    void cleanPerFolderConfig();
 
 protected Q_SLOTS:
     void onAboutToQuit();
@@ -124,11 +137,11 @@ protected:
 
 private Q_SLOTS:
     void onUserDirsChanged();
+    void onPropJobFinished();
 
 private:
     void initWatch();
     void installSigtermHandler();
-    void reallyInitVolumeManager();
 
     bool isPrimaryInstance;
     Fm::LibFmQt libFm_;
@@ -148,6 +161,9 @@ private:
     QString userDirsFile_;
     QString userDesktopFolder_;
     bool lxqtRunning_;
+    bool openingLastTabs_;
+
+    bool underWayland_;
 
     int argc_;
     char** argv_;

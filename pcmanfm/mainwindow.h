@@ -35,7 +35,6 @@
 #include "tabbar.h"
 #include <libfm-qt/core/filepath.h>
 #include <libfm-qt/core/bookmarks.h>
-#include <libfm-qt/mountoperation.h>
 
 namespace Fm {
 class PathEdit;
@@ -86,9 +85,7 @@ public:
     }
 
     void addTab(Fm::FilePath path, ViewFrame* viewFrame);
-    void addTab(Fm::FilePath path) {
-        addTab(path, activeViewFrame_);
-    }
+    void addTab(Fm::FilePath path);
 
     TabPage* currentPage(ViewFrame* viewFrame) {
         return reinterpret_cast<TabPage*>(viewFrame->getStackedWidget()->currentWidget());
@@ -103,7 +100,7 @@ public:
         return lastActive_;
     }
 
-    QList<Fm::MountOperation*> pendingMountOperations() const;
+    void openFolderAndSelectFles(const Fm::FilePathList& files);
 
 protected Q_SLOTS:
 
@@ -127,6 +124,7 @@ protected Q_SLOTS:
     void on_actionRename_triggered();
     void on_actionBulkRename_triggered();
     void on_actionSelectAll_triggered();
+    void on_actionDeselectAll_triggered();
     void on_actionInvertSelection_triggered();
     void on_actionPreferences_triggered();
 
@@ -147,9 +145,12 @@ protected Q_SLOTS:
     void on_actionShowThumbnails_triggered(bool check);
     void on_actionSplitView_triggered(bool check);
     void on_actionPreserveView_triggered(bool checked);
+    void on_actionPreserveViewRecursive_triggered(bool checked);
+    void on_actionGoToCustomizedViewSource_triggered();
 
     void on_actionByFileName_triggered(bool checked);
     void on_actionByMTime_triggered(bool checked);
+    void on_actionByCrTime_triggered(bool checked);
     void on_actionByDTime_triggered(bool checked);
     void on_actionByOwner_triggered(bool checked);
     void on_actionByGroup_triggered(bool checked);
@@ -176,6 +177,8 @@ protected Q_SLOTS:
     void on_actionEditBookmarks_triggered();
 
     void on_actionOpenTerminal_triggered();
+    void on_actionCreateLauncher_triggered();
+    void on_actionOpenAsAdmin_triggered();
     void on_actionOpenAsRoot_triggered();
     void on_actionCopyFullPath_triggered();
     void on_actionFindFiles_triggered();
@@ -223,11 +226,16 @@ protected Q_SLOTS:
     }
     void focusPathEntry();
     void toggleMenuBar(bool checked);
+    void updateRecenMenu();
+    void clearRecentMenu();
+    void lanunchRecentFile();
     void detachTab();
 
     void onBookmarksChanged();
 
     void onSettingHiddenPlace(const QString& str, bool hide);
+
+    void on_actionCleanPerFolderConfig_triggered();
 
 protected:
     bool event(QEvent* event) override;
@@ -240,7 +248,7 @@ protected:
     virtual void closeEvent(QCloseEvent* event) override;
     virtual void dragEnterEvent(QDragEnterEvent* event) override;
     virtual void dropEvent(QDropEvent* event) override;
-    virtual bool eventFilter(QObject* watched, QEvent* event);
+    virtual bool eventFilter(QObject* watched, QEvent* event) override;
 
 private:
     void loadBookmarksMenu();
@@ -253,7 +261,8 @@ private:
     void addViewFrame(const Fm::FilePath& path);
     ViewFrame* viewFrameForTabPage(TabPage* page);
     int addTabWithPage(TabPage* page, ViewFrame* viewFrame, Fm::FilePath path = Fm::FilePath());
-    void dropTab();
+    void dropTab(QObject* source);
+    void setTabIcon(TabPage* tabPage);
 
 private:
     Ui::MainWindow ui;
@@ -271,6 +280,8 @@ private:
     // The split mode of this window is changed only from its settings,
     // not from another window. So, we get the mode at the start and keep it.
     bool splitView_;
+
+    int splitTabsNum_; // number of tabs to be restored from the first view frame of the last window
 
     static QPointer<MainWindow> lastActive_;
 };

@@ -19,7 +19,7 @@
         <translation>Könnyed fájlkezelő</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="91"/>
+        <location filename="../about.ui" line="122"/>
         <source>Programming:
 * Hong Jen Yee (PCMan) &lt;pcman.tw@gmail.com&gt;
 </source>
@@ -28,7 +28,7 @@
 </translation>
     </message>
     <message>
-        <location filename="../about.ui" line="113"/>
+        <location filename="../about.ui" line="144"/>
         <source>PCManFM-Qt File Manager
 
 Copyright (C) 2009 - 2014 洪任諭 (Hong Jen Yee)
@@ -64,18 +64,22 @@ Public License másolatát is, ha nem, akkor írjon a Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA címre.</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="82"/>
+        <location filename="../about.ui" line="113"/>
         <source>Authors</source>
         <translation>Szerzők</translation>
     </message>
     <message>
         <location filename="../about.ui" line="58"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/lxqt/pcmanfm-qt&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/lxqt/pcmanfm-qt&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
-</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/lxqt/pcmanfm-qt&quot;&gt;https://github.com/lxqt/pcmanfm-qt&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../about.ui" line="104"/>
+        <location filename="../about.ui" line="74"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Wiki: &lt;a href=&quot;https://github.com/lxqt/pcmanfm-qt/wiki&quot;&gt;https://github.com/lxqt/pcmanfm-qt/wiki&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../about.ui" line="135"/>
         <source>License</source>
         <translation>Licenc</translation>
     </message>
@@ -116,17 +120,27 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA c
         <translation>Csoportos átnevezés</translation>
     </message>
     <message>
-        <location filename="../bulk-rename.ui" line="48"/>
+        <location filename="../bulk-rename.ui" line="47"/>
         <source># will be replaced by numbers starting with:</source>
         <translation># számokkal lesz helyettesítve ettől kezdve:</translation>
     </message>
     <message>
-        <location filename="../bulk-rename.ui" line="71"/>
+        <location filename="../bulk-rename.ui" line="80"/>
+        <source>Pad numbers with zero if possible</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bulk-rename.ui" line="87"/>
+        <source>Use localized numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../bulk-rename.ui" line="27"/>
         <source>Rename selected files to:</source>
         <translation>Nevezze át a kiválasztott fájlokat a következőre:</translation>
     </message>
     <message>
-        <location filename="../bulk-rename.ui" line="84"/>
+        <location filename="../bulk-rename.ui" line="40"/>
         <source>Name#</source>
         <translation>Név#</translation>
     </message>
@@ -139,37 +153,37 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA c
         <translation>Csatlakozás távoli szerverhez</translation>
     </message>
     <message>
-        <location filename="../connect.ui" line="23"/>
+        <location filename="../connect.ui" line="80"/>
         <source>Anonymous &amp;login</source>
         <translation>&amp;Bejelentkezés névtelenül</translation>
     </message>
     <message>
-        <location filename="../connect.ui" line="36"/>
+        <location filename="../connect.ui" line="90"/>
         <source>Login as &amp;user:</source>
         <translation>B&amp;ejelentkezés felhasználóként:</translation>
     </message>
     <message>
-        <location filename="../connect.ui" line="65"/>
+        <location filename="../connect.ui" line="29"/>
         <source>Specify remote folder to connect</source>
         <translation>Adja meg a csatlakoztatni kívánt távoli mappát</translation>
     </message>
     <message>
-        <location filename="../connect.ui" line="72"/>
+        <location filename="../connect.ui" line="36"/>
         <source>Type:</source>
         <translation>Típus:</translation>
     </message>
     <message>
-        <location filename="../connect.ui" line="79"/>
+        <location filename="../connect.ui" line="56"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
     <message>
-        <location filename="../connect.ui" line="86"/>
+        <location filename="../connect.ui" line="70"/>
         <source>Path:</source>
         <translation>Útvonal:</translation>
     </message>
     <message>
-        <location filename="../connect.ui" line="96"/>
+        <location filename="../connect.ui" line="46"/>
         <source>Host:</source>
         <translation>Kiszolgáló:</translation>
     </message>
@@ -187,66 +201,114 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA c
         <translation>Név:</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="55"/>
+        <location filename="../desktopentrydialog.ui" line="45"/>
+        <source>Specific name of this launcher.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="58"/>
         <source>Description:</source>
         <translation>Leírás:</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="69"/>
+        <location filename="../desktopentrydialog.ui" line="65"/>
+        <source>A short description or generic name, like &quot;Web Browser&quot; or &quot;Home Directory&quot;.
+
+It can be left empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="77"/>
         <source>Comment:</source>
         <translation>Megjegyzés:</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="83"/>
+        <location filename="../desktopentrydialog.ui" line="84"/>
+        <source>A short comment.
+
+It can be left empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="117"/>
         <source>Command:</source>
         <translation>Parancs:</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="99"/>
-        <location filename="../desktopentrydialog.ui" line="127"/>
+        <location filename="../desktopentrydialog.ui" line="133"/>
+        <location filename="../desktopentrydialog.ui" line="164"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="108"/>
+        <location filename="../desktopentrydialog.ui" line="142"/>
         <source>Icon:</source>
         <translation>Ikon:</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="136"/>
-        <location filename="../desktopentrydialog.ui" line="146"/>
+        <location filename="../desktopentrydialog.ui" line="151"/>
+        <source>Icon to display in file manager, menus, etc.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="173"/>
+        <location filename="../desktopentrydialog.ui" line="183"/>
         <source>Run in terminal?</source>
         <translation>Futtatás terminálban?</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="139"/>
+        <location filename="../desktopentrydialog.ui" line="176"/>
         <source>Terminal:</source>
         <translation>Terminálban:</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="150"/>
+        <location filename="../desktopentrydialog.ui" line="186"/>
+        <source>Whether the launched program should run in a terminal window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="190"/>
         <source>No</source>
         <translation>Nem</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="155"/>
+        <location filename="../desktopentrydialog.ui" line="195"/>
         <source>Yes</source>
         <translation>Igen</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="163"/>
+        <location filename="../desktopentrydialog.ui" line="203"/>
         <source>Type:</source>
         <translation>Típus:</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="171"/>
+        <location filename="../desktopentrydialog.ui" line="210"/>
+        <source>Whether this is a link or executes a command.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="214"/>
         <source>Application</source>
         <translation>Alkalmazás</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.ui" line="176"/>
+        <location filename="../desktopentrydialog.ui" line="219"/>
         <source>Link</source>
         <translation>Link</translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="96"/>
+        <source>Categories:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.ui" line="103"/>
+        <source>Semicolon separated categories in which the entry should be shown if it is used by the DE&apos;s main menu (e.g., when put inside ~/.local/share/applications).
+
+It is needed only when you want to use the created file in the main menu. Otherwise, you could leave it empty.
+
+Examples: AudioVideo, Audio, Video, Development, Education, Game, Graphics, Network, Office, Settings, System, Utility, Qt.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -290,38 +352,38 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA c
         <translation>Asztalbeállítások</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="240"/>
-        <location filename="../desktop-preferences.ui" line="246"/>
+        <location filename="../desktop-preferences.ui" line="338"/>
+        <location filename="../desktop-preferences.ui" line="344"/>
         <source>Background</source>
         <translation>Háttérkép</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="287"/>
+        <location filename="../desktop-preferences.ui" line="385"/>
         <source>Wallpaper mode:</source>
         <translation>Háttér mód:</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="310"/>
+        <location filename="../desktop-preferences.ui" line="408"/>
         <source>Wallpaper image file:</source>
         <translation>Képfájl:</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="252"/>
+        <location filename="../desktop-preferences.ui" line="350"/>
         <source>Select background color:</source>
         <translation>Háttérszín:</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="319"/>
+        <location filename="../desktop-preferences.ui" line="417"/>
         <source>Image file</source>
         <translation>Képfájl</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="325"/>
+        <location filename="../desktop-preferences.ui" line="423"/>
         <source>Image file path</source>
         <translation>Képfájl útvonala</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="332"/>
+        <location filename="../desktop-preferences.ui" line="430"/>
         <source>&amp;Browse</source>
         <translation>&amp;Böngészés</translation>
     </message>
@@ -366,146 +428,161 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA c
         <translation>Térköz</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="142"/>
+        <location filename="../desktop-preferences.ui" line="145"/>
         <source>Minimum item margins:</source>
         <translation>Legkisebb margók:</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="149"/>
+        <location filename="../desktop-preferences.ui" line="152"/>
         <source>3 px by default.</source>
         <translation>3 pixel alapértelmezetten.</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="152"/>
-        <location filename="../desktop-preferences.ui" line="176"/>
+        <location filename="../desktop-preferences.ui" line="155"/>
+        <location filename="../desktop-preferences.ui" line="179"/>
+        <location filename="../desktop-preferences.ui" line="237"/>
+        <location filename="../desktop-preferences.ui" line="249"/>
+        <location filename="../desktop-preferences.ui" line="275"/>
+        <location filename="../desktop-preferences.ui" line="287"/>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="165"/>
+        <location filename="../desktop-preferences.ui" line="168"/>
         <source>x</source>
         <translation>x</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="172"/>
+        <location filename="../desktop-preferences.ui" line="175"/>
         <source>1 px by default.
 A space is also reserved for 3 lines of text.</source>
         <translation>1 pixel alapértelmezetten.
 Üres hely lefoglalva a szöveg 3 sorához.</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="189"/>
+        <location filename="../desktop-preferences.ui" line="192"/>
         <source>Lock</source>
         <translation>Zárolás</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="212"/>
+        <location filename="../desktop-preferences.ui" line="230"/>
+        <source>Margins of work area:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../desktop-preferences.ui" line="303"/>
         <source>By default, desktop folders will be opened in PCManFM-Qt if they
 are left clicked, even when it is not the default file manager.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alapértelmezés szerint az asztali mappák a PCManFM-Qt-ban nyílnak meg,
+ha bal gombbal kattintanak rájuk, még akkor is, ha az nem az alapértelmezett fájlkezelő.</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="216"/>
+        <location filename="../desktop-preferences.ui" line="307"/>
         <source>Open desktop folders in default file manager by left clicking</source>
+        <translation>Bal gombbal nyissa meg az asztali mappákat az alapértelmezett fájlkezelőben</translation>
+    </message>
+    <message>
+        <location filename="../desktop-preferences.ui" line="314"/>
+        <source>Make all items stick to their positions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="275"/>
+        <location filename="../desktop-preferences.ui" line="373"/>
         <source>Wallpaper</source>
         <translation>Háttérkép</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="341"/>
+        <location filename="../desktop-preferences.ui" line="439"/>
         <source>Transform image based on EXIF data</source>
         <translation>A kép átalakítása EXIF-adatok alapján</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="348"/>
+        <location filename="../desktop-preferences.ui" line="446"/>
         <source>Individual wallpaper for each monitor</source>
         <translation>Minden monitorhoz egyedi háttérkép</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="375"/>
+        <location filename="../desktop-preferences.ui" line="473"/>
         <source>Slide Show</source>
         <translation>Diavetítés</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="381"/>
+        <location filename="../desktop-preferences.ui" line="479"/>
         <source>Enable Slide Show</source>
         <translation>Diavetítés bekapcsolása</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="393"/>
+        <location filename="../desktop-preferences.ui" line="491"/>
         <source>Wallpaper image folder:</source>
         <translation>Hátterek mappája:</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="400"/>
+        <location filename="../desktop-preferences.ui" line="505"/>
         <source>Browse</source>
         <translation>Böngészés</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="407"/>
+        <location filename="../desktop-preferences.ui" line="512"/>
         <source> hour(s)</source>
         <translation> óra</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="417"/>
+        <location filename="../desktop-preferences.ui" line="522"/>
         <source>and</source>
         <translation>és</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="430"/>
+        <location filename="../desktop-preferences.ui" line="535"/>
         <source>Intervals less than 5min will be ignored</source>
         <translation>Időköz 5 perc alatti nincs figyelembe véve</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="433"/>
+        <location filename="../desktop-preferences.ui" line="538"/>
         <source>Interval:</source>
         <translation>Időköz:</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="440"/>
+        <location filename="../desktop-preferences.ui" line="545"/>
         <source> minute(s)</source>
         <translation> perc</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="466"/>
+        <location filename="../desktop-preferences.ui" line="498"/>
         <source>Wallpaper folder</source>
         <translation>Mappa</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="489"/>
+        <location filename="../desktop-preferences.ui" line="587"/>
         <source>Randomize the slide show</source>
         <translation>Véletlenszerű diavetítés</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="522"/>
+        <location filename="../desktop-preferences.ui" line="620"/>
         <source>Visible Shortcuts</source>
         <translation>Ikonok megjelenítése</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="528"/>
+        <location filename="../desktop-preferences.ui" line="626"/>
         <source>Home</source>
         <translation>Saját könyvtár</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="539"/>
+        <location filename="../desktop-preferences.ui" line="637"/>
         <source>Trash</source>
         <translation>Kuka</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="550"/>
+        <location filename="../desktop-preferences.ui" line="648"/>
         <source>Computer</source>
         <translation>Számítógép</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="561"/>
+        <location filename="../desktop-preferences.ui" line="659"/>
         <source>Network</source>
         <translation>Hálózat</translation>
     </message>
     <message>
-        <location filename="../desktop-preferences.ui" line="516"/>
+        <location filename="../desktop-preferences.ui" line="614"/>
         <source>Advanced</source>
         <translation>Haladó</translation>
     </message>
@@ -520,7 +597,7 @@ are left clicked, even when it is not the default file manager.</source>
     <message>
         <location filename="../shortcuts.ui" line="21"/>
         <source>Shortcut</source>
-        <translation>Kombináció</translation>
+        <translation>Gyorsbillentyű</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="26"/>
@@ -535,7 +612,7 @@ are left clicked, even when it is not the default file manager.</source>
     <message>
         <location filename="../shortcuts.ui" line="34"/>
         <source>Focus view, clear filter bar</source>
-        <translation type="unfinished">Fókuszálás a mappákra, szűrősáv törlése</translation>
+        <translation>Fókuszálás a mappákra, szűrősáv törlése</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="39"/>
@@ -545,7 +622,7 @@ are left clicked, even when it is not the default file manager.</source>
     <message>
         <location filename="../shortcuts.ui" line="42"/>
         <source>Focus side-pane</source>
-        <translation type="unfinished">Fókuszálás az oldalsávra</translation>
+        <translation>Fókuszálás az oldalsávra</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="47"/>
@@ -556,7 +633,7 @@ are left clicked, even when it is not the default file manager.</source>
         <location filename="../shortcuts.ui" line="50"/>
         <location filename="../shortcuts.ui" line="58"/>
         <source>Focus path entry</source>
-        <translation type="unfinished">Fókuszálás az útvonalsávra</translation>
+        <translation>Fókuszálás az útvonalsávra</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="55"/>
@@ -643,8 +720,18 @@ are left clicked, even when it is not the default file manager.</source>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="135"/>
-        <source>Drag+Shift</source>
-        <translation>Húzás+Shift</translation>
+        <source>Drop+Shift</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../shortcuts.ui" line="143"/>
+        <source>Drop+Ctrl</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../shortcuts.ui" line="151"/>
+        <source>Drop+Shift+Ctrl</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="138"/>
@@ -652,19 +739,9 @@ are left clicked, even when it is not the default file manager.</source>
         <translation>Fájl áthelyezése ejtéskor</translation>
     </message>
     <message>
-        <location filename="../shortcuts.ui" line="143"/>
-        <source>Drag+Ctrl</source>
-        <translation>Húzás+Ctrl</translation>
-    </message>
-    <message>
         <location filename="../shortcuts.ui" line="146"/>
         <source>Copy file on dropping</source>
         <translation>Fájl másolása ejtéskor</translation>
-    </message>
-    <message>
-        <location filename="../shortcuts.ui" line="151"/>
-        <source>Drag+Shift+Ctrl</source>
-        <translation>Húzás+Ctrl+Shift</translation>
     </message>
     <message>
         <location filename="../shortcuts.ui" line="154"/>
@@ -680,573 +757,634 @@ are left clicked, even when it is not the default file manager.</source>
         <translation>Fájlkezelő</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="132"/>
+        <location filename="../main-win.ui" line="81"/>
+        <source>Recent F&amp;iles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="139"/>
         <source>&amp;Toolbars</source>
         <translation>Esz&amp;köztárak</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="139"/>
+        <location filename="../main-win.ui" line="146"/>
         <source>Path &amp;Bar</source>
         <translation>Út&amp;vonalsáv</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="146"/>
+        <location filename="../main-win.ui" line="153"/>
         <source>&amp;Filtering</source>
         <translation>S&amp;zűrés</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="265"/>
+        <location filename="../main-win.ui" line="228"/>
+        <source>&amp;Tools</source>
+        <translation>&amp;Eszközök</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="287"/>
         <source>Go &amp;Up</source>
         <translation>&amp;Fel</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="268"/>
+        <location filename="../main-win.ui" line="290"/>
         <source>Go Up</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="271"/>
+        <location filename="../main-win.ui" line="293"/>
         <source>Alt+Up</source>
         <translation>Alt+Fel</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="280"/>
+        <location filename="../main-win.ui" line="302"/>
         <source>&amp;Home</source>
         <translation>&amp;Saját könyvtár</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="283"/>
+        <location filename="../main-win.ui" line="305"/>
         <source>Alt+Home</source>
         <translation>Alt+Home</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="292"/>
+        <location filename="../main-win.ui" line="314"/>
         <source>&amp;Reload</source>
         <translation>Ú&amp;jratöltés</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="295"/>
+        <location filename="../main-win.ui" line="317"/>
         <source>F5</source>
         <translation>F5</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="304"/>
+        <location filename="../main-win.ui" line="326"/>
         <source>Go</source>
         <translation>Ugrás</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="313"/>
+        <location filename="../main-win.ui" line="335"/>
         <source>Quit</source>
         <translation>Kilépés</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="322"/>
+        <location filename="../main-win.ui" line="344"/>
         <source>&amp;About</source>
         <translation>&amp;Névjegy</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="331"/>
+        <location filename="../main-win.ui" line="353"/>
         <source>&amp;New Window</source>
         <translation>Új &amp;ablak</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="334"/>
+        <location filename="../main-win.ui" line="356"/>
         <source>New Window</source>
         <translation>Új ablak</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="337"/>
+        <location filename="../main-win.ui" line="359"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="345"/>
+        <location filename="../main-win.ui" line="367"/>
         <source>Show &amp;Hidden</source>
         <translation>&amp;Rejtett elemek megjelenítése</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="348"/>
+        <location filename="../main-win.ui" line="370"/>
         <source>Ctrl+H</source>
         <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="357"/>
+        <location filename="../main-win.ui" line="379"/>
         <source>&amp;Computer</source>
         <translation>S&amp;zámítógép</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="366"/>
+        <location filename="../main-win.ui" line="388"/>
         <source>&amp;Trash</source>
         <translation>&amp;Kuka</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="371"/>
+        <location filename="../main-win.ui" line="393"/>
         <source>&amp;Network</source>
         <translation>&amp;Hálózat</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="380"/>
+        <location filename="../main-win.ui" line="402"/>
         <source>&amp;Desktop</source>
-        <translation type="unfinished">&amp;Asztal</translation>
+        <translation>&amp;Asztal</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="389"/>
+        <location filename="../main-win.ui" line="411"/>
         <source>&amp;Add to Bookmarks</source>
         <translation>&amp;Hozzáadás a könyvjelzőkhöz</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="394"/>
+        <location filename="../main-win.ui" line="416"/>
         <source>&amp;Applications</source>
-        <translation type="unfinished">A&amp;lkalmazások</translation>
+        <translation>A&amp;lkalmazások</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="399"/>
+        <location filename="../main-win.ui" line="421"/>
         <source>Reload</source>
         <translation>Újratöltés</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="407"/>
+        <location filename="../main-win.ui" line="429"/>
         <source>&amp;Icon View</source>
         <translation>&amp;Ikonnézet</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="415"/>
+        <location filename="../main-win.ui" line="437"/>
         <source>&amp;Compact View</source>
         <translation>&amp;Kompakt nézet</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="423"/>
+        <location filename="../main-win.ui" line="445"/>
         <source>&amp;Detailed List</source>
         <translation>&amp;Lista nézet</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="431"/>
+        <location filename="../main-win.ui" line="453"/>
         <source>&amp;Thumbnail View</source>
         <translation>&amp;Bélyegkép nézet</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="440"/>
+        <location filename="../main-win.ui" line="462"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Kivágás</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="443"/>
+        <location filename="../main-win.ui" line="465"/>
         <source>Ctrl+X</source>
         <translation>Ctrl+X</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="452"/>
+        <location filename="../main-win.ui" line="474"/>
         <source>&amp;Copy</source>
         <translation>&amp;Másolás</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="455"/>
+        <location filename="../main-win.ui" line="477"/>
         <source>Ctrl+C</source>
         <translation>Ctrl+C</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="464"/>
+        <location filename="../main-win.ui" line="486"/>
         <source>&amp;Paste</source>
         <translation>&amp;Beillesztés</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="467"/>
+        <location filename="../main-win.ui" line="489"/>
         <source>Ctrl+V</source>
         <translation>Ctrl+V</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="472"/>
+        <location filename="../main-win.ui" line="494"/>
         <source>Select &amp;All</source>
         <translation>Ö&amp;sszes kijelölése</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="475"/>
+        <location filename="../main-win.ui" line="497"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="480"/>
+        <location filename="../main-win.ui" line="502"/>
+        <source>De&amp;select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="505"/>
+        <source>Ctrl+D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="510"/>
         <source>Pr&amp;eferences</source>
         <translation>B&amp;eállítások</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="488"/>
+        <location filename="../main-win.ui" line="518"/>
         <source>&amp;Ascending</source>
         <translation>&amp;Növekvő</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="496"/>
+        <location filename="../main-win.ui" line="526"/>
         <source>&amp;Descending</source>
         <translation>&amp;Csökkenő</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="504"/>
+        <location filename="../main-win.ui" line="534"/>
         <source>&amp;By File Name</source>
         <translation>&amp;Fájlnév szerint</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="512"/>
+        <location filename="../main-win.ui" line="542"/>
         <source>By &amp;Modification Time</source>
         <translation>&amp;Módosítási idő szerint</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="520"/>
+        <location filename="../main-win.ui" line="550"/>
+        <source>By C&amp;reation Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="558"/>
         <source>By Deletio&amp;n Time</source>
         <translation>Tö&amp;rlés ideje szerint</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="528"/>
+        <location filename="../main-win.ui" line="566"/>
         <source>By File &amp;Type</source>
         <translation>Fájltí&amp;pus szerint</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="536"/>
+        <location filename="../main-win.ui" line="574"/>
         <source>By &amp;Owner</source>
         <translation>&amp;Tulajdonos szerint</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="544"/>
+        <location filename="../main-win.ui" line="582"/>
         <source>By &amp;Group</source>
         <translation>Cs&amp;oport szerint</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="552"/>
+        <location filename="../main-win.ui" line="590"/>
         <source>&amp;Folder First</source>
         <translation>M&amp;appák előre</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="560"/>
+        <location filename="../main-win.ui" line="598"/>
         <source>&amp;Hidden Last</source>
         <translation>R&amp;ejtettek hátra</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="568"/>
-        <source>&amp;Preserve sorting for this folder</source>
-        <translation>Mappa &amp;rendezésének megőrzése</translation>
+        <location filename="../main-win.ui" line="879"/>
+        <source>Shift+F2</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="667"/>
+        <location filename="../main-win.ui" line="963"/>
+        <source>Preserve Settings Recursively from &amp;Here</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="968"/>
+        <source>&amp;Go to Source of Inherited Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="973"/>
+        <source>&amp;Remove Settings of Nonexistent Folders</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="981"/>
+        <source>&amp;Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="651"/>
+        <source>Ctrl+Shift+A</source>
+        <translation>Ctrl+Shift+A</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="700"/>
         <source>&amp;Case Sensitive</source>
         <translation>Na&amp;gybetűérzékeny</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="675"/>
+        <location filename="../main-win.ui" line="708"/>
         <source>By File &amp;Size</source>
         <translation>Fá&amp;jlméret szerint</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="680"/>
+        <location filename="../main-win.ui" line="713"/>
         <source>&amp;Close Window</source>
         <translation>A&amp;blak bezárása</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="683"/>
+        <location filename="../main-win.ui" line="716"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="715"/>
+        <location filename="../main-win.ui" line="734"/>
+        <source>Open Tab in &amp;Root Instance</source>
+        <translation>Lap megnyitása &amp;rootként</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="748"/>
         <source>&amp;Folder</source>
         <translation>&amp;Mappa</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="727"/>
+        <location filename="../main-win.ui" line="760"/>
         <source>&amp;Blank File</source>
         <translation>Ü&amp;res fájl</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="851"/>
+        <location filename="../main-win.ui" line="847"/>
+        <source>Preserve Settings for &amp;This Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="884"/>
         <source>&amp;Show/Focus Filter Bar</source>
         <translation>&amp;Szűrősáv megjelenítése/elrejtése</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="854"/>
+        <location filename="../main-win.ui" line="887"/>
         <source>Show Filter Bar</source>
         <translation>Szűrősáv megjelenítése</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="857"/>
+        <location filename="../main-win.ui" line="890"/>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="865"/>
+        <location filename="../main-win.ui" line="898"/>
         <source>S&amp;plit View</source>
         <translation>Os&amp;ztott nézet</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="868"/>
+        <location filename="../main-win.ui" line="901"/>
         <source>Split View</source>
         <translation>Osztott nézet</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="871"/>
+        <location filename="../main-win.ui" line="904"/>
         <source>F6</source>
         <translation>F6</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="876"/>
+        <location filename="../main-win.ui" line="909"/>
         <source>&amp;Copy Full Path</source>
-        <translation type="unfinished">Ú&amp;tvonal másolása</translation>
+        <translation>Út&amp;vonal másolása</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="879"/>
+        <location filename="../main-win.ui" line="912"/>
         <source>Ctrl+Shift+C</source>
         <translation>Ctrl+Shift+C</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="890"/>
+        <location filename="../main-win.ui" line="923"/>
         <source>Show Thumb&amp;nails</source>
         <translation>&amp;Bélyegképek megjelenítése</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="893"/>
+        <location filename="../main-win.ui" line="926"/>
         <source>Show Thumbnails</source>
         <translation>Bélyegképek megjelenítése</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="901"/>
+        <location filename="../main-win.ui" line="934"/>
         <source>S&amp;ide Pane</source>
         <translation>&amp;Oldalsáv</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="904"/>
+        <location filename="../main-win.ui" line="937"/>
         <source>F9</source>
         <translation>F9</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="909"/>
+        <location filename="../main-win.ui" line="942"/>
         <source>Hidden &amp;Shortcuts</source>
-        <translation>&amp;Rejtett gyorsbillentyűk</translation>
+        <translation>Rejtett &amp;gyorsbillentyűk</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="749"/>
+        <location filename="../main-win.ui" line="947"/>
+        <source>Open Tab in &amp;Admin Mode</source>
+        <translation>Lap megnyitása &amp;adminisztrátorként</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="952"/>
+        <location filename="../main-win.ui" line="955"/>
+        <source>Create Launcher</source>
+        <translation>Indítóikon létrehozása</translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="782"/>
         <source>Ctrl+B</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="754"/>
+        <location filename="../main-win.ui" line="787"/>
         <source>&amp;Clear All Filters</source>
         <translation>Minden s&amp;zűrő törlése</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="757"/>
+        <location filename="../main-win.ui" line="790"/>
         <source>Ctrl+Shift+K</source>
         <translation>Ctrl+Shift+K</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="766"/>
+        <location filename="../main-win.ui" line="799"/>
         <source>Close &amp;previous tabs</source>
         <translation>&amp;Lapok bezárása ettől balra</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="775"/>
+        <location filename="../main-win.ui" line="808"/>
         <source>Close &amp;next tabs</source>
         <translation>&amp;Lapok bezárása ettől jobbra</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="814"/>
-        <source>&amp;Preserve Settings for This Folder</source>
-        <translation>Ma&amp;ppa beállításainak megőrzése</translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="819"/>
+        <location filename="../main-win.ui" line="852"/>
         <source>Connect to &amp;Server</source>
         <translation>&amp;Csatlakozás szerverhez</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="827"/>
+        <location filename="../main-win.ui" line="860"/>
         <source>&amp;Location</source>
         <translation>Ú&amp;tvonal szöveg</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="835"/>
+        <location filename="../main-win.ui" line="868"/>
         <source>&amp;Path Buttons</source>
         <translation>Út&amp;vonal gombok</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="840"/>
+        <location filename="../main-win.ui" line="873"/>
         <source>&amp;Bulk Rename</source>
         <translation>&amp;Csoportos átnevezés</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="843"/>
+        <location filename="../main-win.ui" line="876"/>
         <source>Bulk Rename</source>
         <translation>Csoportos átnevezés</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="846"/>
-        <source>Ctrl+F2</source>
-        <translation>Ctrl+F2</translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="780"/>
+        <location filename="../main-win.ui" line="813"/>
         <source>Close &amp;other tabs</source>
         <translation>Töb&amp;bi lap bezárása</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="746"/>
+        <location filename="../main-win.ui" line="779"/>
         <source>Permanent &amp;filter bar</source>
         <translation>Állandó s&amp;zűrő sáv</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="788"/>
+        <location filename="../main-win.ui" line="821"/>
         <source>&amp;Menu bar</source>
         <translation>&amp;Menüsáv</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="791"/>
+        <location filename="../main-win.ui" line="824"/>
         <source>Menu bar</source>
         <translation>Menüsáv</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="794"/>
+        <location filename="../main-win.ui" line="827"/>
         <source>Ctrl+M</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="803"/>
-        <location filename="../main-win.ui" line="806"/>
+        <location filename="../main-win.ui" line="836"/>
+        <location filename="../main-win.ui" line="839"/>
         <source>Menu</source>
         <translation>Menü</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="577"/>
+        <location filename="../main-win.ui" line="607"/>
         <source>New &amp;Tab</source>
         <translation>Új &amp;lap</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="580"/>
+        <location filename="../main-win.ui" line="160"/>
+        <source>&amp;Customized View Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main-win.ui" line="610"/>
         <source>New Tab</source>
         <translation>Új lap</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="583"/>
+        <location filename="../main-win.ui" line="613"/>
         <source>Ctrl+T</source>
         <translation>Ctrl+T</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="592"/>
+        <location filename="../main-win.ui" line="622"/>
         <source>Go &amp;Back</source>
         <translation>&amp;Vissza</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="595"/>
+        <location filename="../main-win.ui" line="625"/>
         <source>Go Back</source>
         <translation>Vissza</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="598"/>
+        <location filename="../main-win.ui" line="628"/>
         <source>Alt+Left</source>
         <translation>Alt+Bal</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="607"/>
+        <location filename="../main-win.ui" line="637"/>
         <source>Go &amp;Forward</source>
         <translation>&amp;Előre</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="610"/>
+        <location filename="../main-win.ui" line="640"/>
         <source>Go Forward</source>
         <translation>Előre</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="613"/>
+        <location filename="../main-win.ui" line="643"/>
         <source>Alt+Right</source>
         <translation>Alt+Jobb</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="618"/>
+        <location filename="../main-win.ui" line="648"/>
         <source>&amp;Invert Selection</source>
         <translation>K&amp;ijelölés megfordítása</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="627"/>
+        <location filename="../main-win.ui" line="660"/>
         <source>&amp;Delete</source>
         <translation>Tö&amp;rlés</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="630"/>
+        <location filename="../main-win.ui" line="663"/>
         <source>Del</source>
         <translation>Del</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="635"/>
+        <location filename="../main-win.ui" line="668"/>
         <source>&amp;Rename</source>
         <translation>Á&amp;tnevezés</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="638"/>
+        <location filename="../main-win.ui" line="671"/>
         <source>F2</source>
         <translation>F2</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="643"/>
+        <location filename="../main-win.ui" line="676"/>
         <source>C&amp;lose Tab</source>
         <translation>La&amp;p bezárása</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="646"/>
+        <location filename="../main-win.ui" line="679"/>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="651"/>
+        <location filename="../main-win.ui" line="684"/>
         <source>File &amp;Properties</source>
         <translation>&amp;Fájl tulajdonságai</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="654"/>
+        <location filename="../main-win.ui" line="687"/>
         <source>Alt+Return</source>
-        <translation>Alt+Enter</translation>
+        <translation>Alt+Return</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="659"/>
+        <location filename="../main-win.ui" line="692"/>
         <source>&amp;Folder Properties</source>
         <translation>&amp;Mappatulajdonságok</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="688"/>
+        <location filename="../main-win.ui" line="721"/>
         <source>Edit Bookmarks</source>
         <translation>Könyvjelzők kezelése</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="693"/>
+        <location filename="../main-win.ui" line="726"/>
         <source>Open &amp;Terminal</source>
         <translation>&amp;Terminál megnyitása</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="696"/>
+        <location filename="../main-win.ui" line="729"/>
         <source>F4</source>
         <translation>F4</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="701"/>
-        <source>Open as &amp;Root</source>
-        <translation>&amp;Megnyitás rendszergazdaként</translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="706"/>
+        <location filename="../main-win.ui" line="739"/>
         <source>&amp;Edit Bookmarks</source>
         <translation>&amp;Könyvjelzők kezelése</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="718"/>
+        <location filename="../main-win.ui" line="751"/>
         <source>Ctrl+Shift+N</source>
         <translation>Ctrl+Shift+N</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="730"/>
+        <location filename="../main-win.ui" line="763"/>
         <source>Ctrl+Alt+N</source>
         <translation>Ctrl+Alt+N</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="735"/>
+        <location filename="../main-win.ui" line="768"/>
         <source>&amp;Find Files</source>
         <translation>&amp;Fájlkeresés</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="738"/>
+        <location filename="../main-win.ui" line="771"/>
         <source>F3</source>
         <translation>F3</translation>
     </message>
@@ -1261,43 +1399,38 @@ are left clicked, even when it is not the default file manager.</source>
         <translation>Ú&amp;j létrehozása</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="92"/>
+        <location filename="../main-win.ui" line="98"/>
         <source>&amp;Help</source>
         <translation>&amp;Súgó</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="99"/>
-        <location filename="../main-win.ui" line="122"/>
+        <location filename="../main-win.ui" line="105"/>
+        <location filename="../main-win.ui" line="129"/>
         <source>&amp;View</source>
         <translation>&amp;Nézet</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="103"/>
+        <location filename="../main-win.ui" line="109"/>
         <source>&amp;Sorting</source>
         <translation>Rendezé&amp;s</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="168"/>
+        <location filename="../main-win.ui" line="185"/>
         <source>&amp;Edit</source>
         <translation>S&amp;zerkesztés</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="186"/>
+        <location filename="../main-win.ui" line="204"/>
         <source>&amp;Bookmarks</source>
         <translation>&amp;Könyvjelzők</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="193"/>
+        <location filename="../main-win.ui" line="211"/>
         <source>&amp;Go</source>
         <translation>&amp;Ugrás</translation>
     </message>
     <message>
-        <location filename="../main-win.ui" line="210"/>
-        <source>&amp;Tool</source>
-        <translation>&amp;Eszközök</translation>
-    </message>
-    <message>
-        <location filename="../main-win.ui" line="231"/>
+        <location filename="../main-win.ui" line="253"/>
         <source>Main Toolbar</source>
         <translation>Fő eszköztár</translation>
     </message>
@@ -1305,99 +1438,99 @@ are left clicked, even when it is not the default file manager.</source>
 <context>
     <name>PCManFM::Application</name>
     <message>
-        <location filename="../application.cpp" line="165"/>
+        <location filename="../application.cpp" line="187"/>
         <source>Name of configuration profile</source>
         <translation>Beállítófájl neve</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="165"/>
+        <location filename="../application.cpp" line="187"/>
         <source>PROFILE</source>
         <translation>PROFIL</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="168"/>
-        <source>Run PCManFM as a daemon</source>
-        <translation>PCManFM futtatása démonként</translation>
+        <location filename="../application.cpp" line="190"/>
+        <source>Run PCManFM-Qt as a daemon</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="171"/>
-        <source>Quit PCManFM</source>
-        <translation>Kilépés a PCManFM-ből</translation>
+        <location filename="../application.cpp" line="193"/>
+        <source>Quit PCManFM-Qt</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="174"/>
+        <location filename="../application.cpp" line="196"/>
         <source>Launch desktop manager</source>
         <translation>Asztalkezelő indítása</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="177"/>
+        <location filename="../application.cpp" line="199"/>
         <source>Turn off desktop manager if it&apos;s running</source>
         <translation>Futó asztalkezelő leállítása</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="180"/>
+        <location filename="../application.cpp" line="202"/>
         <source>Open desktop preference dialog on the page with the specified name</source>
-        <translation type="unfinished">Asztalbeállítások megnyitása a megadott nevű lapon</translation>
+        <translation>Asztalbeállítások megnyitása a megadott nevű lapon</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="180"/>
-        <location filename="../application.cpp" line="195"/>
+        <location filename="../application.cpp" line="202"/>
+        <location filename="../application.cpp" line="217"/>
         <source>NAME</source>
         <translation>NÉV</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="183"/>
+        <location filename="../application.cpp" line="205"/>
         <source>Open new window</source>
         <translation>Új ablak megnyitása</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="186"/>
+        <location filename="../application.cpp" line="208"/>
         <source>Open Find Files utility</source>
         <translation>Fájlkereső indítása</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="189"/>
+        <location filename="../application.cpp" line="211"/>
         <source>Set desktop wallpaper from image FILE</source>
         <translation>A megadott FÁJL használata háttérképként</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="189"/>
+        <location filename="../application.cpp" line="211"/>
         <source>FILE</source>
         <translation>FÁJL</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="192"/>
+        <location filename="../application.cpp" line="214"/>
         <source>MODE</source>
         <translation>MÓD</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="192"/>
+        <location filename="../application.cpp" line="214"/>
         <source>Set mode of desktop wallpaper. MODE=(%1)</source>
-        <translation type="unfinished">Háttér mód. MODE=(%1)</translation>
+        <translation>Asztali háttérkép módjának beállítása. MODE=(%1)</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="195"/>
+        <location filename="../application.cpp" line="217"/>
         <source>Open Preferences dialog on the page with the specified name</source>
         <translation>Beállítások megnyitása a megadott nevű lapon</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="198"/>
+        <location filename="../application.cpp" line="220"/>
         <source>Files or directories to open</source>
-        <translation type="unfinished">Megnyitandó fájlok vagy mappák</translation>
+        <translation>Megnyitandó fájlok vagy mappák</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="198"/>
+        <location filename="../application.cpp" line="220"/>
         <source>[FILE1, FILE2,...]</source>
         <translation>[FÁJL1, FÁJL2,...]</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="594"/>
-        <location filename="../application.cpp" line="599"/>
+        <location filename="../application.cpp" line="655"/>
+        <location filename="../application.cpp" line="660"/>
         <source>Error</source>
         <translation>Hiba</translation>
     </message>
     <message>
-        <location filename="../application.cpp" line="599"/>
+        <location filename="../application.cpp" line="660"/>
         <source>Terminal emulator is not set.</source>
         <translation>A terminál emulátor nincs beállítva.</translation>
     </message>
@@ -1410,7 +1543,7 @@ are left clicked, even when it is not the default file manager.</source>
         <translation>Megnyitás fájlkezelőban</translation>
     </message>
     <message>
-        <location filename="../autorundialog.cpp" line="137"/>
+        <location filename="../autorundialog.cpp" line="138"/>
         <source>Removable Disk</source>
         <translation>Cserélhető lemez</translation>
     </message>
@@ -1451,32 +1584,42 @@ are left clicked, even when it is not the default file manager.</source>
 <context>
     <name>PCManFM::DesktopEntryDialog</name>
     <message>
-        <location filename="../desktopentrydialog.cpp" line="26"/>
+        <location filename="../desktopentrydialog.cpp" line="35"/>
         <source>Command:</source>
         <translation>Parancs:</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.cpp" line="29"/>
+        <location filename="../desktopentrydialog.cpp" line="36"/>
+        <source>The command to execute.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.cpp" line="39"/>
         <source>URL:</source>
         <translation>URL:</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.cpp" line="54"/>
+        <location filename="../desktopentrydialog.cpp" line="40"/>
+        <source>The URL to access.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../desktopentrydialog.cpp" line="67"/>
         <source>Select an icon</source>
         <translation>Válasszon ikont</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.cpp" line="56"/>
+        <location filename="../desktopentrydialog.cpp" line="69"/>
         <source>Images (*.png *.xpm *.svg *.svgz )</source>
         <translation>Képek (*.png *.xpm *.svg *.svgz )</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.cpp" line="78"/>
+        <location filename="../desktopentrydialog.cpp" line="91"/>
         <source>Select an executable file</source>
         <translation>Válasszon egy futtatható fájlt</translation>
     </message>
     <message>
-        <location filename="../desktopentrydialog.cpp" line="86"/>
+        <location filename="../desktopentrydialog.cpp" line="99"/>
         <source>Select a file</source>
         <translation>Válasszon egy fájlt</translation>
     </message>
@@ -1484,47 +1627,47 @@ are left clicked, even when it is not the default file manager.</source>
 <context>
     <name>PCManFM::DesktopPreferencesDialog</name>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="53"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="52"/>
         <source>Fill with background color only</source>
         <translation>Kitöltés csak háttérszínnel</translation>
     </message>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="54"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="53"/>
         <source>Stretch to fill the entire screen</source>
         <translation>Nyújtás</translation>
     </message>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="55"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="54"/>
         <source>Stretch to fit the screen</source>
-        <translation type="unfinished">Illesztés</translation>
+        <translation>Illesztés</translation>
     </message>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="56"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="55"/>
         <source>Center on the screen</source>
         <translation>Középre</translation>
     </message>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="57"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="56"/>
         <source>Tile the image to fill the entire screen</source>
         <translation>Csempe</translation>
     </message>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="58"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="57"/>
         <source>Zoom the image to fill the entire screen</source>
         <translation>Nagyítás</translation>
     </message>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="252"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="264"/>
         <source>Select Wallpaper</source>
         <translation>Háttérkép beállítása</translation>
     </message>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="256"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="268"/>
         <source>Image Files</source>
         <translation>Képfájlok</translation>
     </message>
     <message>
-        <location filename="../desktoppreferencesdialog.cpp" line="298"/>
+        <location filename="../desktoppreferencesdialog.cpp" line="310"/>
         <source>Select Wallpaper Folder</source>
         <translation>Hátterek mappájának kiválasztása</translation>
     </message>
@@ -1532,60 +1675,60 @@ are left clicked, even when it is not the default file manager.</source>
 <context>
     <name>PCManFM::DesktopWindow</name>
     <message>
-        <location filename="../desktopwindow.cpp" line="296"/>
+        <location filename="../desktopwindow.cpp" line="303"/>
         <source>Trash (One item)</source>
         <translation>Kuka (egy elem)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../desktopwindow.cpp" line="299"/>
+        <location filename="../desktopwindow.cpp" line="306"/>
         <source>Trash (%Ln items)</source>
         <translation>
             <numerusform>Kuka (%Ln elem)</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="303"/>
+        <location filename="../desktopwindow.cpp" line="310"/>
         <source>Trash (Empty)</source>
         <translation>Kuka</translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="338"/>
+        <location filename="../desktopwindow.cpp" line="345"/>
         <source>Computer</source>
         <translation>Számítógép</translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="352"/>
+        <location filename="../desktopwindow.cpp" line="359"/>
         <source>Network</source>
         <translation>Hálózat</translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="943"/>
+        <location filename="../desktopwindow.cpp" line="1011"/>
         <source>Open</source>
         <translation>Megnyitás</translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="948"/>
-        <location filename="../desktopwindow.cpp" line="985"/>
+        <location filename="../desktopwindow.cpp" line="1017"/>
+        <location filename="../desktopwindow.cpp" line="1057"/>
         <source>Stic&amp;k to Current Position</source>
-        <translation>&amp;Rögzítés ebbe a helyzetbe</translation>
+        <translation>&amp;Rögzítés a jelenlegi helyre</translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="955"/>
+        <location filename="../desktopwindow.cpp" line="1025"/>
         <source>Empty Trash</source>
         <translation>Kuka ürítése</translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="1011"/>
+        <location filename="../desktopwindow.cpp" line="1084"/>
         <source>Hide Desktop Items</source>
         <translation>Asztali elemek elrejtése</translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="1017"/>
+        <location filename="../desktopwindow.cpp" line="1090"/>
         <source>Create Launcher</source>
         <translation>Indítóikon létrehozása</translation>
     </message>
     <message>
-        <location filename="../desktopwindow.cpp" line="1020"/>
+        <location filename="../desktopwindow.cpp" line="1093"/>
         <source>Desktop Preferences</source>
         <translation>Asztalbeállítások</translation>
     </message>
@@ -1593,7 +1736,7 @@ are left clicked, even when it is not the default file manager.</source>
 <context>
     <name>PCManFM::FilterBar</name>
     <message>
-        <location filename="../tabpage.cpp" line="91"/>
+        <location filename="../tabpage.cpp" line="95"/>
         <source>Filter:</source>
         <translation>Szűrő:</translation>
     </message>
@@ -1601,7 +1744,7 @@ are left clicked, even when it is not the default file manager.</source>
 <context>
     <name>PCManFM::FilterEdit</name>
     <message>
-        <location filename="../tabpage.cpp" line="61"/>
+        <location filename="../tabpage.cpp" line="65"/>
         <source>Clear text (Ctrl+K or Esc)</source>
         <translation>Szöveg törlése (Ctrl+K vagy Esc)</translation>
     </message>
@@ -1609,107 +1752,163 @@ are left clicked, even when it is not the default file manager.</source>
 <context>
     <name>PCManFM::MainWindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="139"/>
+        <location filename="../mainwindow.cpp" line="142"/>
         <source>Root Instance</source>
-        <translation>Rendszergazdaként</translation>
+        <translation>Root példány</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="695"/>
+        <location filename="../mainwindow.cpp" line="780"/>
         <source>Hide menu bar</source>
         <translation>Menüsáv elrejtése</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="696"/>
+        <location filename="../mainwindow.cpp" line="781"/>
         <source>This will hide the menu bar completely, use Ctrl+M to show it again.</source>
         <translation>Ez a menüsávot teljesen eltünteti, a Ctrl+M-el újra megjeleníthető.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1041"/>
+        <location filename="../mainwindow.cpp" line="1228"/>
         <source>Version: %1</source>
         <translation>Verzió: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="172"/>
-        <location filename="../mainwindow.cpp" line="1929"/>
+        <location filename="../mainwindow.cpp" line="175"/>
+        <location filename="../mainwindow.cpp" line="2203"/>
         <source>&amp;Move to Trash</source>
         <translation>Á&amp;thelyezés kukába</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="172"/>
-        <location filename="../mainwindow.cpp" line="1929"/>
+        <location filename="../mainwindow.cpp" line="175"/>
+        <location filename="../mainwindow.cpp" line="2203"/>
         <source>&amp;Delete</source>
         <translation>&amp;Törlés</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1986"/>
-        <location filename="../mainwindow.cpp" line="1994"/>
+        <location filename="../mainwindow.cpp" line="2039"/>
+        <source>Customized View Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="2310"/>
+        <location filename="../mainwindow.cpp" line="2318"/>
         <source>Error</source>
         <translation>Hiba</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1994"/>
+        <location filename="../mainwindow.cpp" line="2318"/>
         <source>Switch user command is not set.</source>
         <translation>Felhasználóváltó parancs nincs meghatározva.</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="2420"/>
+        <source>Cleaning Folder Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="2421"/>
+        <source>Do you want to remove settings of nonexistent folders?
+They might be useful if those folders are created again.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PCManFM::PreferencesDialog</name>
     <message>
-        <location filename="../preferencesdialog.cpp" line="200"/>
+        <location filename="../preferencesdialog.cpp" line="206"/>
         <source>Icon View</source>
         <translation>Ikonnézet</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.cpp" line="201"/>
+        <location filename="../preferencesdialog.cpp" line="207"/>
         <source>Compact View</source>
         <translation>Kompakt nézet</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.cpp" line="202"/>
+        <location filename="../preferencesdialog.cpp" line="208"/>
         <source>Thumbnail View</source>
         <translation>Bélyegkép nézet</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.cpp" line="203"/>
+        <location filename="../preferencesdialog.cpp" line="209"/>
         <source>Detailed List View</source>
         <translation>Lista nézet</translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.cpp" line="279"/>
+        <source>Remove if added by user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.cpp" line="303"/>
+        <source>Open user-defined list</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PCManFM::TabPage</name>
     <message>
-        <location filename="../tabpage.cpp" line="471"/>
+        <location filename="../tabpage.cpp" line="443"/>
+        <source>Search Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="446"/>
+        <source>Applications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="450"/>
+        <source>Computer</source>
+        <translation>Számítógép</translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="453"/>
+        <source>Network</source>
+        <translation>Hálózat</translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="456"/>
+        <source>Trash</source>
+        <translation>Kuka</translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="462"/>
+        <source>Desktop</source>
+        <translation>Asztal</translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="553"/>
         <source>Error</source>
         <translation>Hiba</translation>
     </message>
     <message>
-        <location filename="../tabpage.cpp" line="480"/>
+        <location filename="../tabpage.cpp" line="562"/>
         <source>Free space: %1 (Total: %2)</source>
         <translation>Szabad: %1 (Összes: %2)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tabpage.cpp" line="497"/>
+        <location filename="../tabpage.cpp" line="579"/>
         <source>%n item(s)</source>
         <translation>
             <numerusform>%n elem</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../tabpage.cpp" line="499"/>
+        <location filename="../tabpage.cpp" line="581"/>
         <source> (%n hidden)</source>
         <translation>
             <numerusform> (%n rejtett)</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../tabpage.cpp" line="504"/>
-        <location filename="../tabpage.cpp" line="692"/>
-        <location filename="../tabpage.cpp" line="706"/>
+        <location filename="../tabpage.cpp" line="586"/>
+        <location filename="../tabpage.cpp" line="789"/>
+        <location filename="../tabpage.cpp" line="803"/>
         <source>Link to</source>
         <translation>Link ide:</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tabpage.cpp" line="718"/>
+        <location filename="../tabpage.cpp" line="815"/>
         <source>%n item(s) selected</source>
         <translation>
             <numerusform>%n elem kiválasztva</numerusform>
@@ -1719,29 +1918,30 @@ are left clicked, even when it is not the default file manager.</source>
 <context>
     <name>PCManFM::View</name>
     <message>
-        <location filename="../view.cpp" line="60"/>
+        <location filename="../view.cpp" line="59"/>
         <source>Many files</source>
         <translation>Bármely fájl</translation>
     </message>
     <message numerus="yes">
-        <location filename="../view.cpp" line="61"/>
+        <location filename="../view.cpp" line="60"/>
         <source>Do you want to open these %1 files?</source>
-        <translation type="unfinished">
-            <numerusform>Biztos meg szeretné nyitni ezeket a(z) %1 fájlokat?</numerusform>
+        <translation>
+            <numerusform>Biztosan meg szeretné nyitni ezt a fájlt?</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../view.cpp" line="123"/>
+        <location filename="../view.cpp" line="122"/>
         <source>Open in New T&amp;ab</source>
         <translation>Megnyi&amp;tás új lapon</translation>
     </message>
     <message>
-        <location filename="../view.cpp" line="127"/>
+        <location filename="../view.cpp" line="126"/>
         <source>Open in New Win&amp;dow</source>
         <translation>Megnyitás új a&amp;blakban</translation>
     </message>
     <message>
-        <location filename="../view.cpp" line="135"/>
+        <location filename="../view.cpp" line="134"/>
+        <location filename="../view.cpp" line="152"/>
         <source>Open in Termina&amp;l</source>
         <translation>Megnyitás terminá&amp;lban</translation>
     </message>
@@ -1765,7 +1965,7 @@ are left clicked, even when it is not the default file manager.</source>
     </message>
     <message>
         <location filename="../preferences.ui" line="50"/>
-        <location filename="../preferences.ui" line="589"/>
+        <location filename="../preferences.ui" line="642"/>
         <source>Thumbnail</source>
         <translation>Bélyegkép</translation>
     </message>
@@ -1780,67 +1980,67 @@ are left clicked, even when it is not the default file manager.</source>
         <translation>Haladó</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="213"/>
+        <location filename="../preferences.ui" line="222"/>
         <source>Select newly created files</source>
         <translation>Új fájlok kiválasztása</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="250"/>
+        <location filename="../preferences.ui" line="296"/>
         <source>Icons</source>
         <translation>Ikonok</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="282"/>
+        <location filename="../preferences.ui" line="328"/>
         <source>Size of big icons:</source>
         <translation>Nagy ikonok mérete:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="299"/>
+        <location filename="../preferences.ui" line="345"/>
         <source>Size of small icons:</source>
         <translation>Kis ikonok mérete:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="316"/>
+        <location filename="../preferences.ui" line="362"/>
         <source>Size of thumbnails:</source>
         <translation>Bélyegképek mérete:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="330"/>
+        <location filename="../preferences.ui" line="376"/>
         <source>Size of side pane icons:</source>
         <translation>Ikonok mérete az oldalsávon:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="262"/>
+        <location filename="../preferences.ui" line="308"/>
         <source>Icon theme:</source>
         <translation>Ikontéma:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="493"/>
+        <location filename="../preferences.ui" line="546"/>
         <source>Window</source>
         <translation>Ablak</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="506"/>
+        <location filename="../preferences.ui" line="559"/>
         <source>Always show the tab bar</source>
         <translation>Lapsáv mindig látható</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="513"/>
+        <location filename="../preferences.ui" line="566"/>
         <source>Show &apos;Close&apos; buttons on tabs	</source>
         <translation>Bezárás gomb a lapokon	</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="527"/>
+        <location filename="../preferences.ui" line="580"/>
         <source>Remember the size of the last closed window</source>
         <translation>Utoljára bezárt ablak méretének megjegyzése</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="534"/>
+        <location filename="../preferences.ui" line="587"/>
         <source>Default width of new windows:</source>
         <translation>Új ablak alapértelmezett szélessége:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="548"/>
+        <location filename="../preferences.ui" line="601"/>
         <source>Default height of new windows:</source>
         <translation>Új ablak alapértelmezett magassága:</translation>
     </message>
@@ -1855,42 +2055,37 @@ are left clicked, even when it is not the default file manager.</source>
         <translation>Megnyitás egy kattintásra</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="103"/>
-        <source>Delay of auto-selection in single click mode (0 to disable)</source>
-        <translation>Egykattintásos módban az automatikus kiválasztás késleltetése (0 a letiltáshoz)</translation>
-    </message>
-    <message>
-        <location filename="../preferences.ui" line="110"/>
+        <location filename="../preferences.ui" line="162"/>
         <source>Default view mode:</source>
         <translation>Alapértelmezett nézet:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="123"/>
+        <location filename="../preferences.ui" line="119"/>
         <source> sec</source>
         <translation> mp</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="169"/>
+        <location filename="../preferences.ui" line="175"/>
         <source>File Operations</source>
         <translation>Fájlműveletek</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="175"/>
+        <location filename="../preferences.ui" line="181"/>
         <source>Confirm before deleting files</source>
         <translation>Törlés előtt megerősítés</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="182"/>
+        <location filename="../preferences.ui" line="188"/>
         <source>Move deleted files to &quot;trash bin&quot; instead of erasing from disk.</source>
         <translation>Fájlok áthelyezése kukába, a lemezről törlés helyett.</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="622"/>
+        <location filename="../preferences.ui" line="651"/>
         <source>Show thumbnails of files</source>
         <translation>Fájloknál</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="612"/>
+        <location filename="../preferences.ui" line="658"/>
         <source>Only show thumbnails for local files</source>
         <translation>Csak helyi fájloknál</translation>
     </message>
@@ -1905,256 +2100,324 @@ are left clicked, even when it is not the default file manager.</source>
         <translation>Ha ez nincs bejelölve, akkor az asztali környezet beállításait használja.</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="133"/>
-        <source>Bookmarks:</source>
-        <translation>Könyvjelzők:</translation>
+        <location filename="../preferences.ui" line="103"/>
+        <location filename="../preferences.ui" line="116"/>
+        <source>Set to zero to disable auto-selection.</source>
+        <translation>Állítsa 0-ra, hogy letiltsa az automatikus kijelölést.</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="141"/>
+        <location filename="../preferences.ui" line="106"/>
+        <source>Delay of auto-selection in single click mode:</source>
+        <translation>Automatikus kiválasztás késleltetése egykattintásos módban:</translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="144"/>
         <source>Open in current tab</source>
         <translation>Megnyitás a jelenlegi lapon</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="146"/>
+        <location filename="../preferences.ui" line="149"/>
         <source>Open in new tab</source>
         <translation>Megnyitás új lapon</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="151"/>
+        <location filename="../preferences.ui" line="154"/>
         <source>Open in new window</source>
         <translation>Megnyitás új ablakban</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="189"/>
+        <location filename="../preferences.ui" line="195"/>
         <source>Erase files on removable media instead of &quot;trash can&quot; creation</source>
-        <translation type="unfinished">Cserélhető adathordozón a fájlok törlése kukába helyezés helyett</translation>
+        <translation>Cserélhető adathordozón a fájlok törlése kukába helyezés helyett</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="196"/>
+        <location filename="../preferences.ui" line="202"/>
         <source>Confirm before moving files into &quot;trash can&quot;</source>
         <translation>Megerősítés kukába helyezés előtt</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="203"/>
-        <location filename="../preferences.ui" line="363"/>
-        <location filename="../preferences.ui" line="373"/>
+        <location filename="../preferences.ui" line="209"/>
+        <location filename="../preferences.ui" line="409"/>
+        <location filename="../preferences.ui" line="419"/>
         <source>Requires application restart to take effect completely</source>
         <translation>Az alkalmazás újraindítása szükséges a változtatások érvényesítéséhez</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="206"/>
+        <location filename="../preferences.ui" line="212"/>
         <source>Launch executable files without prompt</source>
         <translation>Futtatható fájlok futtatása rákérdezés nélkül</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="279"/>
-        <location filename="../preferences.ui" line="289"/>
+        <location filename="../preferences.ui" line="219"/>
+        <source>Renamed files will also be selected</source>
+        <translation>Az átnevezett fájlok ki lesznek választva</translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="244"/>
+        <source>Number of recent files:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="325"/>
+        <location filename="../preferences.ui" line="335"/>
         <source>Used by Icon View</source>
         <translation>Ikonnézethez</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="296"/>
-        <location filename="../preferences.ui" line="306"/>
+        <location filename="../preferences.ui" line="342"/>
+        <location filename="../preferences.ui" line="352"/>
         <source>Used by Compact View and Detailed List View</source>
         <translation>Kompakt és lista nézethez</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="313"/>
-        <location filename="../preferences.ui" line="323"/>
+        <location filename="../preferences.ui" line="359"/>
+        <location filename="../preferences.ui" line="369"/>
         <source>Used by Thumbnail View</source>
         <translation>Bélyegkép nézethez</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="343"/>
+        <location filename="../preferences.ui" line="389"/>
         <source>User interface</source>
         <translation>Felhasználói felület</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="356"/>
+        <location filename="../preferences.ui" line="402"/>
         <source>Treat backup files as hidden</source>
         <translation>Biztonsági mentett fájlok rejtettként kezelése</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="376"/>
+        <location filename="../preferences.ui" line="422"/>
         <source>Show icons of hidden files shadowed</source>
         <translation>Rejtett fájlok ikonjainak árnyékolása</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="406"/>
+        <location filename="../preferences.ui" line="459"/>
         <source>Minimum item margins in icon view:</source>
         <translation>Ikonnézet legkisebb helyköze:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="413"/>
+        <location filename="../preferences.ui" line="466"/>
         <source>3 px by default.</source>
         <translation>3 px alapértelmezetten.</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="416"/>
-        <location filename="../preferences.ui" line="440"/>
+        <location filename="../preferences.ui" line="469"/>
+        <location filename="../preferences.ui" line="493"/>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="429"/>
+        <location filename="../preferences.ui" line="482"/>
         <source>x</source>
         <translation>x</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="436"/>
+        <location filename="../preferences.ui" line="489"/>
         <source>3 px by default.
 A space is also reserved for 3 lines of text.</source>
         <translation>3 px alapértelmezetten.
 Hely lefoglalva a szöveg 3 sorához .</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="453"/>
+        <location filename="../preferences.ui" line="506"/>
         <source>Lock</source>
         <translation>Zárolás</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="502"/>
+        <location filename="../preferences.ui" line="555"/>
         <source>When unchecked, the tab bar will be shown
 only if there are more than one tab.</source>
         <translation>Lapsáv megjelenítésre mindig.</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="520"/>
+        <location filename="../preferences.ui" line="573"/>
         <source>Switch to newly opened tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Átváltás az újonnan megnyitott lapra</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="562"/>
+        <location filename="../preferences.ui" line="615"/>
         <source>Reopen last window tabs in a new window</source>
+        <translation>Utolsó ablak lapjainak megnyitása az új ablakban</translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="665"/>
+        <location filename="../preferences.ui" line="677"/>
+        <source>The built-in thumbnailer makes thumbnails of images that are supported by Qt.
+
+Usually, most image types are supported. The default size limit is 4 MiB.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="748"/>
+        <location filename="../preferences.ui" line="670"/>
+        <source>Image size limit for built-in thumbnailer:</source>
+        <translation>Képméret-korlát a beépített bélyegkép-készítő számára:</translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="682"/>
+        <location filename="../preferences.ui" line="718"/>
+        <source> MiB</source>
+        <translation> MiB</translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="698"/>
+        <location filename="../preferences.ui" line="710"/>
+        <source>If existing, external thumbnailers are used for videos, PDF documents, etc.
+
+A value of -1 means that there is no limit for the file size (the default).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="703"/>
+        <source>File size limit for external thumbnailers:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="715"/>
+        <source>No limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="860"/>
         <source>Examples:&lt;br&gt;For terminal: &lt;i&gt;xterm -e %s&lt;/i&gt;&lt;br&gt;For switching user: &lt;i&gt;lxsudo %s&lt;/i&gt; or &lt;i&gt;lxsudo dbus-run-session -- %s&lt;/i&gt;&lt;br&gt;&lt;i&gt;%s&lt;/i&gt; is the command line you want to execute with terminal or su.&lt;br&gt; Important: Please use lxsudo, sudo alone will wreck permissions of the settings file.</source>
         <translation>Példák:&lt;br&gt;Terminál megnyitására: &lt;i&gt;xterm -e %s&lt;/i&gt;&lt;br&gt;Felhasználóváltásra: &lt;i&gt;lxsudo %s&lt;/i&gt; vagy &lt;i&gt;lxsudo dbus-run-session -- %s&lt;/i&gt;&lt;br&gt;&lt;i&gt;%s&lt;/i&gt; a parancs amit terminálban akar futtatni vagy su-val.&lt;br&gt; Fontos: használjon lxsudo-t, a sudo önmagában tönkreteheti a beállítófájlt.</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="839"/>
+        <location filename="../preferences.ui" line="919"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="934"/>
+        <source>Maximum search history:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="948"/>
+        <source>Clear search history</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences.ui" line="983"/>
         <source>Application restart is needed for changes to take effect.</source>
         <translation>A változtatások érvényesítéhez újra kell indítani az alkalmazást.</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="595"/>
-        <source>Do not generate thumbnails for image files exceeding this size:</source>
-        <translation>Nincs bélyegkép, ha a fájl ennél nagyobb:</translation>
+        <location filename="../preferences.ui" line="136"/>
+        <source>Bookmarks menu:</source>
+        <translation>Könyvjelzők menü:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="159"/>
+        <location filename="../preferences.ui" line="129"/>
         <source>Show folder context menu with Ctrl + right click</source>
         <translation>Ctrl + Jobb kattintásra a mappa helyi menüjének megjelenítése</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="220"/>
+        <location filename="../preferences.ui" line="229"/>
         <source>Open folders in new tabs as far as possible</source>
-        <translation type="unfinished">Mappák megnyitása új lapokon amennyire lehetséges</translation>
+        <translation>Mappák megnyitása új lapokon amennyire lehetséges</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="223"/>
+        <location filename="../preferences.ui" line="232"/>
         <source>Single window mode</source>
         <translation>Egyablakos mód</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="366"/>
+        <location filename="../preferences.ui" line="412"/>
         <source>Always show real file names</source>
         <translation>Teljes fájlnevek megjelenítése</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="383"/>
+        <location filename="../preferences.ui" line="429"/>
         <source>Do not show file tooltips</source>
         <translation>Ne mutassa a fájlok elemleírását</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="602"/>
-        <source> KB</source>
-        <translation> KB</translation>
+        <location filename="../preferences.ui" line="436"/>
+        <source>Disable smooth scrolling</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="619"/>
+        <location filename="../preferences.ui" line="648"/>
         <source>Needs ffmpegthumbnailer</source>
         <translation>Szükséges: ffmpegthumbnailer</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="649"/>
+        <location filename="../preferences.ui" line="754"/>
         <source>Auto Mount</source>
         <translation>Automatikus csatolás</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="655"/>
+        <location filename="../preferences.ui" line="760"/>
         <source>Mount mountable volumes automatically on program startup</source>
         <translation>Csatolható eszközök automatikus csatolása a program indulásánál</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="662"/>
+        <location filename="../preferences.ui" line="767"/>
         <source>Mount removable media automatically when they are inserted</source>
         <translation>Cserélhető adathordozók automatikus csatolása behelyezéskor</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="669"/>
+        <location filename="../preferences.ui" line="774"/>
         <source>Show available options for removable media when they are inserted</source>
-        <translation type="unfinished">Cserélhető adathordozók behelyezésekor az elérhető lehetőségek megjelenítése</translation>
+        <translation>Cserélhető adathordozók behelyezésekor az elérhető lehetőségek megjelenítése</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="679"/>
+        <location filename="../preferences.ui" line="784"/>
         <source>When removable medium unmounted:</source>
         <translation>Cserélhető adathordozó lecsatolásakor:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="685"/>
+        <location filename="../preferences.ui" line="790"/>
         <source>Close &amp;tab containing removable medium</source>
         <translation>Cserélhe&amp;tő adathordozó lapjának bezárása</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="692"/>
+        <location filename="../preferences.ui" line="797"/>
         <source>Chan&amp;ge folder in the tab to home folder</source>
         <translation>Á&amp;tlépés a saját mappára</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="719"/>
+        <location filename="../preferences.ui" line="824"/>
         <source>Programs</source>
         <translation>Programok</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="728"/>
+        <location filename="../preferences.ui" line="833"/>
         <source>Terminal emulator:</source>
         <translation>Terminál emulátor:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="735"/>
+        <location filename="../preferences.ui" line="847"/>
         <source>Switch &amp;user command:</source>
         <translation>Fel&amp;használó váltási parancs:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="761"/>
+        <location filename="../preferences.ui" line="873"/>
         <source>Archiver in&amp;tegration:</source>
         <translation>Archiváló in&amp;tegráció:</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="784"/>
+        <location filename="../preferences.ui" line="889"/>
         <source>Templates</source>
         <translation>Sablonok</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="790"/>
+        <location filename="../preferences.ui" line="895"/>
         <source>Show only user defined templates in menu</source>
-        <translation type="unfinished">Menüben csak felhasználói sablonok</translation>
+        <translation>Menüben csak felhasználói sablonok</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="797"/>
+        <location filename="../preferences.ui" line="902"/>
         <source>Show only one template for each MIME type</source>
         <translation>Minden MIME típushoz csak egy sablon megjelenítése</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="804"/>
+        <location filename="../preferences.ui" line="909"/>
         <source>Run default application after creation from template</source>
         <translation>Alapértelmezett alkalmazás futtatása a sablonból történő létrehozás után</translation>
     </message>
     <message>
-        <location filename="../preferences.ui" line="349"/>
+        <location filename="../preferences.ui" line="395"/>
         <source>Use SI decimal prefixes instead of IEC binary prefixes</source>
         <translation>IEC bináris helyett SI decimális prefix használata</translation>
     </message>
@@ -2162,40 +2425,46 @@ only if there are more than one tab.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../bulkrename.cpp" line="73"/>
+        <location filename="../bulkrename.cpp" line="86"/>
         <source>Renaming files...</source>
         <translation>Fájlok átnevezése...</translation>
     </message>
     <message>
-        <location filename="../bulkrename.cpp" line="73"/>
+        <location filename="../bulkrename.cpp" line="86"/>
         <source>Abort</source>
         <translation>Megszakítás</translation>
     </message>
     <message>
-        <location filename="../bulkrename.cpp" line="82"/>
+        <location filename="../bulkrename.cpp" line="95"/>
         <source>Warning</source>
         <translation>Figyelmeztetés</translation>
     </message>
     <message>
-        <location filename="../bulkrename.cpp" line="82"/>
+        <location filename="../bulkrename.cpp" line="95"/>
         <source>Renaming is aborted.</source>
         <translation>Az átnevezés megszakítva.</translation>
     </message>
     <message>
-        <location filename="../bulkrename.cpp" line="108"/>
-        <location filename="../bulkrename.cpp" line="111"/>
+        <location filename="../bulkrename.cpp" line="121"/>
+        <location filename="../bulkrename.cpp" line="124"/>
+        <location filename="../tabpage.cpp" line="1142"/>
         <source>Error</source>
         <translation>Hiba</translation>
     </message>
     <message>
-        <location filename="../bulkrename.cpp" line="108"/>
+        <location filename="../bulkrename.cpp" line="121"/>
         <source>No file could be renamed.</source>
         <translation>Egyetlen fájl sem nevezhető át.</translation>
     </message>
     <message>
-        <location filename="../bulkrename.cpp" line="111"/>
+        <location filename="../bulkrename.cpp" line="124"/>
         <source>Some files could not be renamed.</source>
         <translation>Néhány fájlt nem lehet átnevezni.</translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="1142"/>
+        <source>Cannot open as Admin.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

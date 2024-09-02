@@ -37,12 +37,11 @@ View::View(Fm::FolderView::ViewMode _mode, QWidget* parent):
     updateFromSettings(settings);
 }
 
-View::~View() {
-}
+View::~View() = default;
 
 void View::onFileClicked(int type, const std::shared_ptr<const Fm::FileInfo>& fileInfo) {
     if(type == MiddleClick) {
-        if(fileInfo->isDir()) {
+        if(fileInfo && fileInfo->isDir()) {
             // fileInfo->path() shouldn't be used directly because
             // it won't work in places like computer:/// or network:///
             Fm::FileInfoList files;
@@ -147,7 +146,17 @@ void View::prepareFileMenu(Fm::FileMenu* menu) {
     }
 }
 
-void View::prepareFolderMenu(Fm::FolderMenu* /*menu*/) {
+void View::prepareFolderMenu(Fm::FolderMenu* menu) {
+    auto folder = folderInfo();
+    if(folder && folder->isNative()) {
+        QAction *action = new QAction(QIcon::fromTheme(QStringLiteral("utilities-terminal")), tr("Open in Termina&l"), menu);
+        connect(action, &QAction::triggered, this, [folder] {
+            Application* app = static_cast<Application*>(qApp);
+            app->openFolderInTerminal(folder->path());
+        });
+        menu->insertAction(menu->createAction(), action);
+        menu->insertSeparator(menu->createAction());
+    }
 }
 
 void View::updateFromSettings(Settings& settings) {
@@ -159,9 +168,11 @@ void View::updateFromSettings(Settings& settings) {
 
     setMargins(settings.folderViewCellMargins());
 
-    setAutoSelectionDelay(settings.autoSelectionDelay());
+    setAutoSelectionDelay(settings.singleClick() ? settings.autoSelectionDelay() : 0);
 
     setCtrlRightClick(settings.ctrlRightClick());
+
+    setScrollPerPixel(settings.scrollPerPixel());
 
     Fm::ProxyFolderModel* proxyModel = model();
     if(proxyModel) {

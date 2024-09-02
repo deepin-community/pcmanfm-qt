@@ -29,8 +29,7 @@ ConnectServerDialog::ConnectServerDialog(QWidget *parent): QDialog(parent) {
   onCurrentIndexChanged(0);
 }
 
-ConnectServerDialog::~ConnectServerDialog() {
-}
+ConnectServerDialog::~ConnectServerDialog() = default;
 
 
 QString ConnectServerDialog::uriText() {
@@ -65,9 +64,9 @@ void ConnectServerDialog::onCurrentIndexChanged(int /*index*/) {
   int serverTypeIdx = ui.serverType->currentIndex();
   const auto& serverType = serverTypes[serverTypeIdx];
   ui.port->setValue(serverType.defaultPort);
-  ui.ananymousLogin->setEnabled(serverType.canAnonymous);
+  ui.anonymousLogin->setEnabled(serverType.canAnonymous);
   if(serverType.canAnonymous)
-    ui.ananymousLogin->setChecked(true);
+    ui.anonymousLogin->setChecked(true);
   else
     ui.loginAsUser->setChecked(true);
   ui.host->setFocus();

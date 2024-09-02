@@ -1,4 +1,3 @@
-#include <libfm-qt/core/filepath.h>
 #include "desktopentrydialog.h"
 #include "ui_desktopentrydialog.h"
 #include "xdgdir.h"
@@ -6,28 +5,42 @@
 #include <QDir>
 #include <QStandardPaths>
 #include <QFileDialog>
+#include <QWhatsThis>
 
 namespace PCManFM {
 
-DesktopEntryDialog::DesktopEntryDialog(QWidget* parent):
-    QDialog(parent) {
+DesktopEntryDialog::DesktopEntryDialog(QWidget* parent, const Fm::FilePath& dirPath):
+    QDialog(parent),
+    dirPath_{dirPath} {
     ui.setupUi(this);
+
+    if(!dirPath_.isValid() || !dirPath_.isNative()) { // Desktop is the default place
+        dirPath_ = Fm::FilePath::fromLocalPath(XdgDir::readDesktopDir().toStdString().c_str());
+    }
 
     connect(ui.typeCombo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &DesktopEntryDialog::onChangingType);
     connect(ui.iconButton, &QAbstractButton::clicked, this, &DesktopEntryDialog::onClickingIconButton);
     connect(ui.commandButton, &QAbstractButton::clicked, this, &DesktopEntryDialog::onClickingCommandButton);
+
+    connect(ui.buttonBox, &QDialogButtonBox::helpRequested, this, [] {
+        QWhatsThis::enterWhatsThisMode();
+    });
+    onChangingType(0);
 }
 
-DesktopEntryDialog::~DesktopEntryDialog() {
-}
+DesktopEntryDialog::~DesktopEntryDialog() = default;
 
 void DesktopEntryDialog::onChangingType(int type) {
     if(type == 0) {
         ui.commandLabel->setText(tr("Command:"));
+        ui.commandEdit->setWhatsThis(tr("The command to execute."));
     }
     else if(type == 1) {
         ui.commandLabel->setText(tr("URL:"));
+        ui.commandEdit->setWhatsThis(tr("The URL to access."));
     }
+    ui.catLabel->setVisible(type == 0);
+    ui.catEdit->setVisible(type == 0);
 }
 
 void DesktopEntryDialog::onClickingIconButton() {
@@ -56,7 +69,7 @@ void DesktopEntryDialog::onClickingIconButton() {
                                                           tr("Images (*.png *.xpm *.svg *.svgz )"));
     if(!iconPath.isEmpty()) {
         if(iconPath.startsWith(iconDir)) { // a theme icon
-            QStringList parts = iconPath.split(QStringLiteral("/"), QString::SkipEmptyParts);
+            QStringList parts = iconPath.split(QStringLiteral("/"), Qt::SkipEmptyParts);
             if(!parts.isEmpty()) {
                 QString iconName = parts.at(parts.count() - 1);
                 int ln = iconName.lastIndexOf(QLatin1String("."));
@@ -103,6 +116,15 @@ void DesktopEntryDialog::accept() {
     if(ui.typeCombo->currentIndex() == 0) {
         g_key_file_set_string(kf, "Desktop Entry", "Exec", ui.commandEdit->text().toStdString().c_str());
         g_key_file_set_string(kf, "Desktop Entry", "Type", "Application");
+
+        // categories
+        auto categories = ui.catEdit->text();
+        if(!categories.isEmpty()) {
+            if(!categories.endsWith(QLatin1Char(';'))) {
+                categories.append(QLatin1Char(';'));
+            }
+            g_key_file_set_string(kf, "Desktop Entry", "Categories", categories.toStdString().c_str());
+        }
     }
     else {
         QString cmd = ui.commandEdit->text();
@@ -124,23 +146,26 @@ void DesktopEntryDialog::accept() {
     g_key_file_set_string(kf, "Desktop Entry", "Terminal",
                           ui.terminalCombo->currentIndex() == 0 ? "false" : "true");
 
+    auto pathStrPtr = dirPath_.toString();
+
     // make file name from entry name but so that it doesn't exist on Desktop
     name = name.simplified();
     name.replace(QChar(QChar::Space), QLatin1Char('_'));
+    name.replace(QLatin1Char('/'), QLatin1Char('_'));
     QString suffix;
     int i = 0;
-    while(QFile::exists(XdgDir::readDesktopDir() + QLatin1String("/") + name + suffix + QLatin1String(".desktop"))) {
+    while(QFile::exists(QString::fromUtf8(pathStrPtr.get())
+                        + QLatin1String("/") + name + suffix + QLatin1String(".desktop"))) {
         suffix = QString::number(i);
         i++;
     }
     name += suffix + QLatin1String(".desktop");
 
-    auto desktopPath = Fm::FilePath::fromLocalPath(XdgDir::readDesktopDir().toStdString().c_str()).localPath();
-    auto launcher = Fm::CStrPtr{g_build_filename(desktopPath.get(), name.toStdString().c_str(), nullptr)};
-    g_key_file_save_to_file(kf, launcher.get(), nullptr);
+    auto launcher = Fm::CStrPtr{g_build_filename(pathStrPtr.get(), name.toStdString().c_str(), nullptr)};
+    if(g_key_file_save_to_file(kf, launcher.get(), nullptr)) {
+        Q_EMIT desktopEntryCreated(dirPath_, name);
+    }
     g_key_file_free(kf);
-
-    Q_EMIT desktopEntryCreated(name);
 
     QDialog::accept();
 }

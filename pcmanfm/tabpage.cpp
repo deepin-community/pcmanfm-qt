@@ -32,9 +32,12 @@
 #include <QScrollBar>
 #include <QToolButton>
 #include <QLabel>
+#include <QToolTip>
 #include <QDir>
+#include <QStandardPaths>
 #include "settings.h"
 #include "application.h"
+#include "desktopentrydialog.h"
 #include <QTimer>
 #include <QDebug>
 
@@ -46,7 +49,8 @@ bool ProxyFilter::filterAcceptsRow(const Fm::ProxyFolderModel* model, const std:
     if(!model || !info) {
         return true;
     }
-    QString baseName = QString::fromStdString(info->name());
+    QString baseName = fullName_ && !info->name().empty() ? QString::fromStdString(info->name())
+                                                          : info->displayName();
     if(!filterStr_.isEmpty() && !baseName.contains(filterStr_, Qt::CaseInsensitive)) {
         return false;
     }
@@ -116,6 +120,7 @@ TabPage::TabPage(QWidget* parent):
     proxyModel_->setBackupAsHidden(settings.backupAsHidden());
     proxyModel_->setShowThumbnails(settings.showThumbnails());
     connect(proxyModel_, &ProxyFolderModel::sortFilterChanged, this, [this] {
+        QToolTip::showText(QPoint(), QString()); // remove the tooltip, if any
         saveFolderSorting();
         Q_EMIT sortFilterChanged();
     });
@@ -148,6 +153,7 @@ TabPage::TabPage(QWidget* parent):
     folderView_->setModel(proxyModel_);
     verticalLayout->addWidget(folderView_);
 
+    folderView_->childView()->installEventFilter(this);
     if(settings.noItemTooltip()) {
         folderView_->childView()->viewport()->installEventFilter(this);
     }
@@ -185,13 +191,10 @@ void TabPage::transientFilterBar(bool transient) {
         filterBar_->clear();
         if(transient) {
             filterBar_->hide();
-            folderView_->childView()->removeEventFilter(this);
-            folderView_->childView()->installEventFilter(this);
             connect(filterBar_, &FilterBar::lostFocus, this, &TabPage::onLosingFilterBarFocus);
         }
         else {
             filterBar_->show();
-            folderView_->childView()->removeEventFilter(this);
             disconnect(filterBar_, &FilterBar::lostFocus, this, &TabPage::onLosingFilterBarFocus);
         }
     }
@@ -214,10 +217,13 @@ void TabPage::showFilterBar() {
 }
 
 bool TabPage::eventFilter(QObject* watched, QEvent* event) {
-    // when a text is typed inside the view, type it inside the filter-bar
-    if(filterBar_ && watched == folderView_->childView() && event->type() == QEvent::KeyPress) {
-        if(QKeyEvent* ke = static_cast<QKeyEvent*>(event)) {
-            filterBar_->keyPressed(ke);
+    if(watched == folderView_->childView() && event->type() == QEvent::KeyPress) {
+        QToolTip::showText(QPoint(), QString()); // remove the tooltip, if any
+        // when a text is typed inside the view, type it inside the transient filter-bar
+        if(filterBar_ && !static_cast<Application*>(qApp)->settings().showFilter()) {
+            if(QKeyEvent* ke = static_cast<QKeyEvent*>(event)) {
+                filterBar_->keyPressed(ke);
+            }
         }
     }
     else if (watched == folderView_->childView()->viewport() && event->type() == QEvent::ToolTip) {
@@ -235,6 +241,8 @@ void TabPage::backspacePressed() {
 
 void TabPage::onFilterStringChanged(QString str) {
     if(filterBar_ && str != getFilterStr()) {
+        QToolTip::showText(QPoint(), QString()); // remove the tooltip, if any
+
         bool transientFilterBar = !static_cast<Application*>(qApp)->settings().showFilter();
 
         // with a transient filter-bar, let the current index be selected by Qt
@@ -251,7 +259,14 @@ void TabPage::onFilterStringChanged(QString str) {
         }
 
         setFilterStr(str);
-        applyFilter();
+
+        // Because the filter string may be typed inside the view, we should wait for Qt
+        // to select an item before deciding about the selection in applyFilter().
+        // Therefore, we use a single-shot timer to apply the filter.
+        QTimer::singleShot(0, folderView_, [this] {
+            applyFilter();
+        });
+
         // show/hide the transient filter-bar appropriately
         if(transientFilterBar) {
             if(filterBar_->isVisibleTo(this)) { // the page itself may be in an inactive tab
@@ -278,6 +293,7 @@ void TabPage::freeFolder() {
         }
         disconnect(folder_.get(), nullptr, this, nullptr); // disconnect from all signals
         folder_ = nullptr;
+        filesToTrust_.clear();
     }
 }
 
@@ -314,9 +330,26 @@ void TabPage::onFolderStartLoading() {
 
 void TabPage::onUiUpdated() {
     bool scrolled = false;
+    // if there are files to select, select them
+    if(!filesToSelect_.empty()) {
+        Fm::FileInfoList infos;
+        for(const auto& file : filesToSelect_) {
+            if(auto info = proxyModel_->fileInfoFromPath(file)) {
+                infos.push_back(info);
+            }
+        }
+        filesToSelect_.clear();
+        if(folderView_->selectFiles(infos)) {
+            scrolled = true; // scrolling is done by FolderView::selectFiles()
+            QModelIndexList indexes = folderView_->selectionModel()->selectedIndexes();
+            if(!indexes.isEmpty()) {
+                folderView_->selectionModel()->setCurrentIndex(indexes.first(), QItemSelectionModel::NoUpdate);
+            }
+        }
+    }
     // if the current folder is the parent folder of the last browsed folder,
     // select the folder item in current view.
-    if(lastFolderPath_ && lastFolderPath_.parent() == path()) {
+    if(!scrolled && lastFolderPath_ && lastFolderPath_.parent() == path()) {
         QModelIndex index = folderView_->indexFromFolderPath(lastFolderPath_);
         if(index.isValid()) {
             folderView_->childView()->scrollTo(index, QAbstractItemView::EnsureVisible);
@@ -370,13 +403,13 @@ void TabPage::onFileSizeChanged(const QModelIndex& index) {
 void TabPage::onFilesAdded(Fm::FileInfoList files) {
     if(static_cast<Application*>(qApp)->settings().selectNewFiles()) {
         if(!selectionTimer_) {
-            folderView_->selectFiles(files, false);
             selectionTimer_ = new QTimer (this);
             selectionTimer_->setSingleShot(true);
-            selectionTimer_->start(200);
+            if(folderView_->selectFiles(files, false)) {
+                selectionTimer_->start(200);
+            }
         }
-        else {
-            folderView_->selectFiles(files, selectionTimer_->isActive());
+        else if(folderView_->selectFiles(files, selectionTimer_->isActive())) {
             selectionTimer_->start(200);
         }
     }
@@ -387,12 +420,54 @@ void TabPage::onFilesAdded(Fm::FileInfoList files) {
             folderView_->selectionModel()->setCurrentIndex(firstIndx, QItemSelectionModel::NoUpdate);
         }
     }
+
+    // trust the files that are added by createShortcut()
+    if(!filesToTrust_.isEmpty()) {
+        for(const auto& file : files) {
+            const QString fileName = QString::fromStdString(file->name());
+            if(filesToTrust_.contains(fileName)) {
+                file->setTrustable(true);
+                filesToTrust_.removeAll(fileName);
+                if(filesToTrust_.isEmpty()) {
+                    break;
+                }
+            }
+        }
+    }
+}
+
+void TabPage::localizeTitle(const Fm::FilePath& path) {
+    // force localization on some locations (FIXME: localize them in libfm-qt?)
+    if(!path.isNative()) {
+        if(path.hasUriScheme("search")) {
+            title_ = tr("Search Results");
+        }
+        else if(strcmp(path.toString().get(), "menu://applications/") == 0) {
+            title_ = tr("Applications");
+        }
+        else if(!path.hasParent()) {
+            if(path.hasUriScheme("computer")) {
+                title_ = tr("Computer");
+            }
+            else if(path.hasUriScheme("network")) {
+                title_ = tr("Network");
+            }
+            else if(path.hasUriScheme("trash")) {
+                title_ = tr("Trash");
+            }
+        }
+    }
+    else if(QString::fromUtf8(path.toString().get()) ==
+            QStandardPaths::writableLocation(QStandardPaths::DesktopLocation)) {
+        title_ = tr("Desktop");
+    }
 }
 
 void TabPage::onFolderFinishLoading() {
     auto fi = folder_->info();
     if(fi) { // if loading of the folder fails, it's possible that we don't have FmFileInfo.
         title_ = fi->displayName();
+        localizeTitle(folder_->path());
         Q_EMIT titleChanged();
     }
 
@@ -437,25 +512,32 @@ void TabPage::onFolderFinishLoading() {
     // After finishing loading the folder, the model is updated, but Qt delays the UI update
     // for performance reasons. Therefore at this point the UI is not up to date.
     // For example, the scrollbar ranges are not updated yet. We solve this by installing an Qt timeout handler.
-    QTimer::singleShot(10, this, SLOT(onUiUpdated()));
+    QTimer::singleShot(10, this, &TabPage::onUiUpdated);
 }
 
 void TabPage::onFolderError(const Fm::GErrorPtr& err, Fm::Job::ErrorSeverity severity, Fm::Job::ErrorAction& response) {
     if(err.domain() == G_IO_ERROR) {
         if(err.code() == G_IO_ERROR_NOT_MOUNTED && severity < Fm::Job::ErrorSeverity::CRITICAL) {
             auto& path = folder_->path();
-            MountOperation* op = new MountOperation(true);
-            op->mountEnclosingVolume(path);
-            if(op->wait()) { // blocking event loop, wait for mount operation to finish.
-                // This will reload the folder, which generates a new "start-loading"
-                // signal, so we get more "start-loading" signals than "finish-loading"
-                // signals. FIXME: This is a bug of libfm.
-                // Because the two signals are not correctly paired, we need to
-                // remove busy cursor here since "finish-loading" is not emitted.
-                QApplication::restoreOverrideCursor(); // remove busy cursor
-                overrideCursor_ = false;
-                response = Fm::Job::ErrorAction::RETRY;
-                return;
+            // WARNING: GVFS admin backend has a bug that tries to mount an admin path with
+            // a double slash, like "admin://X", even when Admin is already mounted. The mount
+            // is always completed successfully, so that it can cause an infinite loop here.
+            // Since "admin" is already handled by canOpenAdmin(), it can be safely excluded
+            // here, as a workaround.
+            if(!path.hasUriScheme("admin")) {
+                MountOperation* op = new MountOperation(true);
+                op->mountEnclosingVolume(path);
+                if(op->wait()) { // blocking event loop, wait for mount operation to finish.
+                    // This will reload the folder, which generates a new "start-loading"
+                    // signal, so we get more "start-loading" signals than "finish-loading"
+                    // signals. FIXME: This is a bug of libfm.
+                    // Because the two signals are not correctly paired, we need to
+                    // remove busy cursor here since "finish-loading" is not emitted.
+                    QApplication::restoreOverrideCursor(); // remove busy cursor
+                    overrideCursor_ = false;
+                    response = Fm::Job::ErrorAction::RETRY;
+                    return;
+                }
             }
         }
     }
@@ -517,7 +599,7 @@ void TabPage::onFolderRemoved() {
     // Maybe it's the problem of glib mainloop integration?
     // Call it when idle works, though.
     if(settings.closeOnUnmount()) {
-        QTimer::singleShot(0, this, SLOT(deleteLater()));
+        QTimer::singleShot(0, this, &TabPage::deleteLater);
     }
     else {
         chdir(Fm::FilePath::homeDir());
@@ -566,6 +648,10 @@ void TabPage::chdir(Fm::FilePath newPath, bool addHistory) {
             return;
         }
 
+        if (newPath.hasUriScheme("admin") && !canOpenAdmin()) {
+            return; // see canOpenAdmin() for a thorough explanation
+        }
+
         // reset the status selected text
         statusText_[StatusTextSelectedFiles] = QString();
 
@@ -591,8 +677,11 @@ void TabPage::chdir(Fm::FilePath newPath, bool addHistory) {
         freeFolder();
     }
 
+    // remove the tooltip, if any
+    QToolTip::showText(QPoint(), QString());
     // set title as with path button (will change if the new folder is loaded)
     title_ = QString::fromUtf8(newPath.baseName().get());
+    localizeTitle(newPath);
     Q_EMIT titleChanged();
 
     folder_ = Fm::Folder::fromPath(newPath);
@@ -619,15 +708,19 @@ void TabPage::chdir(Fm::FilePath newPath, bool addHistory) {
        || newPath.hasUriScheme("menu") || newPath.hasUriScheme("trash")
        || newPath.hasUriScheme("network") || newPath.hasUriScheme("computer")) {
         folderModel_->setShowFullName(false);
+        proxyFilter_->filterFullName(false);
     }
     else {
         folderModel_->setShowFullName(true);
+        proxyFilter_->filterFullName(true);
     }
 
     // folderSettings_ will be set by saveFolderSorting() when the sort filter is changed below
     // (and also by setViewMode()); here, we only need to know whether it should be saved
     FolderSettings folderSettings = settings.loadFolderSettings(path());
     folderSettings_.setCustomized(folderSettings.isCustomized());
+    folderSettings_.setRecursive(folderSettings.recursive());
+    folderSettings_.seInheritedPath(folderSettings.inheritedPath());
 
     // set sorting
     proxyModel_->sort(folderSettings.sortColumn(), folderSettings.sortOrder());
@@ -651,6 +744,10 @@ void TabPage::chdir(Fm::FilePath newPath, bool addHistory) {
 
 void TabPage::selectAll() {
     folderView_->selectAll();
+}
+
+void TabPage::deselectAll() {
+    folderView_->selectionModel()->clearSelection();
 }
 
 void TabPage::invertSelection() {
@@ -816,10 +913,8 @@ void TabPage::setViewMode(Fm::FolderView::ViewMode mode) {
     if(prevMode != folderView_->viewMode()) {
         // FolderView::setViewMode() may delete the view to switch between list and tree.
         // So, the event filter should be re-installed and the status message should be updated.
-        if(!settings.showFilter()) {
-            folderView_->childView()->removeEventFilter(this);
-            folderView_->childView()->installEventFilter(this);
-        }
+        folderView_->childView()->removeEventFilter(this);
+        folderView_->childView()->installEventFilter(this);
         if(settings.noItemTooltip()) {
             folderView_->childView()->viewport()->removeEventFilter(this);
             folderView_->childView()->viewport()->installEventFilter(this);
@@ -891,80 +986,161 @@ void TabPage::applyFilter() {
     }
 
     int prevSelSize = folderView_->selectionModel()->selectedIndexes().size();
-    bool selectFirst = false;
 
     proxyModel_->updateFilters();
 
-    QModelIndex curIndex = folderView_->selectionModel()->currentIndex();
     QModelIndex firstIndx = proxyModel_->index(0, 0);
     if(proxyFilter_->getFilterStr().isEmpty()) {
+        QModelIndex curIndex = folderView_->selectionModel()->currentIndex();
         if (curIndex.isValid()) {
             // scroll to the current item on removing filter
             folderView_->childView()->scrollTo(curIndex, QAbstractItemView::EnsureVisible);
         }
         else if (firstIndx.isValid()) {
-            // if the filter is removed and there is no current item, set the first item as current
+            // if there is no current item, set the first item as current without changing the selection
             folderView_->selectionModel()->setCurrentIndex(firstIndx, QItemSelectionModel::NoUpdate);
         }
     }
-    else if (!folderView_->hasSelection()) {
-        // if there is a filter but no selection, select the first item
-        if(firstIndx.isValid()) {
-            folderView_->childView()->setCurrentIndex(firstIndx);
-            selectFirst = true;
-        }
-    }
     else {
-        // if there is a filter and a selection, ensure the current index is visible
+        bool selectionMade = false;
+        if(firstIndx.isValid()
+           && !static_cast<Application*>(qApp)->settings().showFilter()) {
+            // preselect an appropriate item if the filter-bar is transient
+            auto indexList = proxyModel_->match(firstIndx, Qt::DisplayRole, proxyFilter_->getFilterStr());
+            if(!indexList.isEmpty()) {
+                if(!folderView_->selectionModel()->isSelected(indexList.at(0))) {
+                    folderView_->childView()->setCurrentIndex(indexList.at(0));
+                    selectionMade = true;
+                }
+            }
+            else if(!folderView_->selectionModel()->isSelected(firstIndx)) {
+                folderView_->childView()->setCurrentIndex(firstIndx);
+                selectionMade = true;
+            }
+        }
+
+        // if no new selection is made and some selected files are filtered out,
+        // "View::selChanged()" won't be emitted
+        if(!selectionMade
+           && prevSelSize > folderView_->selectionModel()->selectedIndexes().size()) {
+                onSelChanged();
+        }
+
+        // ensure that the current item exists and is visible
+        QModelIndex curIndex = folderView_->selectionModel()->currentIndex();
         if (curIndex.isValid()) {
             folderView_->childView()->scrollTo(curIndex, QAbstractItemView::EnsureVisible);
         }
-        else { // should never happen
+        else {
             QModelIndexList selIndexes = folderView_->selectionModel()->selectedIndexes();
-            if(!selIndexes.isEmpty()) { // always true
-                QModelIndex lastIndex = selIndexes.last();
-                folderView_->selectionModel()->setCurrentIndex(lastIndex, QItemSelectionModel::NoUpdate);
-                folderView_->childView()->scrollTo(lastIndex, QAbstractItemView::EnsureVisible);
+            curIndex = selIndexes.isEmpty() ? firstIndx : selIndexes.last();
+            if (curIndex.isValid()) {
+                folderView_->selectionModel()->setCurrentIndex(curIndex, QItemSelectionModel::NoUpdate);
+                folderView_->childView()->scrollTo(curIndex, QAbstractItemView::EnsureVisible);
             }
         }
-    }
-
-    // if some selected files are filtered out, "View::selChanged()" won't be emitted
-    if(!selectFirst && prevSelSize > folderView_->selectionModel()->selectedIndexes().size()) {
-        onSelChanged();
     }
 
     statusText_[StatusTextNormal] = formatStatusText();
     Q_EMIT statusChanged(StatusTextNormal, statusText_[StatusTextNormal]);
 }
 
-void TabPage::setCustomizedView(bool value) {
-    if(folderSettings_.isCustomized() == value) {
+void TabPage::setCustomizedView(bool value, bool recursive) {
+    if(folderSettings_.isCustomized() == value && folderSettings_.recursive() == recursive) {
         return;
     }
 
     Settings& settings = static_cast<Application*>(qApp)->settings();
-    folderSettings_.setCustomized(value);
     if(value) { // save customized folder view settings
+        folderSettings_.setCustomized(value);
+        folderSettings_.setRecursive(recursive);
         settings.saveFolderSettings(path(), folderSettings_);
     }
-    else { // use default folder view settings
+    else { // use default or inherited folder view settings
         settings.clearFolderSettings(path());
+        // get folderSettings_ again because, although it isn't customized, it may be inherited
+        folderSettings_ = settings.loadFolderSettings(path());
         // settings may change temporarily by connecting to the signal TabPage::sortFilterChanged,
         // which will be emitted below (that happens in MainWindow::onTabPageSortFilterChanged,
         // for example), so we should remember its relevant values before proceeding
-        bool showHidden = settings.showHidden();
-        bool sortCaseSensitive = settings.sortCaseSensitive();
-        bool sortFolderFirst = settings.sortFolderFirst();
-        bool sortHiddenLast = settings.sortHiddenLast();
-        Fm::FolderModel::ColumnId sortColumn = settings.sortColumn();
-        Qt::SortOrder sortOrder = settings.sortOrder();
+        bool showHidden = folderSettings_.showHidden();
+        bool sortCaseSensitive = folderSettings_.sortCaseSensitive();
+        bool sortFolderFirst = folderSettings_.sortFolderFirst();
+        bool sortHiddenLast = folderSettings_.sortHiddenLast();
+        Fm::FolderModel::ColumnId sortColumn = folderSettings_.sortColumn();
+        Qt::SortOrder sortOrder = folderSettings_.sortOrder();
+        Fm::FolderView::ViewMode viewMode = folderSettings_.viewMode();
         setShowHidden(showHidden);
         setSortCaseSensitive(sortCaseSensitive);
         setSortFolderFirst(sortFolderFirst);
         setSortHiddenLast(sortHiddenLast);
         sort(sortColumn, sortOrder);
+        setViewMode(viewMode);
     }
+}
+
+void TabPage::goToCustomizedViewSource() {
+    if(const auto inheritedPath = folderSettings_.inheritedPath()) {
+        chdir(inheritedPath);
+    }
+}
+
+void TabPage::createShortcut() {
+    if(folder_ && folder_->isLoaded()) {
+        auto folderPath = folder_->path();
+        if(folderPath && folderPath.isNative()) {
+            DesktopEntryDialog* dlg = new DesktopEntryDialog(this, folderPath);
+            dlg->setAttribute(Qt::WA_DeleteOnClose);
+            connect(dlg, &DesktopEntryDialog::desktopEntryCreated, [this] (const Fm::FilePath& parent, const QString& name) {
+                // if the current directory does not have a file monitor or is changed,
+                // there will be no point to tracking the created shortcut
+                if(folder_ && folder_->hasFileMonitor() && folder_->path() == parent) {
+                    filesToTrust_ << name;
+                }
+            });
+            dlg->show();
+            if(!static_cast<Application*>(qApp)->underWayland()) {
+                dlg->raise();
+                dlg->activateWindow();
+            }
+        }
+    }
+}
+
+bool TabPage::canOpenAdmin() {
+    /* NOTE: "admin:///" requires a special handling because it first needs an invisible mount
+       and then the password. Since its password prompt is shown with all GIO functions that
+       query file info, a direct call to chdir() will show two password prompts if the first one
+       is cancelled.
+
+       Fm::uriExists() (= g_file_query_exists) is used to check Admin. It calls the password prompt
+       if Admin is mounted. Four scenarios are possible:
+
+       1. Admin is not supported. Then, the mount operation fails and this method returns "false"
+          after showing an error message.
+
+       2. Admin is supported but not mounted yet. Then, the first call to Fm::uriExists()
+          does not show a password prompt. We mount Admin and ask for the password by calling
+          Fm::uriExists() again.
+
+       3. If Admin is already mounted but the correct password is not entered yet, the password
+          will be asked by the first call to Fm::uriExists(). If the password is correct, "true"
+          will be returned; if not, MountOperation::wait() will return "false" (because a repeated
+          mount fails) and so, another password prompt will not be shown.
+
+       4. If Admin is already mounted and the password was entered before, "true" will be returned.
+    */
+    const char* admin = "admin:///";
+    if(Fm::uriExists(admin)) {
+        return true;
+    }
+    MountOperation* op = new MountOperation(false);
+    op->mountEnclosingVolume(Fm::FilePath::fromUri(admin));
+    if(op->wait() && Fm::uriExists(admin)) {
+        return true;
+    }
+    QMessageBox::critical(parentWidget()->window(), QObject::tr("Error"), QObject::tr("Cannot open as Admin."));
+    return false;
 }
 
 } // namespace PCManFM
