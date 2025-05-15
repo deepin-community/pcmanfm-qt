@@ -21,8 +21,8 @@
 #ifndef PCMANFM_FOLDERVIEW_H
 #define PCMANFM_FOLDERVIEW_H
 
-#include <libfm-qt/folderview.h>
-#include <libfm-qt/core/filepath.h>
+#include <libfm-qt6/folderview.h>
+#include <libfm-qt6/core/filepath.h>
 
 
 namespace Fm {
@@ -38,7 +38,7 @@ class View : public Fm::FolderView {
     Q_OBJECT
 public:
 
-    explicit View(Fm::FolderView::ViewMode _mode = IconMode, QWidget* parent = 0);
+    explicit View(Fm::FolderView::ViewMode _mode = IconMode, QWidget* parent = nullptr);
     virtual ~View();
 
     void updateFromSettings(Settings& settings);

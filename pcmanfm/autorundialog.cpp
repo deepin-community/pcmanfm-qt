@@ -22,8 +22,8 @@
 #include <QListWidgetItem>
 #include "application.h"
 #include "mainwindow.h"
-#include <libfm-qt/core/filepath.h>
-#include <libfm-qt/core/iconinfo.h>
+#include <libfm-qt6/core/filepath.h>
+#include <libfm-qt6/core/iconinfo.h>
 
 namespace PCManFM {
 
@@ -50,8 +50,7 @@ AutoRunDialog::AutoRunDialog(GVolume* volume, GMount* mount, QWidget* parent, Qt
 }
 
 AutoRunDialog::~AutoRunDialog() {
-    g_list_foreach(applications, (GFunc)g_object_unref, nullptr);
-    g_list_free(applications);
+    g_list_free_full(applications, g_object_unref);
 
     if(mount_) {
         g_object_unref(mount_);
@@ -123,7 +122,8 @@ void AutoRunDialog::onContentTypeFinished(GMount* mount, GAsyncResult* res, Auto
                 QIcon icon = Fm::IconInfo::fromGIcon(gicon)->qicon();
                 QString text = QString::fromUtf8(g_app_info_get_name(app));
                 QListWidgetItem* item = new QListWidgetItem(icon, text);
-                item->setData(Qt::UserRole, qVariantFromValue<void*>(app));
+                // NOTE (void*) casting is needed as GAppInfo does not inherit from QObject
+                item->setData(Qt::UserRole, QVariant::fromValue((void*)app));
                 pThis->ui.listWidget->insertItem(pos, item);
             }
         }

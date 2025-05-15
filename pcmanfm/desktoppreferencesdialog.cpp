@@ -27,10 +27,9 @@
 #include <QFile>
 #include <QDir>
 #include <QSaveFile>
-#include <QRegExp>
 #include <QDebug>
 #include <QStandardPaths>
-#include <libfm-qt/filedialog.h>
+#include <libfm-qt6/filedialog.h>
 
 namespace PCManFM {
 
@@ -39,7 +38,7 @@ static int iconSizes[] = {96, 72, 64, 48, 36, 32, 24, 20};
 DesktopPreferencesDialog::DesktopPreferencesDialog(QWidget* parent, Qt::WindowFlags f):
   QDialog(parent, f),
   editDesktopFolderEnabled(false),
-  desktopFolderWidget(0),
+  desktopFolderWidget(nullptr),
   desktopFolder() {
 
 
@@ -84,7 +83,8 @@ DesktopPreferencesDialog::DesktopPreferencesDialog(QWidget* parent, Qt::WindowFl
 
   if (mode == DesktopWindow::WallpaperStretch || mode == DesktopWindow::WallpaperCenter
       || mode == DesktopWindow::WallpaperFit || mode == DesktopWindow::WallpaperZoom) {
-    ui.perScreenWallpaper->setEnabled(true);
+    // Under Wayland, separate desktops are created for avoiding problems.
+    ui.perScreenWallpaper->setEnabled(!static_cast<Application*>(qApp)->underWayland());
   }
   else
     ui.perScreenWallpaper->setEnabled(false);
@@ -129,20 +129,26 @@ DesktopPreferencesDialog::DesktopPreferencesDialog(QWidget* parent, Qt::WindowFl
   ui.vMargin->setValue(settings.desktopCellMargins().height());
   connect(ui.lockMargins, &QAbstractButton::clicked, this, &DesktopPreferencesDialog::lockMargins);
 
+  ui.leftMargin->setValue(settings.workAreaMargins().left());
+  ui.topMargin->setValue(settings.workAreaMargins().top());
+  ui.rightMargin->setValue(settings.workAreaMargins().right());
+  ui.bottomMargin->setValue(settings.workAreaMargins().bottom());
+
   ui.defaultFileManager->setChecked(settings.openWithDefaultFileManager());
+
+  ui.allSticky->setChecked(settings.allSticky());
 
   resize(sizeHint()); // show it compact
 }
 
-DesktopPreferencesDialog::~DesktopPreferencesDialog() {
-}
+DesktopPreferencesDialog::~DesktopPreferencesDialog() = default;
 
 void DesktopPreferencesDialog::setupDesktopFolderUi()
 {
   desktopFolderWidget = new QWidget();
   uiDesktopFolder.setupUi(desktopFolderWidget);
   ui.advancedPageLayout->insertWidget(1, desktopFolderWidget);
-  uiDesktopFolder.verticalLayout->setMargin(0);
+  uiDesktopFolder.verticalLayout->setContentsMargins(0, 0, 0, 0);
 
   desktopFolder = XdgDir::readDesktopDir();
   qDebug("desktop folder: %s", desktopFolder.toStdString().c_str());
@@ -207,7 +213,14 @@ void DesktopPreferencesDialog::applySettings()
 
   settings.setDesktopCellMargins(QSize(ui.hMargin->value(), ui.vMargin->value()));
 
+  settings.setWorkAreaMargins(QMargins(ui.leftMargin->value(),
+                                       ui.topMargin->value(),
+                                       ui.rightMargin->value(),
+                                       ui.bottomMargin->value()));
+
   settings.setOpenWithDefaultFileManager(ui.defaultFileManager->isChecked());
+
+  settings.setAllSticky(ui.allSticky->isChecked());
 
   settings.save();
 }
@@ -234,7 +247,8 @@ void DesktopPreferencesDialog::onWallpaperModeChanged(int index) {
 
   if (mode == DesktopWindow::WallpaperStretch || mode == DesktopWindow::WallpaperCenter
       || mode == DesktopWindow::WallpaperFit || mode == DesktopWindow::WallpaperZoom) {
-    ui.perScreenWallpaper->setEnabled(true);
+    // Under Wayland, separate desktops are created for avoiding problems.
+    ui.perScreenWallpaper->setEnabled(!static_cast<Application*>(qApp)->underWayland());
   }
   else
     ui.perScreenWallpaper->setEnabled(false);
@@ -320,7 +334,8 @@ void DesktopPreferencesDialog::onBrowseDesktopFolderClicked()
   QFileDialog dlg;
   dlg.setAcceptMode(QFileDialog::AcceptOpen);
   dlg.setAcceptMode(QFileDialog::AcceptOpen);
-  dlg.setFileMode(QFileDialog::DirectoryOnly);
+  dlg.setFileMode(QFileDialog::Directory);
+  dlg.setOption(QFileDialog::ShowDirsOnly);
   if (dlg.exec() == QDialog::Accepted) {
     QString dir;
     dir = dlg.selectedFiles().constFirst();
@@ -328,7 +343,7 @@ void DesktopPreferencesDialog::onBrowseDesktopFolderClicked()
   }
 }
 
-void DesktopPreferencesDialog::selectPage(QString name) {
+void DesktopPreferencesDialog::selectPage(const QString& name) {
   QWidget* page = findChild<QWidget*>(name + QStringLiteral("Page"));
   if(page)
     ui.tabWidget->setCurrentWidget(page);

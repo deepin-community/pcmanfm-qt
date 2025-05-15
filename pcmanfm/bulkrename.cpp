@@ -23,7 +23,7 @@
 #include <QMessageBox>
 #include <QProgressDialog>
 
-#include <libfm-qt/utilities.h>
+#include <libfm-qt6/utilities.h>
 
 namespace PCManFM {
 
@@ -34,13 +34,13 @@ BulkRenameDialog::BulkRenameDialog(QWidget* parent, Qt::WindowFlags flags) :
     connect(ui.buttonBox->button(QDialogButtonBox::Ok), &QAbstractButton::clicked, this, &QDialog::accept);
     connect(ui.buttonBox->button(QDialogButtonBox::Cancel), &QAbstractButton::clicked, this, &QDialog::reject);
     resize(minimumSize());
-    setMaximumHeight(minimumHeight()); // no vertical resizing
+    setMaximumHeight(minimumSizeHint().height()); // no vertical resizing
 }
 
 void BulkRenameDialog::showEvent(QShowEvent* event) {
     QDialog::showEvent(event);
     if(ui.lineEdit->text().endsWith(QLatin1Char('#'))) { // select what's before "#"
-        QTimer::singleShot(0, [this]() {
+        QTimer::singleShot(0, this, [this]() {
             ui.lineEdit->setSelection(0, ui.lineEdit->text().size() - 1);
         });
     }
@@ -52,15 +52,31 @@ BulkRenamer::BulkRenamer(const Fm::FileInfoList& files, QWidget* parent) {
     }
     QString baseName;
     int start = 0;
+    bool zeroPadding = false;
+    bool respectLocale = false;
+    QLocale locale;
     BulkRenameDialog dlg(parent);
     switch(dlg.exec()) {
     case QDialog::Accepted:
         baseName = dlg.getBaseName();
         start = dlg.getStart();
+        zeroPadding = dlg.getZeroPadding();
+        respectLocale = dlg.getRespectLocale();
+        locale = dlg.locale();
         break;
     default:
         return;
     }
+
+    // maximum space taken by numbers (if needed)
+    int numSpace = zeroPadding ? QString::number(start + files.size()).size() : 0;
+    // used for filling the space (if needed)
+    const QChar zero = respectLocale ? !locale.zeroDigit().isEmpty()
+                                     ? locale.zeroDigit().at(0)
+                                     : QLatin1Char('0')
+                                     : QLatin1Char('0');
+    // used for changing numbers to strings
+    const QString specifier = respectLocale ? QStringLiteral("%L1") : QStringLiteral("%1");
 
     if(!baseName.contains(QLatin1Char('#'))) {
         // insert "#" before the last dot
@@ -97,7 +113,7 @@ BulkRenamer::BulkRenamer(const Fm::FileInfoList& files, QWidget* parent) {
             }
         }
 
-        newName.replace(QLatin1Char('#'), QString::number(start + i));
+        newName.replace(QLatin1Char('#'), specifier.arg(start + i, numSpace, 10, zero));
         if (newName == fileName || !Fm::changeFileName(file->path(), newName, nullptr, false)) {
             ++failed;
         }
@@ -112,8 +128,6 @@ BulkRenamer::BulkRenamer(const Fm::FileInfoList& files, QWidget* parent) {
     }
 }
 
-BulkRenamer::~BulkRenamer() {
-
-}
+BulkRenamer::~BulkRenamer() = default;
 
 } //namespace PCManFM

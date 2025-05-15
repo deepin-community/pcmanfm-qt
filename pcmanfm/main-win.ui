@@ -76,10 +76,20 @@
      <addaction name="actionNewFolder"/>
      <addaction name="actionNewBlankFile"/>
     </widget>
+    <widget class="QMenu" name="menuRecentFiles">
+     <property name="title">
+      <string>Recent F&amp;iles</string>
+     </property>
+     <property name="icon">
+      <iconset theme="document-open-recent">
+       <normaloff>.</normaloff>.</iconset>
+     </property>
+    </widget>
     <addaction name="actionNewTab"/>
     <addaction name="actionNewWin"/>
     <addaction name="separator"/>
     <addaction name="menuCreateNew"/>
+    <addaction name="menuRecentFiles"/>
     <addaction name="separator"/>
     <addaction name="actionFileProperties"/>
     <addaction name="actionFolderProperties"/>
@@ -104,6 +114,7 @@
      </property>
      <addaction name="actionByFileName"/>
      <addaction name="actionByMTime"/>
+     <addaction name="actionByCrTime"/>
      <addaction name="actionByDTime"/>
      <addaction name="actionByFileSize"/>
      <addaction name="actionByFileType"/>
@@ -148,6 +159,16 @@
      <addaction name="actionShowFilter"/>
      <addaction name="actionUnfilter"/>
     </widget>
+    <widget class="QMenu" name="menuView_Settings">
+     <property name="title">
+      <string>&amp;Customized View Settings</string>
+     </property>
+     <addaction name="actionPreserveView"/>
+     <addaction name="actionPreserveViewRecursive"/>
+     <addaction name="separator"/>
+     <addaction name="actionGoToCustomizedViewSource"/>
+     <addaction name="actionCleanPerFolderConfig"/>
+    </widget>
     <addaction name="actionReload"/>
     <addaction name="separator"/>
     <addaction name="actionShowHidden"/>
@@ -155,7 +176,7 @@
     <addaction name="actionSplitView"/>
     <addaction name="menuSorting"/>
     <addaction name="menu_View_2"/>
-    <addaction name="actionPreserveView"/>
+    <addaction name="menuView_Settings"/>
     <addaction name="separator"/>
     <addaction name="actionSidePane"/>
     <addaction name="menuToolbars"/>
@@ -174,6 +195,7 @@
     <addaction name="actionDelete"/>
     <addaction name="separator"/>
     <addaction name="actionSelectAll"/>
+    <addaction name="actionDeselectAll"/>
     <addaction name="actionInvertSelection"/>
     <addaction name="separator"/>
     <addaction name="separator"/>
@@ -207,10 +229,14 @@
    </widget>
    <widget class="QMenu" name="menu_Tool">
     <property name="title">
-     <string>&amp;Tool</string>
+     <string>&amp;Tools</string>
     </property>
     <addaction name="actionOpenTerminal"/>
+    <addaction name="actionCreateLauncher"/>
+    <addaction name="separator"/>
+    <addaction name="actionOpenAsAdmin"/>
     <addaction name="actionOpenAsRoot"/>
+    <addaction name="separator"/>
     <addaction name="actionCopyFullPath"/>
     <addaction name="actionFindFiles"/>
    </widget>
@@ -468,11 +494,23 @@
    </property>
   </action>
   <action name="actionSelectAll">
+   <property name="icon">
+    <iconset theme="edit-select-all">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>Select &amp;All</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionDeselectAll">
+   <property name="text">
+    <string>De&amp;select All</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
    </property>
   </action>
   <action name="actionPreferences">
@@ -487,6 +525,10 @@
    <property name="text">
     <string>&amp;Ascending</string>
    </property>
+   <property name="icon">
+    <iconset theme="view-sort-ascending">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
   </action>
   <action name="actionDescending">
    <property name="checkable">
@@ -494,6 +536,10 @@
    </property>
    <property name="text">
     <string>&amp;Descending</string>
+   </property>
+   <property name="icon">
+    <iconset theme="view-sort-descending">
+     <normaloff>.</normaloff>.</iconset>
    </property>
   </action>
   <action name="actionByFileName">
@@ -510,6 +556,14 @@
    </property>
    <property name="text">
     <string>By &amp;Modification Time</string>
+   </property>
+  </action>
+  <action name="actionByCrTime">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>By C&amp;reation Time</string>
    </property>
   </action>
   <action name="actionByDTime">
@@ -560,17 +614,9 @@
     <string>&amp;Hidden Last</string>
    </property>
   </action>
-  <action name="actionPreserveSorting">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Preserve sorting for this folder</string>
-   </property>
-  </action>
   <action name="actionNewTab">
    <property name="icon">
-    <iconset theme="window-new">
+    <iconset theme="tab-new">
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
@@ -617,6 +663,9 @@
    <property name="text">
     <string>&amp;Invert Selection</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+A</string>
+   </property>
   </action>
   <action name="actionDelete">
    <property name="icon">
@@ -634,11 +683,19 @@
    <property name="text">
     <string>&amp;Rename</string>
    </property>
+   <property name="icon">
+    <iconset theme="edit-rename">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="shortcut">
     <string>F2</string>
    </property>
   </action>
   <action name="actionCloseTab">
+   <property name="icon">
+    <iconset theme="tab-close">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>C&amp;lose Tab</string>
    </property>
@@ -647,6 +704,10 @@
    </property>
   </action>
   <action name="actionFileProperties">
+   <property name="icon">
+    <iconset theme="document-properties">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>File &amp;Properties</string>
    </property>
@@ -676,6 +737,10 @@
    </property>
   </action>
   <action name="actionCloseWindow">
+   <property name="icon">
+    <iconset theme="window-close">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>&amp;Close Window</string>
    </property>
@@ -689,6 +754,10 @@
    </property>
   </action>
   <action name="actionOpenTerminal">
+   <property name="icon">
+    <iconset theme="utilities-terminal">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>Open &amp;Terminal</string>
    </property>
@@ -698,7 +767,7 @@
   </action>
   <action name="actionOpenAsRoot">
    <property name="text">
-    <string>Open as &amp;Root</string>
+    <string>Open Tab in &amp;Root Instance</string>
    </property>
   </action>
   <action name="actionEditBookmarks">
@@ -733,6 +802,10 @@
   <action name="actionFindFiles">
    <property name="text">
     <string>&amp;Find Files</string>
+   </property>
+   <property name="icon">
+    <iconset theme="edit-find">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="shortcut">
     <string>F3</string>
@@ -811,10 +884,14 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;Preserve Settings for This Folder</string>
+    <string>Preserve Settings for &amp;This Folder</string>
    </property>
   </action>
   <action name="actionConnectToServer">
+   <property name="icon">
+    <iconset theme="network-server">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>Connect to &amp;Server</string>
    </property>
@@ -839,11 +916,15 @@
    <property name="text">
     <string>&amp;Bulk Rename</string>
    </property>
+   <property name="icon">
+    <iconset theme="edit-rename">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="toolTip">
     <string>Bulk Rename</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+F2</string>
+    <string>Shift+F2</string>
    </property>
   </action>
   <action name="actionShowFilter">
@@ -874,6 +955,10 @@
   <action name="actionCopyFullPath">
    <property name="text">
     <string>&amp;Copy Full Path</string>
+   </property>
+   <property name="icon">
+    <iconset theme="edit-copy">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+C</string>
@@ -909,6 +994,45 @@
     <string>Hidden &amp;Shortcuts</string>
    </property>
   </action>
+  <action name="actionOpenAsAdmin">
+   <property name="text">
+    <string>Open Tab in &amp;Admin Mode</string>
+   </property>
+  </action>
+  <action name="actionCreateLauncher">
+   <property name="text">
+    <string>Create Launcher</string>
+   </property>
+   <property name="toolTip">
+    <string>Create Launcher</string>
+   </property>
+  </action>
+  <action name="actionPreserveViewRecursive">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Preserve Settings Recursively from &amp;Here</string>
+   </property>
+  </action>
+  <action name="actionGoToCustomizedViewSource">
+   <property name="text">
+    <string>&amp;Go to Source of Inherited Settings</string>
+   </property>
+  </action>
+  <action name="actionCleanPerFolderConfig">
+   <property name="text">
+    <string>&amp;Remove Settings of Nonexistent Folders</string>
+   </property>
+  </action>
+  <action name="actionClearRecent">
+   <property name="icon">
+    <iconset theme="edit-clear"/>
+   </property>
+   <property name="text">
+    <string>&amp;Clear</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -920,7 +1044,7 @@
   <customwidget>
    <class>Fm::SidePane</class>
    <extends>QWidget</extends>
-   <header location="global">libfm-qt/sidepane.h</header>
+   <header location="global">libfm-qt6/sidepane.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

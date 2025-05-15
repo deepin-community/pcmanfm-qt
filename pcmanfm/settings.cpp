@@ -25,9 +25,9 @@
 #include <QSettings>
 #include <QApplication>
 #include "desktopwindow.h"
-#include <libfm-qt/utilities.h>
-#include <libfm-qt/core/folderconfig.h>
-#include <libfm-qt/core/terminal.h>
+#include <libfm-qt6/utilities.h>
+#include <libfm-qt6/core/folderconfig.h>
+#include <libfm-qt6/core/terminal.h>
 #include <QStandardPaths>
 
 namespace PCManFM {
@@ -36,7 +36,6 @@ inline static const char* bookmarkOpenMethodToString(OpenDirTargetType value);
 inline static OpenDirTargetType bookmarkOpenMethodFromString(const QString str);
 
 inline static const char* wallpaperModeToString(int value);
-inline static int wallpaperModeFromString(const QString str);
 
 inline static const char* viewModeToString(Fm::FolderView::ViewMode value);
 inline static Fm::FolderView::ViewMode viewModeFromString(const QString str);
@@ -87,6 +86,7 @@ Settings::Settings():
     showTabClose_(true),
     switchToNewTab_(false),
     reopenLastTabs_(false),
+    splitViewTabsNum_(0),
     rememberWindowSize_(true),
     fixedWindowWidth_(640),
     fixedWindowHeight_(480),
@@ -124,24 +124,30 @@ Settings::Settings():
     showFullNames_(true),
     shadowHidden_(true),
     noItemTooltip_(false),
+    scrollPerPixel_(true),
     bigIconSize_(48),
     smallIconSize_(24),
     sidePaneIconSize_(24),
     thumbnailIconSize_(128),
+    onlyUserTemplates_(false),
+    templateTypeOnce_(false),
+    templateRunApp_(false),
     folderViewCellMargins_(QSize(3, 3)),
     desktopCellMargins_(QSize(3, 1)),
+    workAreaMargins_(QMargins(12, 12, 12, 12)),
     openWithDefaultFileManager_(false),
+    allSticky_(false),
     searchNameCaseInsensitive_(false),
     searchContentCaseInsensitive_(false),
     searchNameRegexp_(true),
     searchContentRegexp_(true),
     searchRecursive_(false),
-    searchhHidden_(false) {
+    searchhHidden_(false),
+    maxSearchHistory_(0),
+    recentFilesNumber_(0) {
 }
 
-Settings::~Settings() {
-
-}
+Settings::~Settings() = default;
 
 QString Settings::xdgUserConfigDir() {
     QString dirName;
@@ -184,12 +190,16 @@ QString Settings::profileDir(QString profile, bool useFallback) {
 bool Settings::load(QString profile) {
     profileName_ = profile;
     QString fileName = profileDir(profile, true) + QStringLiteral("/settings.conf");
-    return loadFile(fileName);
+    bool ret = loadFile(fileName);
+    loadRecentFiles();
+    return ret;
 }
 
 bool Settings::save(QString profile) {
     QString fileName = profileDir(profile.isEmpty() ? profileName_ : profile) + QStringLiteral("/settings.conf");
-    return saveFile(fileName);
+    bool ret = saveFile(fileName);
+    saveRecentFiles();
+    return ret;
 }
 
 bool Settings::loadFile(QString filePath) {
@@ -225,8 +235,7 @@ bool Settings::loadFile(QString filePath) {
     confirmTrash_ = settings.value(QStringLiteral("ConfirmTrash"), false).toBool();
     setQuickExec(settings.value(QStringLiteral("QuickExec"), false).toBool());
     selectNewFiles_ = settings.value(QStringLiteral("SelectNewFiles"), false).toBool();
-    // bool thumbnailLocal_;
-    // bool thumbnailMax;
+    recentFilesNumber_ = qBound(0, settings.value(QStringLiteral("RecentFilesNumber"), 0).toInt(), 50);
     settings.endGroup();
 
     settings.beginGroup(QStringLiteral("Desktop"));
@@ -240,9 +249,9 @@ bool Settings::loadFile(QString filePath) {
     wallpaperRandomize_ = settings.value(QStringLiteral("WallpaperRandomize")).toBool();
     transformWallpaper_ = settings.value(QStringLiteral("TransformWallpaper")).toBool();
     perScreenWallpaper_ = settings.value(QStringLiteral("PerScreenWallpaper")).toBool();
-    desktopBgColor_.setNamedColor(settings.value(QStringLiteral("BgColor"), QStringLiteral("#000000")).toString());
-    desktopFgColor_.setNamedColor(settings.value(QStringLiteral("FgColor"), QStringLiteral("#ffffff")).toString());
-    desktopShadowColor_.setNamedColor(settings.value(QStringLiteral("ShadowColor"), QStringLiteral("#000000")).toString());
+    desktopBgColor_ = QColor::fromString(settings.value(QStringLiteral("BgColor"), QStringLiteral("#000000")).toString());
+    desktopFgColor_ = QColor::fromString(settings.value(QStringLiteral("FgColor"), QStringLiteral("#ffffff")).toString());
+    desktopShadowColor_ = QColor::fromString(settings.value(QStringLiteral("ShadowColor"), QStringLiteral("#000000")).toString());
     if(settings.contains(QStringLiteral("Font"))) {
         desktopFont_.fromString(settings.value(QStringLiteral("Font")).toString());
     }
@@ -261,7 +270,16 @@ bool Settings::loadFile(QString filePath) {
 
     desktopCellMargins_ = (settings.value(QStringLiteral("DesktopCellMargins"), QSize(3, 1)).toSize()
                            .expandedTo(QSize(0, 0))).boundedTo(QSize(48, 48));
+    auto l = settings.value(QStringLiteral("WorkAreaMargins")).toList();
+    if(l.size() >= 4) {
+        workAreaMargins_.setLeft(qBound(0, l.at(0).toInt(), 200));
+        workAreaMargins_.setTop(qBound(0, l.at(1).toInt(), 200));
+        workAreaMargins_.setRight(qBound(0, l.at(2).toInt(), 200));
+        workAreaMargins_.setBottom(qBound(0, l.at(3).toInt(), 200));
+    }
+
     openWithDefaultFileManager_ = settings.value(QStringLiteral("OpenWithDefaultFileManager"), false).toBool();
+    allSticky_ = settings.value(QStringLiteral("AllSticky"), false).toBool();
     settings.endGroup();
 
     settings.beginGroup(QStringLiteral("Volume"));
@@ -274,6 +292,7 @@ bool Settings::loadFile(QString filePath) {
     settings.beginGroup(QStringLiteral("Thumbnail"));
     showThumbnails_ = settings.value(QStringLiteral("ShowThumbnails"), true).toBool();
     setMaxThumbnailFileSize(settings.value(QStringLiteral("MaxThumbnailFileSize"), 4096).toInt());
+    setMaxExternalThumbnailFileSize(settings.value(QStringLiteral("MaxExternalThumbnailFileSize"), -1).toInt());
     setThumbnailLocalFilesOnly(settings.value(QStringLiteral("ThumbnailLocalFilesOnly"), true).toBool());
     settings.endGroup();
 
@@ -291,6 +310,7 @@ bool Settings::loadFile(QString filePath) {
     showFullNames_ = settings.value(QStringLiteral("ShowFullNames"), true).toBool();
     shadowHidden_ = settings.value(QStringLiteral("ShadowHidden"), true).toBool();
     noItemTooltip_ = settings.value(QStringLiteral("NoItemTooltip"), false).toBool();
+    scrollPerPixel_ = settings.value(QStringLiteral("ScrollPerPixel"), true).toBool();
 
     // override config in libfm's FmConfig
     bigIconSize_ = toIconSize(settings.value(QStringLiteral("BigIconSize"), 48).toInt(), Big);
@@ -308,7 +328,8 @@ bool Settings::loadFile(QString filePath) {
     settings.endGroup();
 
     settings.beginGroup(QStringLiteral("Places"));
-    hiddenPlaces_ = settings.value(QStringLiteral("HiddenPlaces")).toStringList().toSet();
+    QStringList hiddenPlacesList = settings.value(QStringLiteral("HiddenPlaces")).toStringList();
+    hiddenPlaces_ = QSet<QString>(hiddenPlacesList.begin(), hiddenPlacesList.end());
     settings.endGroup();
 
     settings.beginGroup(QStringLiteral("Window"));
@@ -323,6 +344,7 @@ bool Settings::loadFile(QString filePath) {
     switchToNewTab_ = settings.value(QStringLiteral("SwitchToNewTab"), false).toBool();
     reopenLastTabs_ = settings.value(QStringLiteral("ReopenLastTabs"), false).toBool();
     tabPaths_ = settings.value(QStringLiteral("TabPaths")).toStringList();
+    splitViewTabsNum_ = settings.value(QStringLiteral("SplitViewTabsNum")).toInt();
     splitterPos_ = settings.value(QStringLiteral("SplitterPos"), 150).toInt();
     sidePaneVisible_ = settings.value(QStringLiteral("SidePaneVisible"), true).toBool();
     sidePaneMode_ = sidePaneModeFromString(settings.value(QStringLiteral("SidePaneMode")).toString());
@@ -338,6 +360,11 @@ bool Settings::loadFile(QString filePath) {
     searchContentRegexp_ = settings.value(QStringLiteral("searchContentRegexp"), true).toBool();
     searchRecursive_ = settings.value(QStringLiteral("searchRecursive"), false).toBool();
     searchhHidden_ = settings.value(QStringLiteral("searchhHidden"), false).toBool();
+    maxSearchHistory_ = qBound(0, settings.value(QStringLiteral("MaxSearchHistory"), 0).toInt(), 50);
+    namePatterns_ = settings.value(QStringLiteral("NamePatterns")).toStringList();
+    namePatterns_.removeDuplicates();
+    contentPatterns_ = settings.value(QStringLiteral("ContentPatterns")).toStringList();
+    contentPatterns_.removeDuplicates();
     settings.endGroup();
 
     return true;
@@ -372,8 +399,7 @@ bool Settings::saveFile(QString filePath) {
     settings.setValue(QStringLiteral("ConfirmTrash"), confirmTrash_);
     settings.setValue(QStringLiteral("QuickExec"), quickExec_);
     settings.setValue(QStringLiteral("SelectNewFiles"), selectNewFiles_);
-    // bool thumbnailLocal_;
-    // bool thumbnailMax;
+    settings.setValue(QStringLiteral("RecentFilesNumber"), recentFilesNumber_);
     settings.endGroup();
 
     settings.beginGroup(QStringLiteral("Desktop"));
@@ -400,7 +426,13 @@ bool Settings::saveFile(QString filePath) {
     settings.setValue(QStringLiteral("SortFolderFirst"), desktopSortFolderFirst_);
     settings.setValue(QStringLiteral("SortHiddenLast"), desktopSortHiddenLast_);
     settings.setValue(QStringLiteral("DesktopCellMargins"), desktopCellMargins_);
+    QList<QVariant> l{workAreaMargins_.left(),
+                      workAreaMargins_.top(),
+                      workAreaMargins_.right(),
+                      workAreaMargins_.bottom()};
+    settings.setValue(QStringLiteral("WorkAreaMargins"), l);
     settings.setValue(QStringLiteral("OpenWithDefaultFileManager"), openWithDefaultFileManager_);
+    settings.setValue(QStringLiteral("AllSticky"), allSticky_);
     settings.endGroup();
 
     settings.beginGroup(QStringLiteral("Volume"));
@@ -413,6 +445,7 @@ bool Settings::saveFile(QString filePath) {
     settings.beginGroup(QStringLiteral("Thumbnail"));
     settings.setValue(QStringLiteral("ShowThumbnails"), showThumbnails_);
     settings.setValue(QStringLiteral("MaxThumbnailFileSize"), maxThumbnailFileSize());
+    settings.setValue(QStringLiteral("MaxExternalThumbnailFileSize"), maxExternalThumbnailFileSize());
     settings.setValue(QStringLiteral("ThumbnailLocalFilesOnly"), thumbnailLocalFilesOnly());
     settings.endGroup();
 
@@ -430,6 +463,7 @@ bool Settings::saveFile(QString filePath) {
     settings.setValue(QStringLiteral("ShowFullNames"), showFullNames_);
     settings.setValue(QStringLiteral("ShadowHidden"), shadowHidden_);
     settings.setValue(QStringLiteral("NoItemTooltip"), noItemTooltip_);
+    settings.setValue(QStringLiteral("ScrollPerPixel"), scrollPerPixel_);
 
     // override config in libfm's FmConfig
     settings.setValue(QStringLiteral("BigIconSize"), bigIconSize_);
@@ -441,14 +475,19 @@ bool Settings::saveFile(QString filePath) {
 
     // detailed list columns
     settings.setValue(QStringLiteral("CustomColumnWidths"), customColumnWidths_);
-    std::sort(hiddenColumns_.begin(), hiddenColumns_.end());
-    settings.setValue(QStringLiteral("HiddenColumns"), hiddenColumns_);
+    QList<int> columns = getHiddenColumns();
+    std::sort(columns.begin(), columns.end());
+    QList<QVariant> hiddenColumns;
+    for(int i = 0; i < columns.size(); ++i) {
+        hiddenColumns << QVariant(columns.at(i));
+    }
+    settings.setValue(QStringLiteral("HiddenColumns"), hiddenColumns);
 
     settings.endGroup();
 
     settings.beginGroup(QStringLiteral("Places"));
-    QStringList hiddenPlaces = hiddenPlaces_.toList();
-    settings.setValue(QStringLiteral("HiddenPlaces"), hiddenPlaces);
+    QStringList hiddenPlacesList(hiddenPlaces_.begin(), hiddenPlaces_.end());
+    settings.setValue(QStringLiteral("HiddenPlaces"), hiddenPlacesList);
     settings.endGroup();
 
     settings.beginGroup(QStringLiteral("Window"));
@@ -463,6 +502,7 @@ bool Settings::saveFile(QString filePath) {
     settings.setValue(QStringLiteral("SwitchToNewTab"), switchToNewTab_);
     settings.setValue(QStringLiteral("ReopenLastTabs"), reopenLastTabs_);
     settings.setValue(QStringLiteral("TabPaths"), tabPaths_);
+    settings.setValue(QStringLiteral("SplitViewTabsNum"), splitViewTabsNum_);
     settings.setValue(QStringLiteral("SplitterPos"), splitterPos_);
     settings.setValue(QStringLiteral("SidePaneVisible"), sidePaneVisible_);
     settings.setValue(QStringLiteral("SidePaneMode"), QString::fromUtf8(sidePaneModeToString(sidePaneMode_)));
@@ -481,9 +521,107 @@ bool Settings::saveFile(QString filePath) {
     settings.setValue(QStringLiteral("searchContentRegexp"), searchContentRegexp_);
     settings.setValue(QStringLiteral("searchRecursive"), searchRecursive_);
     settings.setValue(QStringLiteral("searchhHidden"), searchhHidden_);
+    settings.setValue(QStringLiteral("MaxSearchHistory"), maxSearchHistory_);
+    settings.setValue(QStringLiteral("NamePatterns"), namePatterns_);
+    settings.setValue(QStringLiteral("ContentPatterns"), contentPatterns_);
     settings.endGroup();
 
     return true;
+}
+
+void Settings::setRecentFilesNumber(int n) {
+    recentFilesNumber_ = qBound(0, n, 50);
+    if(recentFilesNumber_ == 0) {
+        clearRecentFiles();
+    }
+}
+
+void Settings::clearRecentFiles() {
+    recentFiles_.clear();
+    saveRecentFiles();
+}
+
+void Settings::addRecentFile(const QString& file) {
+    if(recentFilesNumber_ > 0) {
+        recentFiles_.removeAll(file);
+        recentFiles_.prepend(file);
+        while(recentFiles_.size() > recentFilesNumber_)
+            recentFiles_.removeLast();
+    }
+}
+
+void Settings::loadRecentFiles() {
+    if(recentFilesNumber_ == 0) {
+        return;
+    }
+    // load only from the user-specific ppath
+    QString fileName = profileDir(profileName_) + QStringLiteral("/recent-files.conf");
+    QSettings settings(fileName, QSettings::IniFormat);
+
+    settings.beginGroup(QStringLiteral("Recent"));
+    recentFiles_ = settings.value(QStringLiteral("Files")).toStringList();
+    settings.endGroup();
+
+    recentFiles_.removeAll(QString());
+    recentFiles_.removeDuplicates();
+    while(recentFiles_.count() > recentFilesNumber_) {
+        recentFiles_.removeLast();
+    }
+}
+
+void Settings::saveRecentFiles() {
+    QString fileName = profileDir(profileName_) + QStringLiteral("/recent-files.conf");
+    QSettings settings(fileName, QSettings::IniFormat);
+
+    settings.beginGroup(QStringLiteral("Recent"));
+    settings.setValue(QStringLiteral("Files"), recentFiles_);
+    settings.endGroup();
+}
+
+void Settings::clearSearchHistory() {
+    namePatterns_.clear();
+    contentPatterns_.clear();
+}
+
+void Settings::setMaxSearchHistory(int max) {
+    maxSearchHistory_ = qMax(max, 0);
+    if(maxSearchHistory_ == 0) {
+        namePatterns_.clear();
+        contentPatterns_.clear();
+    }
+    else {
+        while(namePatterns_.size() > maxSearchHistory_) {
+            namePatterns_.removeLast();
+        }
+        while(contentPatterns_.size() > maxSearchHistory_) {
+            contentPatterns_.removeLast();
+        }
+    }
+}
+
+void Settings::addNamePattern(const QString& pattern) {
+    if(maxSearchHistory_ == 0 || pattern.isEmpty()
+       // "*" is too trivial with a regex search
+       || (searchNameRegexp_ && pattern == QLatin1String("*"))) {
+        return;
+    }
+    namePatterns_.removeOne(pattern);
+    namePatterns_.prepend(pattern);
+    while(namePatterns_.size() > maxSearchHistory_) {
+        namePatterns_.removeLast();
+    }
+}
+
+void Settings::addContentPattern(const QString& pattern) {
+    if(maxSearchHistory_ == 0 || pattern.isEmpty()
+       || (searchContentRegexp_ && pattern == QLatin1String("*"))) {
+        return;
+    }
+    contentPatterns_.removeOne(pattern);
+    contentPatterns_.prepend(pattern);
+    while(contentPatterns_.size() > maxSearchHistory_) {
+        contentPatterns_.removeLast();
+    }
 }
 
 const QList<int> & Settings::iconSizes(IconType type) {
@@ -607,6 +745,9 @@ static const char* sortColumnToString(Fm::FolderModel::ColumnId value) {
     case Fm::FolderModel::ColumnFileMTime:
         ret = "mtime";
         break;
+    case Fm::FolderModel::ColumnFileCrTime:
+        ret = "crtime";
+        break;
     case Fm::FolderModel::ColumnFileDTime:
         ret = "dtime";
         break;
@@ -633,6 +774,9 @@ static Fm::FolderModel::ColumnId sortColumnFromString(const QString str) {
     }
     else if(str == QLatin1String("mtime")) {
         ret = Fm::FolderModel::ColumnFileMTime;
+    }
+    else if(str == QLatin1String("crtime")) {
+        ret = Fm::FolderModel::ColumnFileCrTime;
     }
     else if(str == QLatin1String("dtime")) {
         ret = Fm::FolderModel::ColumnFileDTime;
@@ -675,7 +819,7 @@ static const char* wallpaperModeToString(int value) {
     return ret;
 }
 
-static int wallpaperModeFromString(const QString str) {
+int Settings::wallpaperModeFromString(const QString str) {
     int ret;
     if(str == QLatin1String("stretch")) {
         ret = DesktopWindow::WallpaperStretch;
@@ -739,8 +883,30 @@ void Settings::setTerminal(QString terminalCommand) {
 FolderSettings Settings::loadFolderSettings(const Fm::FilePath& path) const {
     FolderSettings settings;
     Fm::FolderConfig cfg(path);
-    if(cfg.isEmpty()) {
-        // the folder is not customized; use the general settings
+    bool customized = !cfg.isEmpty();
+    Fm::FilePath inheritedPath;
+    if(!customized
+       && !path.isParentOf(path)) { // WARNING: menu://applications/ is its own parent
+        inheritedPath = path.parent();
+        while(inheritedPath.isValid()) {
+            Fm::GErrorPtr err;
+            cfg.close(err);
+            cfg.open(inheritedPath);
+            if(!cfg.isEmpty()) {
+                bool recursive;
+                if(cfg.getBoolean("Recursive", &recursive) && recursive) {
+                    break;
+                }
+            }
+            if(inheritedPath.isParentOf(inheritedPath)) {
+                inheritedPath = Fm::FilePath(); // invalidate it
+                break;
+            }
+            inheritedPath = inheritedPath.parent();
+        }
+    }
+    if(!customized && !inheritedPath.isValid()) {
+        // the folder is not customized and does not inherit settings; use the general settings
         settings.setSortOrder(sortOrder());
         settings.setSortColumn(sortColumn());
         settings.setViewMode(viewMode());
@@ -750,8 +916,13 @@ FolderSettings Settings::loadFolderSettings(const Fm::FilePath& path) const {
         settings.setSortCaseSensitive(sortCaseSensitive());
     }
     else {
-        // the folder is customized; load folder-specific settings
-        settings.setCustomized(true);
+        // either the folder is customized or it inherits settings; load folder-specific settings
+        if(!inheritedPath.isValid()) {
+            settings.setCustomized(true);
+        }
+        else {
+            settings.seInheritedPath(inheritedPath);
+        }
 
         char* str;
         // load sorting
@@ -793,6 +964,11 @@ FolderSettings Settings::loadFolderSettings(const Fm::FilePath& path) const {
         if(cfg.getBoolean("SortCaseSensitive", &case_sensitive)) {
             settings.setSortCaseSensitive(case_sensitive);
         }
+
+        bool recursive;
+        if(cfg.getBoolean("Recursive", &recursive)) {
+            settings.setRecursive(recursive);
+        }
     }
     return settings;
 }
@@ -811,6 +987,7 @@ void Settings::saveFolderSettings(const Fm::FilePath& path, const FolderSettings
         cfg.setBoolean("SortFolderFirst", settings.sortFolderFirst());
         cfg.setBoolean("SortHiddenLast", settings.sortHiddenLast());
         cfg.setBoolean("SortCaseSensitive", settings.sortCaseSensitive());
+        cfg.setBoolean("Recursive", settings.recursive());
     }
 }
 

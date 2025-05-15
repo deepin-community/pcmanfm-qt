@@ -1,46 +1,42 @@
 Source: pcmanfm-qt
-Maintainer: LXQt Packaging Team <pkg-lxqt-devel@lists.alioth.debian.org>
-Uploaders: Alf Gaida <agaida@siduction.org>,
-           ChangZhuo Chen (陳昌倬) <czchen@debian.org>,
-           Andrew Lee (李健秋) <ajqlee@debian.org>,
-           Shih-Yuan Lee (FourDollars) <fourdollars@gmail.com>,
-           Yuan CHAO <yuanchao@gmail.com>
+Maintainer: LXQt Packaging Team <team+lxqt@tracker.debian.org>
+Uploaders: ChangZhuo Chen (陳昌倬) <czchen@debian.org>,
+           Andrew Lee (李健秋) <ajqlee@debian.org>
 Section: x11
 Priority: optional
-Build-Depends: debhelper-compat (= 12),
+Build-Depends: debhelper-compat (= 13),
                libexif-dev,
-               libfm-qt-dev (>= 0.16.0~),
-               libkf5windowsystem-dev,
+               libfm-qt-dev (>= 2.1.0~),
+               libkf6windowsystem-dev,
+               liblayershellqtinterface-dev (>= 6.0.0~),
                libmenu-cache-dev,
-               libqt5svg5-dev,
-               libqt5x11extras5-dev,
                libx11-dev,
-               lxqt-build-tools (>= 0.8.0~)
-Standards-Version: 4.5.0
+               lxqt-build-tools (>= 2.1.0~),
+               qt6-svg-dev,
+               qt6-tools-dev
+Standards-Version: 4.7.0
 Vcs-Browser: https://salsa.debian.org/lxqt-team/pcmanfm-qt
 Vcs-Git: https://salsa.debian.org/lxqt-team/pcmanfm-qt.git
 Homepage: https://github.com/lxqt/pcmanfm-qt
+Rules-Requires-Root: no
 
 Package: pcmanfm-qt
 Architecture: any
-Depends: ${misc:Depends},
-         ${shlibs:Depends},
-         default-dbus-session-bus | dbus-session-bus | dbus-x11,
+Depends: default-dbus-session-bus | dbus-session-bus | dbus-x11,
          desktop-file-utils,
-         libfm-qt8 (>= 0.16.0~),
-         lxqt-sudo
+         lxqt-sudo,
+         ${misc:Depends},
+         ${shlibs:Depends}
 Recommends: eject,
             ffmpegthumbnailer,
             gvfs-backends,
             gvfs-fuse,
             lximage-qt,
             lxqt-policykit,
-            lxqt-qtplugin,
+            lxqt-qtplugin (>= 2.0.0~),
             papirus-icon-theme | breeze-icon-theme | faenza-icon-theme | oxygen-icon-theme,
             pcmanfm-qt-l10n
 Suggests: cdtool [linux-any]
-Breaks: lxqt-common (<< 0.12.0)
-Replaces: lxqt-common (<< 0.12.0)
 Description: extremely fast and lightweight file and desktop icon manager
  PCManFM-Qt is the Qt port of the LXDE file manager PCManFM.
  .
@@ -51,11 +47,8 @@ Package: pcmanfm-qt-l10n
 Architecture: all
 Multi-Arch: foreign
 Section: localization
-Depends: ${misc:Depends},
-         qttranslations5-l10n
-Breaks: pcmanfm-qt (<< 0.11.1)
-Replaces: pcmanfm-qt (<< 0.11.1)
+Depends: qt6-translations-l10n, ${misc:Depends}
 Description: Language package for pcmanfm-qt
  PCManFM-Qt is the Qt port of the LXDE file manager PCManFM.
  .
- This package contains the l10n files needed by the pcmanfm-qt.
+ This package contains the l10n files needed by pcmanfm-qt.

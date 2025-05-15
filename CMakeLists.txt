@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.18.0 FATAL_ERROR)
 # CMP0000: Call the cmake_minimum_required() command at the beginning of the top-level
 # CMakeLists.txt file even before calling the project() command.
 # The cmake_minimum_required(VERSION) command implicitly invokes the cmake_policy(VERSION)
@@ -7,27 +7,28 @@ cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)
 project(pcmanfm-qt)
 
 # PcmanFm-Qt Version
-set(PCMANFM_QT_VERSION_MAJOR 0)
-set(PCMANFM_QT_VERSION_MINOR 16)
+set(PCMANFM_QT_VERSION_MAJOR 2)
+set(PCMANFM_QT_VERSION_MINOR 1)
 set(PCMANFM_QT_VERSION_PATCH 0)
 
 set(PCMANFM_QT_VERSION ${PCMANFM_QT_VERSION_MAJOR}.${PCMANFM_QT_VERSION_MINOR}.${PCMANFM_QT_VERSION_PATCH})
 
 # Minimum versions
-set(LIBFMQT_MINIMUM_VERSION "0.16.0")
-set(LXQTBT_MINIMUM_VERSION "0.8.0")
-set(QT_MINIMUM_VERSION "5.12.0")
+set(LIBFMQT_MINIMUM_VERSION "2.1.0")
+set(LXQTBT_MINIMUM_VERSION "2.1.0")
+set(QT_MINIMUM_VERSION "6.6.0")
+set(SHELLQT_MINIMUM_VERSION "6.0.0")
 
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
-find_package(Qt5DBus ${QT_MINIMUM_VERSION} REQUIRED)
-find_package(Qt5LinguistTools ${QT_MINIMUM_VERSION} REQUIRED)
-find_package(Qt5Widgets ${QT_MINIMUM_VERSION} REQUIRED)
-find_package(Qt5X11Extras ${QT_MINIMUM_VERSION} REQUIRED)
-find_package(fm-qt ${LIBFMQT_MINIMUM_VERSION} REQUIRED)
-find_package(lxqt-build-tools ${LXQTBT_MINIMUM_VERSION} REQUIRED)
+find_package(Qt6DBus ${QT_MINIMUM_VERSION} REQUIRED)
+find_package(Qt6LinguistTools ${QT_MINIMUM_VERSION} REQUIRED)
+find_package(Qt6Widgets ${QT_MINIMUM_VERSION} REQUIRED)
+find_package(fm-qt6 ${LIBFMQT_MINIMUM_VERSION} REQUIRED)
+find_package(lxqt2-build-tools ${LXQTBT_MINIMUM_VERSION} REQUIRED)
+find_package(LayerShellQt ${SHELLQT_MINIMUM_VERSION} REQUIRED)
 
-message(STATUS "Building ${PROJECT_NAME} with Qt ${Qt5Core_VERSION}")
+message(STATUS "Building ${PROJECT_NAME} with Qt ${Qt6Core_VERSION}")
 
 option(UPDATE_TRANSLATIONS "Update source translation translations/*.ts files" OFF)
 include(GNUInstallDirs)
@@ -69,6 +70,11 @@ if(BUILD_DOCUMENTATION)
     )
     install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/docs" DESTINATION "${CMAKE_INSTALL_DOCDIR}")
 endif()
+
+install(
+    FILES icons/pcmanfm-qt.svg
+    DESTINATION "${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/scalable/apps"
+)
 
 add_subdirectory(autostart)
 add_subdirectory(config)

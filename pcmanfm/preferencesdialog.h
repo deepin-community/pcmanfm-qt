@@ -34,15 +34,16 @@ class PreferencesDialog : public QDialog {
 
 public:
     // activePage is the name of page to select (general, display, advanced...)
-    explicit PreferencesDialog(QString activePage = QString(), QWidget* parent = 0);
+    explicit PreferencesDialog(const QString& activePage = QString(), QWidget* parent = nullptr);
     virtual ~PreferencesDialog();
 
     virtual void accept();
 
-    void selectPage(QString name);
+    void selectPage(const QString& name);
 
 protected Q_SLOTS:
     void lockMargins(bool lock);
+    void terminalContextMenu(const QPoint& p);
 
 private:
     void initIconThemes(Settings& settings);
@@ -54,6 +55,8 @@ private:
     void initVolumePage(Settings& settings);
     void initAdvancedPage(Settings& settings);
     void initTerminals(Settings& settings);
+
+    void applyTerminal(Settings& settings);
 
     void applyUiPage(Settings& settings);
     void applyDisplayPage(Settings& settings);

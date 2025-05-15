@@ -31,13 +31,20 @@ class TabBar : public QTabBar {
 Q_OBJECT
 
 public:
-    explicit TabBar(QWidget *parent = 0);
+    explicit TabBar(QWidget *parent = nullptr);
     void finishMouseMoveEvent();
     void releaseMouse();
 
     void setDetachable(bool detachable) {
         detachable_ = detachable;
+        // also, reset drag info
+        dragStarted_ = false;
+        dragStartPosition_ = QPoint();
     }
+
+    // An object property used for knowing whether
+    // a tab is dropped into one of our windows:
+    static const char* tabDropped;
 
 Q_SIGNALS:
     void tabDetached();
@@ -48,6 +55,7 @@ protected:
     virtual void mousePressEvent(QMouseEvent *event);
     virtual void mouseMoveEvent(QMouseEvent *event);
     virtual void dragEnterEvent(QDragEnterEvent *event);
+    virtual void tabInserted(int index);
 
 private:
     QPoint dragStartPosition_;
