@@ -21,7 +21,7 @@
 #ifndef PCMANFM_LAUNCHER_H
 #define PCMANFM_LAUNCHER_H
 
-#include <libfm-qt/filelauncher.h>
+#include <libfm-qt6/filelauncher.h>
 
 namespace PCManFM {
 
@@ -49,6 +49,8 @@ public:
 
 protected:
     bool openFolder(GAppLaunchContext* ctx, const Fm::FileInfoList& folderInfos, Fm::GErrorPtr& err) override;
+    void launchedFiles(const Fm::FileInfoList& files) const override;
+    void launchedPaths(const Fm::FilePathList& paths) const override;
 
 private:
     MainWindow* mainWindow_;

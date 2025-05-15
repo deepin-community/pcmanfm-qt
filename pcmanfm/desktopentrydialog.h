@@ -4,19 +4,21 @@
 #include <QDialog>
 #include "ui_desktopentrydialog.h"
 
+#include <libfm-qt6/core/filepath.h>
+
 namespace PCManFM {
 
 class LIBFM_QT_API DesktopEntryDialog : public QDialog {
     Q_OBJECT
 public:
-    explicit DesktopEntryDialog(QWidget *parent = nullptr);
+    explicit DesktopEntryDialog(QWidget *parent = nullptr, const Fm::FilePath& dirPath = Fm::FilePath());
 
     virtual ~DesktopEntryDialog();
 
     virtual void accept() override;
 
 Q_SIGNALS:
-    void desktopEntryCreated(const QString& name);
+    void desktopEntryCreated(const Fm::FilePath& parent, const QString& name);
 
 private Q_SLOTS:
     void onChangingType(int type);
@@ -25,6 +27,7 @@ private Q_SLOTS:
 
 private:
     Ui::DesktopEntryDialog ui;
+    Fm::FilePath dirPath_;
 
 };
 

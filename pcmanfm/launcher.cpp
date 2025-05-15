@@ -19,9 +19,10 @@
  */
 
 #include "launcher.h"
+#include <QFileInfo>
 #include "mainwindow.h"
 #include "application.h"
-#include <libfm-qt/core/filepath.h>
+#include <libfm-qt6/core/filepath.h>
 
 namespace PCManFM {
 
@@ -35,9 +36,7 @@ Launcher::Launcher(PCManFM::MainWindow* mainWindow):
     setQuickExec(app->settings().quickExec());
 }
 
-Launcher::~Launcher() {
-
-}
+Launcher::~Launcher() = default;
 
 bool Launcher::openFolder(GAppLaunchContext* ctx, const Fm::FileInfoList& folderInfos, Fm::GErrorPtr& /*err*/) {
     auto fi = folderInfos[0];
@@ -53,7 +52,7 @@ bool Launcher::openFolder(GAppLaunchContext* ctx, const Fm::FileInfoList& folder
             auto defaultApp = Fm::GAppInfoPtr{g_app_info_get_default_for_type("inode/directory", FALSE), false};
             if(defaultApp != nullptr
                && strcmp(g_app_info_get_id(defaultApp.get()), "pcmanfm-qt.desktop") != 0) {
-                for(const auto folder : folderInfos) {
+                for(const auto & folder : folderInfos) {
                     Fm::FileLauncher::launchWithDefaultApp(folder, ctx);
                 }
                 return true;
@@ -81,10 +80,36 @@ bool Launcher::openFolder(GAppLaunchContext* ctx, const Fm::FileInfoList& folder
         mainWindow->addTab(std::move(path));
     }
     mainWindow->show();
-    mainWindow->raise();
-    mainWindow->activateWindow();
+    if(!app->underWayland()) {
+        mainWindow->raise();
+        mainWindow->activateWindow();
+    }
     openInNewTab_ = false;
     return true;
+}
+
+void Launcher::launchedFiles(const Fm::FileInfoList& files) const {
+    Application* app = static_cast<Application*>(qApp);
+    if(app->settings().getRecentFilesNumber() > 0) {
+        for(const auto& file : files) {
+            if(file->isNative() && !file->isDir()) {
+                app->settings().addRecentFile(QString::fromUtf8(file->path().localPath().get()));
+            }
+        }
+    }
+}
+void Launcher::launchedPaths(const Fm::FilePathList& paths) const {
+    Application* app = static_cast<Application*>(qApp);
+    if(app->settings().getRecentFilesNumber() > 0) {
+        for(const auto& path : paths) {
+            if(path.isNative()) {
+                auto pathStr = QString::fromUtf8(path.localPath().get());
+                if(!QFileInfo(pathStr).isDir()) { // this is fast because the path is native
+                    app->settings().addRecentFile(pathStr);
+                }
+            }
+        }
+    }
 }
 
 } //namespace PCManFM

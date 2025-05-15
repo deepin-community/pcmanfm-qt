@@ -21,18 +21,20 @@
 #include "preferencesdialog.h"
 #include "application.h"
 #include "settings.h"
+#include <QMenu>
 #include <QDir>
 #include <QHash>
 #include <QStringBuilder>
 #include <QSettings>
+#include <QStandardPaths>
 
-#include <libfm-qt/folderview.h>
-#include <libfm-qt/core/terminal.h>
-#include <libfm-qt/core/archiver.h>
+#include <libfm-qt6/folderview.h>
+#include <libfm-qt6/core/terminal.h>
+#include <libfm-qt6/core/archiver.h>
 
 namespace PCManFM {
 
-PreferencesDialog::PreferencesDialog(QString activePage, QWidget* parent):
+PreferencesDialog::PreferencesDialog(const QString& activePage, QWidget* parent):
     QDialog(parent) {
     ui.setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -43,15 +45,23 @@ PreferencesDialog::PreferencesDialog(QString activePage, QWidget* parent):
     ui.listWidget->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
     ui.listWidget->setMaximumWidth(ui.listWidget->sizeHintForColumn(0) + ui.listWidget->frameWidth() * 2 + 4);
 
+    ui.terminal->lineEdit()->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(ui.terminal->lineEdit(), &QWidget::customContextMenuRequested, this, &PreferencesDialog::terminalContextMenu);
+    // do not insert into the list by pressing Enter; only libfm-qt gets the terminals list
+    ui.terminal->setInsertPolicy(QComboBox::NoInsert);
+
     initFromSettings();
 
     selectPage(activePage);
     adjustSize();
+
+    if(static_cast<Application*>(qApp)->underWayland()) {
+        ui.suCommand->setEnabled(false);
+        ui.suLabel->setEnabled(false);
+    }
 }
 
-PreferencesDialog::~PreferencesDialog() {
-
-}
+PreferencesDialog::~PreferencesDialog() = default;
 
 static void findIconThemesInDir(QHash<QString, QString>& iconThemes, QString dirName) {
     QDir dir(dirName);
@@ -170,6 +180,7 @@ void PreferencesDialog::initDisplayPage(Settings& settings) {
     ui.showFullNames->setChecked(settings.showFullNames());
     ui.shadowHidden->setChecked(settings.shadowHidden());
     ui.noItemTooltip->setChecked(settings.noItemTooltip());
+    ui.noScrollPerPixel->setChecked(!settings.scrollPerPixel());
 
     // app restart warning
     connect(ui.showFullNames, &QAbstractButton::toggled, [this, &settings] (bool checked) {
@@ -228,6 +239,7 @@ void PreferencesDialog::initBehaviorPage(Settings& settings) {
     ui.quickExec->setChecked(settings.quickExec());
     ui.selectNewFiles->setChecked(settings.selectNewFiles());
     ui.singleWindowMode->setChecked(settings.singleWindowMode());
+    ui.recentFilesSpinBox->setValue(settings.getRecentFilesNumber());
 
     // app restart warning
     connect(ui.quickExec, &QAbstractButton::toggled, [this, &settings] (bool checked) {
@@ -238,7 +250,12 @@ void PreferencesDialog::initBehaviorPage(Settings& settings) {
 void PreferencesDialog::initThumbnailPage(Settings& settings) {
     ui.showThumbnails->setChecked(settings.showThumbnails());
     ui.thumbnailLocal->setChecked(settings.thumbnailLocalFilesOnly());
-    ui.maxThumbnailFileSize->setValue(settings.maxThumbnailFileSize());
+
+    // the max. thumbnail size spinboxes are in MiB
+    double m = settings.maxThumbnailFileSize();
+    ui.maxThumbnailFileSize->setValue(qBound(0.0, m / 1024, 1024.0));
+    int m1 = settings.maxExternalThumbnailFileSize();
+    ui.maxExternalThumbnailFileSize->setValue(m1 < 0 ? -1 : qMin(m1 / 1024, 2048));
 }
 
 void PreferencesDialog::initVolumePage(Settings& settings) {
@@ -261,6 +278,41 @@ void PreferencesDialog::initTerminals(Settings& settings) {
     ui.terminal->setEditText(settings.terminal());
 }
 
+void PreferencesDialog::terminalContextMenu(const QPoint& p) {
+    QMenu menu(this);
+    if(!ui.terminal->currentText().isEmpty()) {
+        QAction* rmAct = menu.addAction(tr("Remove if added by user"));
+        connect(rmAct, &QAction::triggered, this, [this] {
+            QString term = ui.terminal->currentText();
+            auto parts = term.split(QRegularExpression(QStringLiteral("\\s+")), Qt::SkipEmptyParts);
+            if(parts.isEmpty()) {
+                return;
+            }
+            QString dataDir = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
+            if(dataDir.isEmpty()) {
+                return;
+            }
+            QSettings termList(dataDir + QStringLiteral("/libfm-qt/terminals.list"), QSettings::IniFormat);
+            term = parts.at(0);
+            if(termList.childGroups().contains(term)) {
+                termList.remove(term);
+                ui.terminal->clear();
+                ui.terminal->clearEditText();
+                termList.sync(); // let libfm-qt pick it up here
+                for(auto& terminal: Fm::allKnownTerminals()) {
+                    ui.terminal->addItem(QString::fromUtf8(terminal.get()));
+                }
+            }
+        });
+    }
+    QAction* openAct = menu.addAction(tr("Open user-defined list"));
+    connect(openAct, &QAction::triggered, this, [] {
+        QString termList = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QStringLiteral("/libfm-qt/terminals.list");
+        static_cast<Application*>(qApp)->launchFiles(QDir::currentPath(), QStringList() << termList, false, false);
+    });
+    menu.exec(ui.terminal->lineEdit()->mapToGlobal(p));
+}
+
 void PreferencesDialog::initAdvancedPage(Settings& settings) {
     initArchivers(settings);
     initTerminals(settings);
@@ -273,6 +325,8 @@ void PreferencesDialog::initAdvancedPage(Settings& settings) {
 
     // FIXME: Hide options that we don't support yet.
     ui.templateRunApp->hide();
+
+    ui.maxSearchHistory->setValue(settings.maxSearchHistory());
 }
 
 void PreferencesDialog::initFromSettings() {
@@ -283,6 +337,10 @@ void PreferencesDialog::initFromSettings() {
     initThumbnailPage(settings);
     initVolumePage(settings);
     initAdvancedPage(settings);
+
+    connect(ui.clearSearchHistory, &QAbstractButton::clicked, [this, &settings] {
+        settings.clearSearchHistory();
+    });
 }
 
 void PreferencesDialog::applyDisplayPage(Settings& settings) {
@@ -312,6 +370,7 @@ void PreferencesDialog::applyDisplayPage(Settings& settings) {
     settings.setShowFullNames(ui.showFullNames->isChecked());
     settings.setShadowHidden(ui.shadowHidden->isChecked());
     settings.setNoItemTooltip(ui.noItemTooltip->isChecked());
+    settings.setScrollPerPixel(!ui.noScrollPerPixel->isChecked());
     settings.setFolderViewCellMargins(QSize(ui.hMargin->value(), ui.vMargin->value()));
 }
 
@@ -346,12 +405,16 @@ void PreferencesDialog::applyBehaviorPage(Settings& settings) {
     settings.setQuickExec(ui.quickExec->isChecked());
     settings.setSelectNewFiles(ui.selectNewFiles->isChecked());
     settings.setSingleWindowMode(ui.singleWindowMode->isChecked());
+    settings.setRecentFilesNumber(ui.recentFilesSpinBox->value());
 }
 
 void PreferencesDialog::applyThumbnailPage(Settings& settings) {
     settings.setShowThumbnails(ui.showThumbnails->isChecked());
     settings.setThumbnailLocalFilesOnly(ui.thumbnailLocal->isChecked());
-    settings.setMaxThumbnailFileSize(ui.maxThumbnailFileSize->value());
+    // the max. thumbnail size spinboxes are in MiB
+    settings.setMaxThumbnailFileSize(qRound(ui.maxThumbnailFileSize->value() * 1024));
+    int m = ui.maxExternalThumbnailFileSize->value();
+    settings.setMaxExternalThumbnailFileSize(m < 0 ? -1 : m * 1024);
 }
 
 void PreferencesDialog::applyVolumePage(Settings& settings) {
@@ -361,14 +424,40 @@ void PreferencesDialog::applyVolumePage(Settings& settings) {
     settings.setCloseOnUnmount(ui.closeOnUnmount->isChecked());
 }
 
+void PreferencesDialog::applyTerminal(Settings& settings) {
+    // set the terminal, and if needed, add it to the custom list
+    QString term = ui.terminal->currentText();
+    auto parts = term.split(QRegularExpression(QStringLiteral("\\s+")), Qt::SkipEmptyParts);
+    if(parts.isEmpty()) {
+        return;
+    }
+    term = parts.at(0);
+    if(ui.terminal->findText(term) == -1) {
+        QString dataDir = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
+        if(!dataDir.isEmpty()) {
+            QSettings termList(dataDir + QStringLiteral("/libfm-qt/terminals.list"), QSettings::IniFormat);
+            termList.beginGroup(term);
+            QString openArg;
+            if(parts.size() > 1) {
+                openArg = parts.at(1);
+            }
+            termList.setValue(QStringLiteral("open_arg"), openArg);
+            termList.endGroup();
+        }
+    }
+    settings.setTerminal(term);
+}
+
 void PreferencesDialog::applyAdvancedPage(Settings& settings) {
-    settings.setTerminal(ui.terminal->currentText());
+    applyTerminal(settings);
     settings.setSuCommand(ui.suCommand->text());
     settings.setArchiver(ui.archiver->itemData(ui.archiver->currentIndex()).toString());
 
     settings.setOnlyUserTemplates(ui.onlyUserTemplates->isChecked());
     settings.setTemplateTypeOnce(ui.templateTypeOnce->isChecked());
     settings.setTemplateRunApp(ui.templateRunApp->isChecked());
+
+    settings.setMaxSearchHistory(ui.maxSearchHistory->value());
 }
 
 
@@ -392,7 +481,7 @@ void PreferencesDialog::accept() {
     QDialog::accept();
 }
 
-void PreferencesDialog::selectPage(QString name) {
+void PreferencesDialog::selectPage(const QString& name) {
     if(!name.isEmpty()) {
         QWidget* page = findChild<QWidget*>(name + QStringLiteral("Page"));
         if(page) {

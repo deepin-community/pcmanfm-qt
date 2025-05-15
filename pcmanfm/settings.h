@@ -22,13 +22,13 @@
 #define PCMANFM_SETTINGS_H
 
 #include <QObject>
-#include <libfm-qt/folderview.h>
-#include <libfm-qt/foldermodel.h>
+#include <libfm-qt6/folderview.h>
+#include <libfm-qt6/foldermodel.h>
 #include "desktopwindow.h"
-#include <libfm-qt/sidepane.h>
-#include <libfm-qt/core/thumbnailjob.h>
-#include <libfm-qt/core/archiver.h>
-#include <libfm-qt/core/legacy/fm-config.h>
+#include <libfm-qt6/sidepane.h>
+#include <libfm-qt6/core/thumbnailjob.h>
+#include <libfm-qt6/core/archiver.h>
+#include <libfm-qt6/core/legacy/fm-config.h>
 
 namespace PCManFM {
 
@@ -51,7 +51,8 @@ public:
         showHidden_(false),
         sortFolderFirst_(true),
         sortHiddenLast_(false),
-        sortCaseSensitive_(true) {
+        sortCaseSensitive_(true),
+        recursive_(false) {
     }
 
     bool isCustomized() const {
@@ -118,6 +119,23 @@ public:
         sortCaseSensitive_ = value;
     }
 
+    bool recursive() const {
+        return recursive_;
+    }
+
+    void setRecursive(bool value) {
+        recursive_ = value;
+    }
+
+    Fm::FilePath inheritedPath() const {
+        return inheritedPath_;
+    }
+
+    void seInheritedPath(const Fm::FilePath& path) {
+        inheritedPath_ = std::move(path);
+    }
+
+
 private:
     bool isCustomized_;
     Qt::SortOrder sortOrder_;
@@ -127,6 +145,8 @@ private:
     bool sortFolderFirst_;
     bool sortHiddenLast_;
     bool sortCaseSensitive_;
+    bool recursive_;
+    Fm::FilePath inheritedPath_;
     // columns?
 };
 
@@ -146,11 +166,9 @@ public:
     bool load(QString profile = QStringLiteral("default"));
     bool save(QString profile = QString());
 
-    bool loadFile(QString filePath);
-    bool saveFile(QString filePath);
-
     static QString xdgUserConfigDir();
     static const QList<int> & iconSizes(IconType type);
+    static int wallpaperModeFromString(const QString str);
 
     QString profileDir(QString profile, bool useFallback = false);
 
@@ -257,7 +275,7 @@ public:
         return wallpaper_;
     }
 
-    void setWallpaper(QString wallpaper) {
+    void setWallpaper(const QString& wallpaper) {
         wallpaper_ = wallpaper;
     }
 
@@ -451,6 +469,14 @@ public:
 
     void setReopenLastTabs(bool reopenLastTabs) {
         reopenLastTabs_ = reopenLastTabs;
+    }
+
+    int splitViewTabsNum() const {
+        return splitViewTabsNum_;
+    }
+
+    void setSplitViewTabsNum(int n) {
+        splitViewTabsNum_ = n;
     }
 
     QStringList tabPaths() const {
@@ -727,9 +753,6 @@ public:
         selectNewFiles_ = value;
     }
 
-    // bool thumbnailLocal_;
-    // bool thumbnailMax;
-
     int bigIconSize() const {
         return bigIconSize_;
     }
@@ -774,12 +797,28 @@ public:
         desktopCellMargins_ = size;
     }
 
+    QMargins workAreaMargins() const {
+        return workAreaMargins_;
+    }
+
+    void setWorkAreaMargins(QMargins margins) {
+        workAreaMargins_ = margins;
+    }
+
     bool openWithDefaultFileManager() const {
         return openWithDefaultFileManager_;
     }
 
     void setOpenWithDefaultFileManager(bool open) {
         openWithDefaultFileManager_ = open;
+    }
+
+    bool allSticky() const {
+        return allSticky_;
+    }
+
+    void setAllSticky(bool sticky) {
+        allSticky_ = sticky;
     }
 
     bool showThumbnails() {
@@ -804,6 +843,14 @@ public:
 
     void setMaxThumbnailFileSize(int size) {
         Fm::ThumbnailJob::setMaxThumbnailFileSize(size);
+    }
+
+    int maxExternalThumbnailFileSize() const {
+        return Fm::ThumbnailJob::maxExternalThumbnailFileSize();
+    }
+
+    void setMaxExternalThumbnailFileSize(int size) {
+        Fm::ThumbnailJob::setMaxExternalThumbnailFileSize(size);
     }
 
     void setThumbnailIconSize(int thumbnailIconSize) {
@@ -851,6 +898,14 @@ public:
 
     void setNoItemTooltip(bool noTooltip) {
         noItemTooltip_ = noTooltip;
+    }
+
+    bool scrollPerPixel() const {
+        return scrollPerPixel_;
+    }
+
+    void setScrollPerPixel(bool perPixel) {
+        scrollPerPixel_ = perPixel;
     }
 
     bool onlyUserTemplates() const {
@@ -935,9 +990,29 @@ public:
         searchhHidden_ = hidden;
     }
 
+    int maxSearchHistory() const {
+        return maxSearchHistory_;
+    }
+
+    void setMaxSearchHistory(int max);
+
+    void clearSearchHistory();
+
+    QStringList namePatterns() const {
+        return namePatterns_;
+    }
+
+    void addNamePattern(const QString& pattern);
+
+    QStringList contentPatterns() const {
+        return contentPatterns_;
+    }
+
+    void addContentPattern(const QString& pattern);
+
     QList<int> getCustomColumnWidths() const {
         QList<int> l;
-        for(auto width : qAsConst(customColumnWidths_)) {
+        for(auto width : std::as_const(customColumnWidths_)) {
             l << width.toInt();
         }
         return l;
@@ -952,7 +1027,7 @@ public:
 
     QList<int> getHiddenColumns() const {
         QList<int> l;
-        for(auto width : qAsConst(hiddenColumns_)) {
+        for(auto width : std::as_const(hiddenColumns_)) {
             l << width.toInt();
         }
         return l;
@@ -965,9 +1040,27 @@ public:
         }
     }
 
+    int getRecentFilesNumber() const {
+        return recentFilesNumber_;
+    }
+    void setRecentFilesNumber(int n);
+
+    QStringList getRecentFiles() const {
+        return recentFiles_;
+    }
+    void clearRecentFiles();
+    void addRecentFile(const QString& file);
+
+    void loadRecentFiles();
+    void saveRecentFiles();
+
 private:
+    bool loadFile(QString filePath);
+    bool saveFile(QString filePath);
+
     int toIconSize(int size, IconType type) const;
 
+private:
     QString profileName_;
     bool supportTrash_;
 
@@ -1012,6 +1105,7 @@ private:
     bool showTabClose_;
     bool switchToNewTab_;
     bool reopenLastTabs_;
+    int splitViewTabsNum_; // number of tabs in the first view frame when reopening last tabs
     QStringList tabPaths_;
     bool rememberWindowSize_;
     int fixedWindowWidth_;
@@ -1054,6 +1148,7 @@ private:
     bool showFullNames_;
     bool shadowHidden_;
     bool noItemTooltip_;
+    bool scrollPerPixel_;
 
     QSet<QString> hiddenPlaces_;
 
@@ -1068,8 +1163,11 @@ private:
 
     QSize folderViewCellMargins_;
     QSize desktopCellMargins_;
+    QMargins workAreaMargins_;
 
     bool openWithDefaultFileManager_;
+
+    bool allSticky_;
 
     // search settings
     bool searchNameCaseInsensitive_;
@@ -1078,10 +1176,17 @@ private:
     bool searchContentRegexp_;
     bool searchRecursive_;
     bool searchhHidden_;
+    int maxSearchHistory_;
+    QStringList namePatterns_;
+    QStringList contentPatterns_;
 
     // detailed list columns
     QList<QVariant> customColumnWidths_;
     QList<QVariant> hiddenColumns_;
+
+    // recent files
+    int recentFilesNumber_;
+    QStringList recentFiles_;
 };
 
 }
